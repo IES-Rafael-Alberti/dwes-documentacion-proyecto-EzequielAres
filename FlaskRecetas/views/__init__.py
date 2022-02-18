@@ -1,0 +1,18 @@
+from flask import Blueprint
+from flask_restx import Api
+import flask_praetorian
+
+from .usuarios import api_usuario
+from .recetas import api_receta
+from .ingredientes import api_ingrediente
+
+
+# one blueprint (Flask) for all the resources
+blueprint = Blueprint('RecipeProject', __name__)
+api = Api(blueprint, title="RecipeProject", version="1.0", description="RecipeProject", doc="/docs")
+#flask_praetorian.PraetorianError.register_error_handler_with_flask_restx(api_pet)
+
+# every resource in a namespace (RestX)
+api.add_namespace(api_usuario, path='/usuario')
+api.add_namespace(api_receta, path='/receta')
+api.add_namespace(api_ingrediente, path='/ingrediente')
