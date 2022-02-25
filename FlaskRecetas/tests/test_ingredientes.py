@@ -9,71 +9,65 @@ def client():
     with app.test_client() as client:
         yield client
 
-def test_getUsers(client):
+
+def test_getIngredients(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
     rsp = rv.get_json()
     assert 'access_token' in rsp.keys()
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.get('/api/usuario', headers=headers, follow_redirects=True)
+    rv = client.get('/api/ingrediente', headers=headers, follow_redirects=True)
     rsp = rv.get_json()
-    assert len(rsp) == 10
-    assert "Ezequiel" in [d.get("nombre") for d in rsp]
 
-def test_getUser(client):
+    assert "Sugar" in [d.get("nombre") for d in rsp]
+
+def test_getIngredient(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
     rsp = rv.get_json()
     assert 'access_token' in rsp.keys()
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.get("/api/usuario/1", headers=headers, follow_redirects=True)
+    rv = client.get("/api/ingrediente/1", headers=headers, follow_redirects=True)
     rsp = rv.get_json()
+
     assert "Ezequiel" == rsp.get("nombre")
+    assert "be41902e-5303-4838-83f3-041daae88919" == rsp.get("id")
+
+def test_postIngrediente(client):
+    rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
+    rsp = rv.get_json()
+    assert 'access_token' in rsp.keys()
+
+    headers = Headers()
+    headers.add('Authorization', f"Bearer {rsp['access_token']}")
+    rv = client.post("/api/ingrediente/", headers=headers, follow_redirects=True, json={'id' : 'asasd-123-ase', 'nombre': 'Test'})
+    rsp = rv.get_json()
+
+    assert "asasd-123-ase" == rsp.get("id")
+    assert "Test" == rsp.get("nombre")
+
+def test_putIngrediente(client):
+    rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
+    rsp = rv.get_json()
+    assert 'access_token' in rsp.keys()
+
+    headers = Headers()
+    headers.add('Authorization', f"Bearer {rsp['access_token']}")
+    rv = client.put("/api/ingrediente/1", headers=headers, follow_redirects=True, json={'id': 'be41902e-5303-4838-83f3-041daae88919', 'nombre': 'testCambio'})
+    rsp = rv.get_json()
+
+    assert "testCambio" == rsp.get("nombre")
     assert 1 == rsp.get("id")
-    assert "ezequiel@gmail.com" == rsp.get("email")
-    assert True == rsp.get("is_admin")
-    assert "Zzequi" == rsp.get("nick")
 
-def test_postUser(client):
+def test_delIngrediente(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
     rsp = rv.get_json()
     assert 'access_token' in rsp.keys()
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.post("/api/usuario/", headers=headers, follow_redirects=True, json={'nombre': 'Antonio', 'email': 'antoñete@ejemplo.com', 'hashed_password': 'pestillo', 'nick' : 'Antoñete'})
-    rsp = rv.get_json()
-
-    assert "Antoñete" == rsp.get("nick")
-    assert 11 == rsp.get("id")
-    assert "antoñete@ejemplo.com" == rsp.get("email")
-    assert False == rsp.get("is_admin")
-    assert "Antonio" == rsp.get("nombre")
-
-
-def test_putUser(client):
-    rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
-    rsp = rv.get_json()
-    assert 'access_token' in rsp.keys()
-
-    headers = Headers()
-    headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.put("/api/usuario/1", headers=headers, follow_redirects=True, json={'id': 1, 'email': 'ezequielCambio@ejemplo.com', 'nombre': 'EzequielCambio'})
-    rsp = rv.get_json()
-
-    assert "EzequielCambio" == rsp.get("username")
-    assert 1 == rsp.get("id")
-    assert "ezequielCambio@ejemplo.com" == rsp.get("email")
-
-def test_delUser(client):
-    rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
-    rsp = rv.get_json()
-    assert 'access_token' in rsp.keys()
-
-    headers = Headers()
-    headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.delete("/api/usuario/1", headers=headers, follow_redirects=True)
+    rv = client.delete("/api/ingrediente/1", headers=headers, follow_redirects=True)
     respuesta = rv.status
     assert '204 NO CONTENT' == respuesta

@@ -70,7 +70,7 @@ def seed_db(app, guard):
 
             recetasSeeder.append(
                 Receta(nombre=recetas[i]["nombre"], descripcion=recetas[i]["descripcion"], imagen=recetas[i]["imagen"],
-                       tags=recetas[i]["tags"], id=idIngredientes)
+                       tags=recetas[i]["tags"], ingredientes=idIngredientes)
             )
 
         comentarios = [
