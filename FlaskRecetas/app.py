@@ -2,7 +2,8 @@ from flask import Flask, jsonify, request, url_for, render_template
 from authlib.integrations.flask_client import OAuth
 import flask_praetorian
 
-from model import init_db
+
+from model import init_db, Usuario
 
 #import blueprint
 from views import blueprint as api
@@ -10,7 +11,6 @@ from views import blueprint as api
 def create_app(config_file='config.py'):
     # instantiate praetorian object
     guard = flask_praetorian.Praetorian()
-
     # instantiate flask app
     app = Flask(__name__)
     app.config['JSON_SORT_KEYS'] = False
@@ -19,7 +19,7 @@ def create_app(config_file='config.py'):
     app.config.from_pyfile(config_file)
 
     # praetorian init
-    #guard.init_app(app, User)
+    guard.init_app(app, Usuario)
 
     # SQLAlchemy init
     init_db(app, guard, 'tests' in config_file)

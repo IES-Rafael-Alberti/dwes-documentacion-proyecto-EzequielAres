@@ -1,9 +1,18 @@
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from sqlalchemy_utils import database_exists
+from flask import Blueprint
+import requests
 
 # instantiate SQLAlchemy object
+import commands
+
 db = SQLAlchemy()
+
+def recorrerDiccionario(diccionario, valor):
+    for i in (range(0, len(diccionario))):
+        if diccionario[i].id == valor:
+            return True
 
 def init_db(app, guard, testing=False):
     """
@@ -18,7 +27,101 @@ def init_db(app, guard, testing=False):
         # migrate model
         db.create_all(app=app)
         # seed data
-        #seed_db(app, guard)
+        seed_db(app, guard)
+
+def seed_db(app, guard):
+
+    with app.app_context():
+        recetas = commands.recipe()
+
+        usuarios = [
+            Usuario(nombre="Ezequiel", nick="Zzequi", email="ezequiel@gmail.com",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    is_admin=True),
+            Usuario(nombre="Ana", nick="Anita", email="ana@gmail.com",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    is_admin=False),
+            Usuario(nombre="Paco", nick="Pakito", email="paco@gmail.com",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    is_admin=True),
+            Usuario(nombre="María", nick="Marieta", email="maria@gmail.com",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    is_admin=False),
+            Usuario(nombre="Alejandro", nick="Alex", email="alex@gmail.com",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    is_admin=True)
+        ]
+
+        recetasSeeder = []
+        ingredientes = []
+
+        for i in range(0, len(recetas)):
+            idIngredientes = []
+
+            for x in range(0, len(recetas[i]["ingredientes"])):
+                idIngredientes.append(recetas[i]["ingredientes"][x]["id"])
+
+                if recorrerDiccionario(ingredientes, recetas[i]["ingredientes"][x]["id"]):
+                    continue
+
+                ingredientes.append(
+                    Ingrediente(id=recetas[i]["ingredientes"][x]["id"], nombre=recetas[i]["ingredientes"][x]["nombre"])
+                )
+
+            recetasSeeder.append(
+                Receta(nombre=recetas[i]["nombre"], descripcion=recetas[i]["descripcion"], imagen=recetas[i]["imagen"],
+                       tags=recetas[i]["tags"], id=idIngredientes)
+            )
+
+        comentarios = [
+            Comentario(usuario_id=0, receta_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=1, receta_id=0, padre_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=2, receta_id=0, padre_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=0, receta_id=1, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=3, receta_id=1, padre_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=0, receta_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=2, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=0, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=3, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=1, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+        ]
+
+        likes = [
+            Like(usuario_id=0, receta_id=0),
+            Like(usuario_id=1, receta_id=0),
+            Like(usuario_id=2, receta_id=0),
+            Like(usuario_id=0, receta_id=1),
+            Like(usuario_id=1, receta_id=1),
+            Like(usuario_id=2, receta_id=2),
+            Like(usuario_id=3, receta_id=2),
+            Like(usuario_id=0, receta_id=3),
+            Like(usuario_id=1, receta_id=4),
+            Like(usuario_id=2, receta_id=4),
+        ]
+
+        # add data from lists
+        for usuario in usuarios:
+            db.session.add(usuario)
+        for receta in tuple(recetasSeeder):
+            db.session.add(receta)
+        for ingrediente in tuple(ingredientes):
+            db.session.add(ingrediente)
+        for comentario in comentarios:
+            db.session.add(comentario)
+        for like in likes:
+            db.session.add(like)
+        # commit changes in database
+        db.session.commit()
 
 
 likes = db.Table('likes',
@@ -36,6 +139,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(80), unique=True, nullable=False)
     nick = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    imagen = db.Column(db.String(150), unique=False, nullable=False)
 
     hashed_password = db.Column(db.Text)
 
@@ -129,8 +233,8 @@ class Receta(db.Model):
         return f"<Receta {self.nombre}>"
 
 class Ingrediente(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(80), unique=True, nullable=False)
+    id = db.Column(db.String(250), primary_key=True)
+    nombre = db.Column(db.String(80), unique=False, nullable=False)
 
     def __repr__(self):
         return f"<Ingrediente {self.nombre}>"
