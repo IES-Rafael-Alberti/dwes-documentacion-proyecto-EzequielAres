@@ -1,9 +1,10 @@
 from flask import Blueprint
 import requests
-import app
-from flask.cli import with_appcontext
+#import app
+#from flask.cli import with_appcontext
 
 commands = Blueprint("commands", __name__)
+
 
 def recipe():
     headers = {'x-rapidapi-host': 'yummly2.p.rapidapi.com',
@@ -23,18 +24,20 @@ def recipe():
             for x in range(0, len(r["feed"][i]["content"]["ingredientLines"])):
                 try:
                     ingredientes.append({
-                        "id" : r["feed"][i]["content"]["ingredientLines"][x]["id"],
-                        "nombre" : r["feed"][i]["content"]["ingredientLines"][x]["ingredient"],
-                        "cantidad" : str(r["feed"][i]["content"]["ingredientLines"][x]["quantity"]) + r["feed"][i]["content"]["ingredientLines"][x]["amount"]["metric"]["unit"]["abbreviation"]
+                        "nombre": r["feed"][i]["content"]["ingredientLines"][x]["ingredient"],
+                        "cantidad": str(r["feed"][i]["content"]["ingredientLines"][x]["quantity"]) +
+                        r["feed"][i]["content"]["ingredientLines"][x]["amount"]["metric"]["unit"]["abbreviation"]
                     })
                 except KeyError:
                     continue
 
-            recetas.append({ "nombre" : r["feed"][i]["content"]["details"]["name"],
-                   "imagen" : r["feed"][i]["display"]["images"],
-                   "descripcion" : r["feed"][i]["display"]["profiles"][0]["description"],
-                   "tags" : r["feed"][i]["content"]["details"]["keywords"],
-                   "ingredientes" : ingredientes })
+            recetas.append({"nombre": r["feed"][i]["content"]["details"]["name"],
+                            "imagen": r["feed"][i]["display"]["images"][0],
+                            "descripcion": r["feed"][i]["display"]["profiles"][0]["description"],
+                            "video" : r["feed"][i]["content"]["videos"]["originalVideoUrl"],
+                            "pasos": r["feed"][i]["content"]["preparationSteps"],
+                            "tags": r["feed"][i]["content"]["details"]["keywords"],
+                            "ingredientes": ingredientes})
 
         except KeyError:
             continue

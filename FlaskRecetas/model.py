@@ -1,23 +1,25 @@
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy_utils import database_exists
-from flask import Blueprint
-import requests
+#from flask import Blueprint
+#import requests
 
 # instantiate SQLAlchemy object
 import commands
 
 db = SQLAlchemy()
 
-def recorrerDiccionario(diccionario, valor):
-    for i in (range(0, len(diccionario))):
-        if diccionario[i].id == valor:
-            return True
+
+
+
 
 def init_db(app, guard, testing=False):
     """
     Initializes database
 
+    :param testing:
     :param app: flask app
     :param guard: praetorian object for password hashing if seeding needed
     """
@@ -29,8 +31,8 @@ def init_db(app, guard, testing=False):
         # seed data
         seed_db(app, guard)
 
-def seed_db(app, guard):
 
+def seed_db(app, guard):
     with app.app_context():
         recetas = commands.recipe()
 
@@ -53,24 +55,29 @@ def seed_db(app, guard):
         ]
 
         recetasSeeder = []
-        ingredientes = []
 
         for i in range(0, len(recetas)):
-            idIngredientes = []
+            ingredientes = []
+
 
             for x in range(0, len(recetas[i]["ingredientes"])):
-                idIngredientes.append(recetas[i]["ingredientes"][x]["id"])
 
-                if recorrerDiccionario(ingredientes, recetas[i]["ingredientes"][x]["id"]):
-                    continue
-
+                mi_ingrediente = Ingrediente.query.filter_by(nombre=recetas[i]["ingredientes"][x]["nombre"]).first()
+                if mi_ingrediente == None:
+                    mi_ingrediente = Ingrediente(nombre=recetas[i]["ingredientes"][x]["nombre"])
+                    db.session.add(mi_ingrediente)
                 ingredientes.append(
-                    Ingrediente(id=recetas[i]["ingredientes"][x]["id"], nombre=recetas[i]["ingredientes"][x]["nombre"])
+                    mi_ingrediente
                 )
+
+            if len(recetas[i]["pasos"]) == 0:
+               recetas[i]["pasos"] = None
+
+            recetas[i]["tags"] = ",".join(recetas[i]["tags"])
 
             recetasSeeder.append(
                 Receta(nombre=recetas[i]["nombre"], descripcion=recetas[i]["descripcion"], imagen=recetas[i]["imagen"],
-                       tags=recetas[i]["tags"], ingredientes=idIngredientes)
+                       tags=recetas[i]["tags"], video=recetas[i]["video"], pasos=recetas[i]["pasos"], ingredientes=ingredientes)
             )
 
         comentarios = [
@@ -114,8 +121,6 @@ def seed_db(app, guard):
             db.session.add(usuario)
         for receta in tuple(recetasSeeder):
             db.session.add(receta)
-        for ingrediente in tuple(ingredientes):
-            db.session.add(ingrediente)
         for comentario in comentarios:
             db.session.add(comentario)
         for like in likes:
@@ -123,11 +128,6 @@ def seed_db(app, guard):
         # commit changes in database
         db.session.commit()
 
-
-likes = db.Table('likes',
-                db.Column('receta_id', db.Integer, db.ForeignKey('receta.id'), primary_key=True),
-                db.Column('usuario_id', db.Integer, db.ForeignKey('usuario.id'), primary_key=True)
-                )
 
 class Usuario(db.Model):
     """
@@ -173,7 +173,10 @@ class Usuario(db.Model):
         *Required Attribute or Property*
 
         flask-praetorian requires that the user class has a ``password`` instance
-        attribute or property that provides the hashed password assigned to the user
+        attribute or propelikes = db.Table('like',
+                 db.Column('receta_id', db.Integer, db.ForeignKey('receta.id'), primary_key=True),
+                 db.Column('usuario_id', db.Integer, db.ForeignKey('usuario.id'), primary_key=True)
+                 )rty that provides the hashed password assigned to the user
         instance
         """
 
@@ -209,40 +212,61 @@ class Usuario(db.Model):
         return f"<Usuario {self.nombre}>"
 
 
-ingrediente_receta = db.Table('ingrediente_receta',
-                                    db.Column('receta_id', db.Integer, db.ForeignKey('receta.id'), primary_key=True),
-                                    db.Column('ingrediente_id', db.Integer, db.ForeignKey('ingrediente.id'), primary_key=True)
-                                    )
+# ingrediente_receta = db.Table('ingrediente_receta',
+#                               db.Column('receta_id', db.Integer, db.ForeignKey('receta.id'), primary_key=True),
+#                               db.Column('ingrediente_id', db.Integer, db.ForeignKey('ingrediente.id'), primary_key=True)
+#                               )
+
+class IngredienteReceta(db.Model):
+    __tablename__ = 'ingrediente_receta'
+    receta_id = db.Column(ForeignKey('receta.id'), primary_key=True)
+    ingrediente_id = db.Column(ForeignKey('ingrediente.id'), primary_key=True)
+    cantidad = db.Column(db.String(200), unique=False, nullable=False)
+
+    ingrediente = relationship("Ingrediente", back_populates="recetas")
+    receta = relationship("Receta", back_populates="ingredientes")
+
+#    receta = relationship("Receta", backref=backref("ingrediente_receta", cascade="all, delete-orphan"))
+#    ingrediente = relationship("Ingrediente", backref=backref("ingrediente_receta", cascade="all, delete-orphan"))
 
 class Receta(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), unique=True, nullable=False)
     descripcion = db.Column(db.String(200), unique=False, nullable=False)
     imagen = db.Column(db.String(150), unique=False, nullable=False)
-    pasos = db.Column(db.String(300), unique=False, nullable=False)
+    video = db.Column(db.String(200), unique=False, nullable=True)
+    pasos = db.Column(db.String(300), unique=False, nullable=True)
     tags = db.Column(db.String(150), unique=False, nullable=False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=True)
 
+    usuario = relationship("Usuario", backref="recetas")
 
-    usuario = db.relationship("Usuario", backref=db.backref("receta", uselist=False))
+    ingredientes = relationship("IngredienteReceta", back_populates="receta")
+#    ingredientes = db.relationship('Ingrediente', secondary=IngredienteReceta)
 
-    ingredientes = db.relationship('Ingrediente', secondary=ingrediente_receta)
     is_active = db.Column(db.Boolean, default=True, server_default="true")
 
     def __repr__(self):
         return f"<Receta {self.nombre}>"
 
+
 class Ingrediente(db.Model):
-    id = db.Column(db.String(250), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), unique=False, nullable=False)
+
+    recetas = relationship("IngredienteReceta", back_populates="ingrediente")
+
+#    recetas = relationship("Receta", secondary=IngredienteReceta)
 
     def __repr__(self):
         return f"<Ingrediente {self.nombre}>"
+
 
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
     receta_id = db.Column(db.Integer, db.ForeignKey('receta.id'))
+
 
 class Comentario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -260,12 +284,14 @@ class UsuarioSchema(SQLAlchemyAutoSchema):
         load_instance = True
         sqla_session = db.session
 
+
 class RecetaSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Receta
         include_relationships = True
         load_instance = True
         sqla_session = db.session
+
 
 class IngredienteSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -274,12 +300,14 @@ class IngredienteSchema(SQLAlchemyAutoSchema):
         load_instance = True
         sqla_session = db.session
 
+
 class LikeSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Like
         include_relationships = True
         load_instance = True
         sqla_session = db.session
+
 
 class ComentarioSchema(SQLAlchemyAutoSchema):
     class Meta:
