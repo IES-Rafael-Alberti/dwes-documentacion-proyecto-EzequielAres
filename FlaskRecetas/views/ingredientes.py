@@ -20,12 +20,12 @@ api_ingrediente = Namespace("Ingredientes", "Manejo de ingrediente")
 @api_ingrediente.route("/<ingredient_id>")
 class IngredienteController(Resource):
 
-    # @flask_praetorian.auth_required
+    @flask_praetorian.auth_required
     def get(self, ingredient_id):
         ingrediente = Ingrediente.query.get_or_404(ingredient_id)
         return IngredienteSchema().dump(ingrediente)
 
-    # @flask_praetorian.roles_required("admin")
+    #@flask_praetorian.roles_required("admin")
     def delete(self, ingredient_id):
         ingrediente = Ingrediente.query.get_or_404(ingredient_id)
         db.session.delete(ingrediente)
@@ -33,6 +33,7 @@ class IngredienteController(Resource):
 
         return f"Ingrediente {ingredient_id} eliminado", 204
 
+    #@flask_praetorian.roles_required("admin")
     def put(self, ingredient_id):
         new_ingrediente = IngredienteSchema().load(request.json)
         if str(new_ingrediente.id) != ingredient_id:
@@ -46,17 +47,13 @@ class IngredienteController(Resource):
 @api_ingrediente.route("/")
 class IngredienteListController(Resource):
 
-    # @flask_praetorian.auth_required
+    @flask_praetorian.auth_required
     def get(self):
         return IngredienteSchema(many=True).dump(Ingrediente.query.all())
 
-    # @flask_praetorian.roles_required("admin")
+    #@flask_praetorian.roles_required("admin")
     def post(self):
         ingrediente = IngredienteSchema().load(request.json)
-
-        guard = flask_praetorian.Praetorian()
-        guard.init_app(current_app, Ingrediente)
-        ingrediente.hashed_password = guard.hash_password(ingrediente.hashed_password)
 
         db.session.add(ingrediente)
         db.session.commit()

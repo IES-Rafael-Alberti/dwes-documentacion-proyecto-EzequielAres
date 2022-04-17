@@ -11,10 +11,6 @@ import commands
 
 db = SQLAlchemy()
 
-
-
-
-
 def init_db(app, guard, testing=False):
     """
     Initializes database
@@ -34,7 +30,7 @@ def init_db(app, guard, testing=False):
 
 def seed_db(app, guard):
     with app.app_context():
-        recetas = commands.recipe()
+        # recetas = commands.recipe()
 
         usuarios = [
             Usuario(nombre="Ezequiel", nick="Zzequi", email="ezequiel@gmail.com",
@@ -54,31 +50,63 @@ def seed_db(app, guard):
                     is_admin=True)
         ]
 
-        recetasSeeder = []
+        ingredientes = [
+            Ingrediente(nombre="Arroz"),
+            Ingrediente(nombre="Pollo"),
+            Ingrediente(nombre="Pimiento"),
+            Ingrediente(nombre="Tomate"),
+            Ingrediente(nombre="Queso"),
+            Ingrediente(nombre="Sal"),
+            Ingrediente(nombre="Huevo"),
+            Ingrediente(nombre="Azúcar"),
+            Ingrediente(nombre="Pimienta"),
+        ]
 
-        for i in range(0, len(recetas)):
-            ingredientes = []
+        recetas = [
+            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="", video="", pasos="sdfsd", tags="Arroz, Pimiento, Sal", id_usuario=0),
+            Receta(nombre="Huevo frito", descripcion="Huevo frito", imagen="", video="", pasos="", tags= "Huevo, Sal", id_usuario=1),
+            Receta(nombre="Arroz con pollo", descripcion="Arroz blanco sazonado con pollo", imagen="", video="", pasos="", tags="Arroz, Sal, Pollo", id_usuario=2),
+            Receta(nombre="Arroz con tomate", descripcion="Arroz blanco con tomate", imagen="", video="", pasos="", tags="Arroz, tomate", id_usuario=3)
+        ]
 
+        ingredientesRecetas = [
+            IngredienteReceta(receta_id=0, ingrediente_id=0, cantidad="100g"),
+            IngredienteReceta(receta_id=0, ingrediente_id=5, cantidad="5g"),
+            IngredienteReceta(receta_id=0, ingrediente_id=2, cantidad="50g"),
+            IngredienteReceta(receta_id=1, ingrediente_id=6, cantidad="1"),
+            IngredienteReceta(receta_id=1, ingrediente_id=5, cantidad="4g"),
+            IngredienteReceta(receta_id=2, ingrediente_id=0, cantidad="100g"),
+            IngredienteReceta(receta_id=2, ingrediente_id=5, cantidad="5g"),
+            IngredienteReceta(receta_id=2, ingrediente_id=1, cantidad="150g"),
+            IngredienteReceta(receta_id=3, ingrediente_id=0, cantidad="100g"),
+            IngredienteReceta(receta_id=3, ingrediente_id=3, cantidad="50g")
+        ]
 
-            for x in range(0, len(recetas[i]["ingredientes"])):
-
-                mi_ingrediente = Ingrediente.query.filter_by(nombre=recetas[i]["ingredientes"][x]["nombre"]).first()
-                if mi_ingrediente == None:
-                    mi_ingrediente = Ingrediente(nombre=recetas[i]["ingredientes"][x]["nombre"])
-                    db.session.add(mi_ingrediente)
-                ingredientes.append(
-                    mi_ingrediente
-                )
-
-            if len(recetas[i]["pasos"]) == 0:
-               recetas[i]["pasos"] = None
-
-            recetas[i]["tags"] = ",".join(recetas[i]["tags"])
-
-            recetasSeeder.append(
-                Receta(nombre=recetas[i]["nombre"], descripcion=recetas[i]["descripcion"], imagen=recetas[i]["imagen"],
-                       tags=recetas[i]["tags"], video=recetas[i]["video"], pasos=recetas[i]["pasos"], ingredientes=ingredientes)
-            )
+        # recetasSeeder = []
+        #
+        # for i in range(0, len(recetas)):
+        #     ingredientes = []
+        #
+        #
+        #     for x in range(0, len(recetas[i]["ingredientes"])):
+        #
+        #         mi_ingrediente = Ingrediente.query.filter_by(nombre=recetas[i]["ingredientes"][x]["nombre"]).first()
+        #         if mi_ingrediente == None:
+        #             mi_ingrediente = Ingrediente(nombre=recetas[i]["ingredientes"][x]["nombre"])
+        #             db.session.add(mi_ingrediente)
+        #         ingredientes.append(
+        #             mi_ingrediente
+        #         )
+        #
+        #     if len(recetas[i]["pasos"]) == 0:
+        #        recetas[i]["pasos"] = None
+        #
+        #     recetas[i]["tags"] = ",".join(recetas[i]["tags"])
+        #
+        #     recetasSeeder.append(
+        #         Receta(nombre=recetas[i]["nombre"], descripcion=recetas[i]["descripcion"], imagen=recetas[i]["imagen"],
+        #                tags=recetas[i]["tags"], video=recetas[i]["video"], pasos=recetas[i]["pasos"], ingredientes=ingredientes)
+        #     )
 
         comentarios = [
             Comentario(usuario_id=0, receta_id=0, imagen="/static/imagenes/comentario/anon.jpg",
@@ -119,12 +147,16 @@ def seed_db(app, guard):
         # add data from lists
         for usuario in usuarios:
             db.session.add(usuario)
-        for receta in tuple(recetasSeeder):
+        for ingrediente in ingredientes:
+            db.session.add(ingrediente)
+        for receta in tuple(recetas):
             db.session.add(receta)
         for comentario in comentarios:
             db.session.add(comentario)
         for like in likes:
             db.session.add(like)
+        for ingredienteReceta in ingredientesRecetas:
+            db.session.add(ingredienteReceta)
         # commit changes in database
         db.session.commit()
 
@@ -241,7 +273,7 @@ class Receta(db.Model):
 
     usuario = relationship("Usuario", backref="recetas")
 
-    ingredientes = relationship("IngredienteReceta", back_populates="receta")
+    ingredientes = relationship("IngredienteReceta", back_populates="receta", cascade="all, delete")
 #    ingredientes = db.relationship('Ingrediente', secondary=IngredienteReceta)
 
     is_active = db.Column(db.Boolean, default=True, server_default="true")
@@ -254,7 +286,7 @@ class Ingrediente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), unique=False, nullable=False)
 
-    recetas = relationship("IngredienteReceta", back_populates="ingrediente")
+    recetas = relationship("IngredienteReceta", back_populates="ingrediente", cascade="all, delete")
 
 #    recetas = relationship("Receta", secondary=IngredienteReceta)
 

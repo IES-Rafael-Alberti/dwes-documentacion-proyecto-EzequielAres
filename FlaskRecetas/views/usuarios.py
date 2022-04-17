@@ -19,7 +19,7 @@ api_usuario = Namespace("Usuarios", "Manejo de usuario")
 @api_usuario.route("/<user_id>")
 class UsuarioController(Resource):
 
-    #@flask_praetorian.auth_required
+    @flask_praetorian.auth_required
     def get(self, user_id):
         user = Usuario.query.get_or_404(user_id)
         return UsuarioSchema().dump(user)
@@ -32,6 +32,7 @@ class UsuarioController(Resource):
 
         return f"Usuario {user_id} eliminado", 204
 
+    #@flask_praetorian.roles_required("admin")
     def put(self, user_id):
         new_user = UsuarioSchema().load(request.json)
         if str(new_user.id) != user_id:
@@ -45,7 +46,7 @@ class UsuarioController(Resource):
 @api_usuario.route("/")
 class UsuarioListController(Resource):
 
-    #@flask_praetorian.auth_required
+    @flask_praetorian.auth_required
     def get(self):
         return UsuarioSchema(many=True).dump(Usuario.query.all())
 

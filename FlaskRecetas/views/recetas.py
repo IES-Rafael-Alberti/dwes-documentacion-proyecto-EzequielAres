@@ -21,7 +21,7 @@ api_receta = Namespace("Recetas", "Manejo de receta")
 @api_receta.route("/<recipe_id>")
 class RecetaController(Resource):
 
-    # @flask_praetorian.auth_required
+    @flask_praetorian.auth_required
     def get(self, recipe_id):
         receta = Receta.query.get_or_404(recipe_id)
         return RecetaSchema().dump(receta)
@@ -43,11 +43,10 @@ class RecetaController(Resource):
 
         return RecetaSchema().dump(new_recipe)
 
-
 @api_receta.route("/")
 class RecetaListController(Resource):
 
-    # @flask_praetorian.auth_required
+    @flask_praetorian.auth_required
     def get(self):
         return RecetaSchema(many=True).dump(Receta.query.all())
 

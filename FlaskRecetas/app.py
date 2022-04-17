@@ -2,11 +2,11 @@ from flask import Flask, jsonify, request, url_for, render_template
 from authlib.integrations.flask_client import OAuth
 import flask_praetorian
 
-
 from model import init_db, Usuario
 
-#import blueprint
+# import blueprint
 from views import blueprint as api
+
 
 def create_app(config_file='config.py'):
     # instantiate praetorian object
@@ -24,7 +24,6 @@ def create_app(config_file='config.py'):
     # SQLAlchemy init
     init_db(app, guard, 'tests' in config_file)
 
-
     # register blueprint
     app.register_blueprint(api, url_prefix="/api/")
 
@@ -36,6 +35,29 @@ def create_app(config_file='config.py'):
         Send static file with link to api to avoid 404 on /
         """
         return app.send_static_file("index.html")
+
+    # authentication system
+    @app.route("/login", methods=['POST'])
+    def login():
+        """
+        Process login requests
+
+        Get login credentials from body using json
+        Parameters: username and password
+        """
+        # get username and password from body (json)
+        nombre = request.json.get('nombre')
+        password = request.json.get('password')
+        # praetorian authentication
+        user = guard.authenticate(nombre, password)
+
+        id = user.id;
+        # get JWT from praetorian
+        ret = {"access_token": guard.encode_jwt_token(user),
+               "id": id}
+        # return JWT
+        return jsonify(ret), 200
+
     return app
 
 if __name__ == '__main__':

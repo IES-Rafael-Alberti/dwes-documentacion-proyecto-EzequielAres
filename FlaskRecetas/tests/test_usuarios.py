@@ -18,7 +18,7 @@ def test_getUsers(client):
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
     rv = client.get('/api/usuario', headers=headers, follow_redirects=True)
     rsp = rv.get_json()
-    assert len(rsp) == 10
+    assert len(rsp) == 5
     assert "Ezequiel" in [d.get("nombre") for d in rsp]
 
 def test_getUser(client):
@@ -43,11 +43,11 @@ def test_postUser(client):
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.post("/api/usuario/", headers=headers, follow_redirects=True, json={'nombre': 'Antonio', 'email': 'antoñete@ejemplo.com', 'hashed_password': 'pestillo', 'nick' : 'Antoñete'})
+    rv = client.post("/api/usuario/", headers=headers, follow_redirects=True, json={'nombre': 'Antonio', 'email': 'antoñete@ejemplo.com', 'hashed_password': 'pestillo', 'nick' : 'Antoñete', 'imagen' : '/static/imagenes/usuario/anon.jpg'})
     rsp = rv.get_json()
 
     assert "Antoñete" == rsp.get("nick")
-    assert 11 == rsp.get("id")
+    assert 6 == rsp.get("id")
     assert "antoñete@ejemplo.com" == rsp.get("email")
     assert False == rsp.get("is_admin")
     assert "Antonio" == rsp.get("nombre")
@@ -60,10 +60,10 @@ def test_putUser(client):
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.put("/api/usuario/1", headers=headers, follow_redirects=True, json={'id': 1, 'email': 'ezequielCambio@ejemplo.com', 'nombre': 'EzequielCambio'})
+    rv = client.put("/api/usuario/1", headers=headers, follow_redirects=True, json={'id': 1, 'email': 'ezequielCambio@ejemplo.com', 'nombre': 'EzequielCambio', 'nick' : 'ZzequiCambio', 'imagen' : 'cambio'})
     rsp = rv.get_json()
 
-    assert "EzequielCambio" == rsp.get("username")
+    assert "EzequielCambio" == rsp.get("nombre")
     assert 1 == rsp.get("id")
     assert "ezequielCambio@ejemplo.com" == rsp.get("email")
 
