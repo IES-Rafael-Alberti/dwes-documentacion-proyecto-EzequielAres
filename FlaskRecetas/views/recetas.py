@@ -10,6 +10,7 @@ import sqlalchemy
 
 
 from flask_restx import abort, Resource, Namespace
+from sqlalchemy import desc, asc
 
 import app
 from model import Receta, db, RecetaSchema
@@ -42,6 +43,43 @@ class RecetaController(Resource):
         db.session.commit()
 
         return RecetaSchema().dump(new_recipe)
+
+
+def dumpRecipe(recipes):
+    list = []
+
+    for recipe in recipes:
+        list.append(RecetaSchema().dump(recipe))
+
+    return list
+
+@api_receta.route("/pagination/<int:page_number>")
+class RecetaListController(Resource):
+
+    @flask_praetorian.auth_required
+    def get(self, page_number):
+        per_page = 3
+
+        recipes = Receta.query.order_by(desc(Receta.id)).paginate(page_number, per_page, error_out=False)
+
+        pages = recipes.pages
+
+        recipes = dumpRecipe(recipes.items)
+
+        data = {"page_number" : page_number, "page_length" : pages, "items" : recipes}
+
+        return data
+
+@api_receta.route("/search/<string:name>")
+class RecetaController(Resource):
+
+    @flask_praetorian.auth_required
+    def get(self, name):
+        name = '%' + name + '%'
+
+        recipes = Receta.query.filter(Receta.nombre.like(name)).order_by(desc(Receta.id)).all()
+
+        return RecetaSchema(many=True).dump(recipes)
 
 @api_receta.route("/")
 class RecetaListController(Resource):
