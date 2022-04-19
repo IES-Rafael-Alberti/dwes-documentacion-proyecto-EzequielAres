@@ -299,6 +299,8 @@ class Like(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
     receta_id = db.Column(db.Integer, db.ForeignKey('receta.id'))
 
+    receta = relationship("Receta", backref="likes")
+    usuario = relationship("Usuario", backref="likes")
 
 class Comentario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -308,6 +310,9 @@ class Comentario(db.Model):
     imagen = db.Column(db.String(150), unique=False, nullable=False)
     contenido = db.Column(db.String(250), unique=False, nullable=False)
 
+    receta = relationship("Receta", backref="comentarios")
+    usuario = relationship("Usuario", backref="comentarios")
+    padre = relationship("Comentario", remote_side=[id])
 
 class UsuarioSchema(SQLAlchemyAutoSchema):
     class Meta:

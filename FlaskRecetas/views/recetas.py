@@ -53,6 +53,20 @@ def dumpRecipe(recipes):
 
     return list
 
+@api_receta.route("/")
+class RecetaListController(Resource):
+
+    @flask_praetorian.auth_required
+    def get(self):
+        return RecetaSchema(many=True).dump(Receta.query.all())
+
+    # @flask_praetorian.roles_required("admin")
+    def post(self):
+        receta = RecetaSchema().load(request.json)
+        db.session.add(receta)
+        db.session.commit()
+        return RecetaSchema().dump(receta), 201
+
 @api_receta.route("/pagination/<int:page_number>")
 class RecetaListController(Resource):
 
@@ -80,22 +94,3 @@ class RecetaController(Resource):
         recipes = Receta.query.filter(Receta.nombre.like(name)).order_by(desc(Receta.id)).all()
 
         return RecetaSchema(many=True).dump(recipes)
-
-@api_receta.route("/")
-class RecetaListController(Resource):
-
-    @flask_praetorian.auth_required
-    def get(self):
-        return RecetaSchema(many=True).dump(Receta.query.all())
-
-    # @flask_praetorian.roles_required("admin")
-    def post(self):
-        receta = RecetaSchema().load(request.json)
-
-        guard = flask_praetorian.Praetorian()
-        guard.init_app(current_app, Receta)
-        receta.hashed_password = guard.hash_password(receta.hashed_password)
-
-        db.session.add(receta)
-        db.session.commit()
-        return RecetaSchema().dump(receta), 201
