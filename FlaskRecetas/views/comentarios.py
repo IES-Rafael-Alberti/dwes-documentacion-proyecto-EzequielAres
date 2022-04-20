@@ -58,3 +58,15 @@ class ComentarioListController(Resource):
         db.session.add(comentario)
         db.session.commit()
         return ComentarioSchema().dump(comentario), 201
+
+@api_comentario.route("/receta/<receta_id>")
+class ComentarioController(Resource):
+    def get(self, receta_id):
+        query = sqlalchemy.text('SELECT c.* FROM comentario c JOIN receta r on c.receta_id = r.id WHERE r.id =' +
+                                receta_id)
+        result = db.session.execute(query)
+        resultMapping = result.mappings().all()
+
+
+        return { r["id"] : [ {"usuario_id" : r["usuario_id"], "receta_id" : r["receta_id"], "padre_id" : r["padre_id"],
+                              "imagen" : r["imagen"], "contenido" : r["contenido"] }] for r in resultMapping}

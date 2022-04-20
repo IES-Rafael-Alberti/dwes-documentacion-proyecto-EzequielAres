@@ -18,6 +18,13 @@ from model import db, Like, LikeSchema
 # namespace declaration
 api_like = Namespace("Likes", "Manejo de like")
 
+@api_like.route("/receta/<receta_id>")
+class LikeController(Resource):
+    def get(self, receta_id):
+        query = sqlalchemy.text('SELECT count(l.id) as "likes" FROM like l JOIN receta r on l.receta_id = r.id WHERE r.id =' + receta_id)
+        result = db.session.execute(query)
+        resultMapping = result.mappings().all()
+        return {"likes" : resultMapping[0]["likes"]}
 
 @api_like.route("/<like_id>")
 class LikeController(Resource):
