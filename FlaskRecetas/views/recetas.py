@@ -56,11 +56,11 @@ def dumpRecipe(recipes):
 @api_receta.route("/")
 class RecetaListController(Resource):
 
-    @flask_praetorian.auth_required
     def get(self):
         return RecetaSchema(many=True).dump(Receta.query.all())
 
-    # @flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
+    @flask_praetorian.roles_required("admin")
     def post(self):
         receta = RecetaSchema().load(request.json)
         db.session.add(receta)
@@ -70,7 +70,6 @@ class RecetaListController(Resource):
 @api_receta.route("/pagination/<int:page_number>")
 class RecetaListController(Resource):
 
-    @flask_praetorian.auth_required
     def get(self, page_number):
         per_page = 3
 
@@ -87,10 +86,37 @@ class RecetaListController(Resource):
 @api_receta.route("/search/<string:name>")
 class RecetaController(Resource):
 
-    @flask_praetorian.auth_required
     def get(self, name):
+        order = request.args.get('order')
         name = '%' + name + '%'
 
-        recipes = Receta.query.filter(Receta.nombre.like(name)).order_by(desc(Receta.id)).all()
+        if (order == "date"):
+            recipes = Receta.query.filter(Receta.nombre.like(name)).order_by(desc(Receta.id)).all()
+        elif (order == "likes"):
+            # TODO: Preparación sql query
+            query = sqlalchemy.text('SELECT r.*, count(l.id) as likis FROM receta r, like l WHERE r.id = l.receta_id ' +
+                                    'AND r.nombre LIKE "' +  name + '" group by r.id order by likis desc')
+
+            result = db.session.execute(query)
+            resultMapping = result.mappings().all()
+
+            return {r["id"]: [{"nombre" : r["nombre"], "descripcion" : r["descripcion"], "imagen": r["imagen"],
+                               "video": r["video"], "pasos" : r["pasos"], "tags" : r["tags"], "likes" : r["likis"]}] for r in resultMapping}
+
 
         return RecetaSchema(many=True).dump(recipes)
+
+@api_receta.route("/home")
+class RecetaController(Resource):
+
+        def get(self):
+            query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, like l, ' +
+                                    'usuario u WHERE r.id = l.receta_id AND u.id = l.usuario_id AND r.id BETWEEN 0 AND 6 ' +
+                                    'group by r.id order by r.id desc')
+
+            result = db.session.execute(query)
+            resultMapping = result.mappings().all()
+
+
+            return {r["id"]: [{"id" : r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario" :
+                r["nombreUsuario"]}] for r in resultMapping}

@@ -60,26 +60,51 @@ def seed_db(app, guard):
             Ingrediente(nombre="Huevo"),
             Ingrediente(nombre="Azúcar"),
             Ingrediente(nombre="Pimienta"),
+            Ingrediente(nombre="Tortilla de maíz"),
+            Ingrediente(nombre="Carne picada"),
+            Ingrediente(nombre="Masa de pizza"),
+            Ingrediente(nombre="Pepperoni"),
+            Ingrediente(nombre="Pan de hamburguesa"),
+            Ingrediente(nombre="Lechuga")
         ]
 
         recetas = [
-            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="", video="", pasos="sdfsd", tags="Arroz, Pimiento, Sal", id_usuario=0),
-            Receta(nombre="Huevo frito", descripcion="Huevo frito", imagen="", video="", pasos="", tags= "Huevo, Sal", id_usuario=1),
-            Receta(nombre="Arroz con pollo", descripcion="Arroz blanco sazonado con pollo", imagen="", video="", pasos="", tags="Arroz, Sal, Pollo", id_usuario=2),
-            Receta(nombre="Arroz con tomate", descripcion="Arroz blanco con tomate", imagen="", video="", pasos="", tags="Arroz, tomate", id_usuario=3)
+            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsd", tags="Arroz, Pimiento, Sal", id_usuario=0),
+            Receta(nombre="Huevo frito", descripcion="Huevo frito", imagen="https://vinomanos.com/wp-content/uploads/2019/07/huevo-frito1.jpg", video="huevo.webm", pasos="sdfsdfsdfsdfsdfsdfsdfsdfsdf", tags= "Huevo, Sal", id_usuario=1),
+            Receta(nombre="Arroz con pollo", descripcion="Arroz blanco sazonado con pollo", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsdfsdfsdfsdfsdfsdfsdsdf", tags="Arroz, Sal, Pollo", id_usuario=2),
+            Receta(nombre="Arroz con tomate", descripcion="Arroz blanco con tomate", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Arroz, Tomate", id_usuario=3),
+            Receta(nombre="Tacos", descripcion="Tacos caseros con carne y salsa",
+                   imagen="https://tacos10.com/storage/2018/12/Salsas-para-tacos-mexicanos.jpg",
+                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Tacos, Carne",
+                   id_usuario=3),
+            Receta(nombre="Pizza pepperoni", descripcion="Pizza con pepperoni y queso",
+                   imagen="https://www.hola.com/imagenes/cocina/recetas/20220208204252/pizza-pepperoni-mozzarella/1-48-890/pepperoni-pizza-abob-m.jpg",
+                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Pizza, Pepperoni",
+                   id_usuario=1),
+            Receta(nombre="Hamburguesa", descripcion="Hamburguesa con patatas y salsa",
+                   imagen="https://www.clarin.com/img/2021/06/17/LC25eDtCT_1200x630__1.jpg",
+                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Hamburguesa, Patatas, Salsa",
+                   id_usuario=2)
         ]
 
         ingredientesRecetas = [
-            IngredienteReceta(receta_id=0, ingrediente_id=0, cantidad="100g"),
-            IngredienteReceta(receta_id=0, ingrediente_id=5, cantidad="5g"),
-            IngredienteReceta(receta_id=0, ingrediente_id=2, cantidad="50g"),
-            IngredienteReceta(receta_id=1, ingrediente_id=6, cantidad="1"),
-            IngredienteReceta(receta_id=1, ingrediente_id=5, cantidad="4g"),
-            IngredienteReceta(receta_id=2, ingrediente_id=0, cantidad="100g"),
-            IngredienteReceta(receta_id=2, ingrediente_id=5, cantidad="5g"),
-            IngredienteReceta(receta_id=2, ingrediente_id=1, cantidad="150g"),
-            IngredienteReceta(receta_id=3, ingrediente_id=0, cantidad="100g"),
-            IngredienteReceta(receta_id=3, ingrediente_id=3, cantidad="50g")
+            IngredienteReceta(receta_id=1, ingrediente_id=1, cantidad="100g"),
+            IngredienteReceta(receta_id=1, ingrediente_id=6, cantidad="5g"),
+            IngredienteReceta(receta_id=1, ingrediente_id=3, cantidad="50g"),
+            IngredienteReceta(receta_id=2, ingrediente_id=7, cantidad="1"),
+            IngredienteReceta(receta_id=2, ingrediente_id=6, cantidad="4g"),
+            IngredienteReceta(receta_id=3, ingrediente_id=1, cantidad="100g"),
+            IngredienteReceta(receta_id=3, ingrediente_id=6, cantidad="5g"),
+            IngredienteReceta(receta_id=3, ingrediente_id=2, cantidad="150g"),
+            IngredienteReceta(receta_id=4, ingrediente_id=1, cantidad="100g"),
+            IngredienteReceta(receta_id=4, ingrediente_id=4, cantidad="50g"),
+            IngredienteReceta(receta_id=5, ingrediente_id=10, cantidad="3"),
+            IngredienteReceta(receta_id=5, ingrediente_id=11, cantidad="200g"),
+            IngredienteReceta(receta_id=6, ingrediente_id=12, cantidad="1"),
+            IngredienteReceta(receta_id=6, ingrediente_id=13, cantidad="100g"),
+            IngredienteReceta(receta_id=7, ingrediente_id=14, cantidad="1"),
+            IngredienteReceta(receta_id=7, ingrediente_id=15, cantidad="50g"),
+            IngredienteReceta(receta_id=7, ingrediente_id=11, cantidad="200g")
         ]
 
         # recetasSeeder = []
@@ -90,7 +115,7 @@ def seed_db(app, guard):
         #
         #     for x in range(0, len(recetas[i]["ingredientes"])):
         #
-        #         mi_ingrediente = Ingrediente.query.filter_by(nombre=recetas[i]["ingredientes"][x]["nombre"]).first()
+        #         mi_ingrediente = Ingrediente.query.filter_by(nombre=recetas[i]["ingredientes"][x]["nombre"]).first()http://localhost:5000/api/receta/home
         #         if mi_ingrediente == None:
         #             mi_ingrediente = Ingrediente(nombre=recetas[i]["ingredientes"][x]["nombre"])
         #             db.session.add(mi_ingrediente)
@@ -109,39 +134,42 @@ def seed_db(app, guard):
         #     )
 
         comentarios = [
-            Comentario(usuario_id=0, receta_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=1, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=0, padre_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=2, receta_id=1, padre_id=1, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=2, receta_id=0, padre_id=0, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=3, receta_id=1, padre_id=1, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=0, receta_id=1, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=3, receta_id=1, padre_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=4, receta_id=2, padre_id=4, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=0, receta_id=0, imagen="/static/imagenes/comentario/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=2, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=0, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=1, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
             Comentario(usuario_id=3, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=4, receta_id=4, imagen="/static/imagenes/comentario/anon.jpg",
+                       contenido="lorem ipsum"),
+            Comentario(usuario_id=2, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
                        contenido="lorem ipsum"),
         ]
 
         likes = [
-            Like(usuario_id=0, receta_id=0),
-            Like(usuario_id=1, receta_id=0),
-            Like(usuario_id=2, receta_id=0),
-            Like(usuario_id=0, receta_id=1),
             Like(usuario_id=1, receta_id=1),
+            Like(usuario_id=2, receta_id=1),
+            Like(usuario_id=3, receta_id=1),
+            Like(usuario_id=1, receta_id=2),
             Like(usuario_id=2, receta_id=2),
-            Like(usuario_id=3, receta_id=2),
-            Like(usuario_id=0, receta_id=3),
+            Like(usuario_id=3, receta_id=3),
+            Like(usuario_id=4, receta_id=3),
             Like(usuario_id=1, receta_id=4),
             Like(usuario_id=2, receta_id=4),
+            Like(usuario_id=3, receta_id=4),
+            Like(usuario_id=2, receta_id=5),
+            Like(usuario_id=1, receta_id=6),
+            Like(usuario_id=3, receta_id=7)
         ]
 
         # add data from lists

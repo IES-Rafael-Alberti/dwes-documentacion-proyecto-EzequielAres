@@ -70,3 +70,5 @@ class ComentarioController(Resource):
 
         return { r["id"] : [ {"usuario_id" : r["usuario_id"], "receta_id" : r["receta_id"], "padre_id" : r["padre_id"],
                               "imagen" : r["imagen"], "contenido" : r["contenido"] }] for r in resultMapping}
+
+
