@@ -60,28 +60,54 @@ class RecetaListController(Resource):
         return RecetaSchema(many=True).dump(Receta.query.all())
 
     @flask_praetorian.auth_required
-    @flask_praetorian.roles_required("admin")
     def post(self):
         receta = RecetaSchema().load(request.json)
         db.session.add(receta)
         db.session.commit()
         return RecetaSchema().dump(receta), 201
 
-@api_receta.route("/pagination/<int:page_number>")
+@api_receta.route("/list")
 class RecetaListController(Resource):
 
-    def get(self, page_number):
-        per_page = 3
+    def get(self):
+        order = request.args.get('order')
 
-        recipes = Receta.query.order_by(desc(Receta.id)).paginate(page_number, per_page, error_out=False)
+        if (order == "date"):
+            #recipes = Receta.query.order_by(desc(Receta.id)).paginate(page_number, per_page, error_out=False)
+            query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
+                                    'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id '
+                                    'AND u.id = r.id_usuario group by r.id order by r.id desc')
 
-        pages = recipes.pages
+            result = db.session.execute(query)
+            resultMapping = result.mappings().all()
 
-        recipes = dumpRecipe(recipes.items)
 
-        data = {"page_number" : page_number, "page_length" : pages, "items" : recipes}
+            recipes = {r["id"]: [
+                {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                    r["nombreUsuario"]}] for r in resultMapping}
 
-        return data
+        elif (order == "likes"):
+            # TODO: Preparación sql query
+            query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
+                                    'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id '
+                                    'AND u.id = r.id_usuario group by r.id order by likis desc')
+
+            result = db.session.execute(query)
+            resultMapping = result.mappings().all()
+
+            recipes = {r["nombre"]: [
+                {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                    r["nombreUsuario"]}] for r in resultMapping}
+
+        return recipes
+
+@api_receta.route("/count")
+class RecetaListController(Resource):
+    def get(self):
+        count = Receta.query.count()
+
+        return count
+
 
 @api_receta.route("/search/<string:name>")
 class RecetaController(Resource):
@@ -91,27 +117,36 @@ class RecetaController(Resource):
         name = '%' + name + '%'
 
         if (order == "date"):
-            recipes = Receta.query.filter(Receta.nombre.like(name)).order_by(desc(Receta.id)).all()
+            query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
+                                    'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id ' +
+                                    'AND u.id = r.id_usuario AND r.nombre LIKE "' + name + '" group by r.id order by r.id desc')
+            result = db.session.execute(query)
+            resultMapping = result.mappings().all()
+
+            recipes = {r["id"]: [
+                {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                    r["nombreUsuario"]}] for r in resultMapping}
         elif (order == "likes"):
             # TODO: Preparación sql query
-            query = sqlalchemy.text('SELECT r.*, count(l.id) as likis FROM receta r, like l WHERE r.id = l.receta_id ' +
-                                    'AND r.nombre LIKE "' +  name + '" group by r.id order by likis desc')
+            query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
+                                    'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id ' +
+                                    'AND u.id = r.id_usuario AND r.nombre LIKE "' +  name + '" group by r.id order by likis desc')
+
 
             result = db.session.execute(query)
             resultMapping = result.mappings().all()
 
-            return {r["id"]: [{"nombre" : r["nombre"], "descripcion" : r["descripcion"], "imagen": r["imagen"],
-                               "video": r["video"], "pasos" : r["pasos"], "tags" : r["tags"], "likes" : r["likis"]}] for r in resultMapping}
+            recipes = {r["nombre"]: [{"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                    r["nombreUsuario"]}] for r in resultMapping}
 
-
-        return RecetaSchema(many=True).dump(recipes)
+        return recipes
 
 @api_receta.route("/home")
 class RecetaController(Resource):
 
         def get(self):
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, like l, ' +
-                                    'usuario u WHERE r.id = l.receta_id AND u.id = l.usuario_id AND r.id BETWEEN 0 AND 6 ' +
+                                    'usuario u WHERE r.id = l.receta_id AND u.id = r.id_usuario AND r.id BETWEEN 0 AND 6 ' +
                                     'group by r.id order by r.id desc')
 
             result = db.session.execute(query)

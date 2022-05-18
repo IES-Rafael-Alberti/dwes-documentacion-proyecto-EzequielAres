@@ -34,19 +34,19 @@ def seed_db(app, guard):
 
         usuarios = [
             Usuario(nombre="Ezequiel", nick="Zzequi", email="ezequiel@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
                     is_admin=True),
             Usuario(nombre="Ana", nick="Anita", email="ana@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
                     is_admin=False),
             Usuario(nombre="Paco", nick="Pakito", email="paco@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
                     is_admin=True),
             Usuario(nombre="María", nick="Marieta", email="maria@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
                     is_admin=False),
             Usuario(nombre="Alejandro", nick="Alex", email="alex@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/imagenes/usuario/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
                     is_admin=True)
         ]
 
@@ -69,7 +69,7 @@ def seed_db(app, guard):
         ]
 
         recetas = [
-            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsd", tags="Arroz, Pimiento, Sal", id_usuario=0),
+            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsd", tags="Arroz, Pimiento, Sal", id_usuario=1),
             Receta(nombre="Huevo frito", descripcion="Huevo frito", imagen="https://vinomanos.com/wp-content/uploads/2019/07/huevo-frito1.jpg", video="huevo.webm", pasos="sdfsdfsdfsdfsdfsdfsdfsdfsdf", tags= "Huevo, Sal", id_usuario=1),
             Receta(nombre="Arroz con pollo", descripcion="Arroz blanco sazonado con pollo", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsdfsdfsdfsdfsdfsdfsdsdf", tags="Arroz, Sal, Pollo", id_usuario=2),
             Receta(nombre="Arroz con tomate", descripcion="Arroz blanco con tomate", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Arroz, Tomate", id_usuario=3),

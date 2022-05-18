@@ -26,6 +26,21 @@ class LikeController(Resource):
         resultMapping = result.mappings().all()
         return {"likes" : resultMapping[0]["likes"]}
 
+@api_like.route("/recetas/<user_id>")
+class LikeController(Resource):
+    def get(self, user_id):
+        query = sqlalchemy.text(
+            'SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, '
+            'like l, usuario u WHERE r.id IN (SELECT receta_id FROM like WHERE usuario_id = ' + user_id + ') '
+            'AND r.id = l.receta_id AND r.id_usuario = u.id group by r.id;')
+
+        result = db.session.execute(query)
+        resultMapping = result.mappings().all()
+
+        return {r["id"]: [
+            {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                r["nombreUsuario"]}] for r in resultMapping}
+
 @api_like.route("/<like_id>")
 class LikeController(Resource):
 

@@ -2,12 +2,10 @@ import json
 
 import flask_praetorian
 from flask import Flask, render_template, jsonify, request, \
-                  redirect, url_for, send_from_directory, session, \
-                  abort, current_app
+    redirect, url_for, send_from_directory, session, \
+    abort, current_app
 
 import sqlalchemy
-
-
 
 from flask_restx import abort, Resource, Namespace
 
@@ -16,15 +14,17 @@ from model import Usuario, db, UsuarioSchema
 # namespace declaration
 api_usuario = Namespace("Usuarios", "Manejo de usuario")
 
+
 @api_usuario.route("/<user_id>")
 class UsuarioController(Resource):
 
+    # TODO: Devolver imagen directamente
     @flask_praetorian.auth_required
     def get(self, user_id):
         user = Usuario.query.get_or_404(user_id)
         return UsuarioSchema().dump(user)
 
-    #@flask_praetorian.roles_required("admin")
+    # @flask_praetorian.roles_required("admin")
     def delete(self, user_id):
         user = Usuario.query.get_or_404(user_id)
         db.session.delete(user)
@@ -32,11 +32,42 @@ class UsuarioController(Resource):
 
         return f"Usuario {user_id} eliminado", 204
 
-    #@flask_praetorian.roles_required("admin")
+    # @flask_praetorian.roles_required("admin")
     def put(self, user_id):
-        new_user = UsuarioSchema().load(request.json)
+        data = request.values
+
+        if (data['imagen'] != ""):
+            if (data['hashed_password'] != ""):
+                new_user = {"id": user_id, "nombre": data["nombre"], "nick": data["nick"], "email": data["email"],
+                            "hashed_password": data["hashed_password"], "imagen": data["imagen"]}
+            else:
+                new_user = { "id" : user_id, "nombre" : data["nombre"], "nick" : data["nick"], "email" : data["email"],
+                                                                                            "imagen" : data["imagen"] }
+
+        elif (data['imagen'] == ""):
+            imagen = request.files['nuevaImagen']
+
+            carpeta = current_app.root_path
+            imagen.save(carpeta + "/static/usuarios/" + imagen.filename)
+
+            imagen_new_user = "http://localhost:5000/static/usuarios/" + imagen.filename
+
+            if (data['hashed_password'] != ""):
+                new_user = {"id": user_id, "nombre": data["nombre"], "nick": data["nick"], "email": data["email"],
+                            "hashed_password": data["hashed_password"], "imagen": imagen_new_user}
+            else:
+                new_user = {"id": user_id, "nombre": data["nombre"], "nick": data["nick"], "email": data["email"],
+                            "imagen": imagen_new_user}
+
+        new_user = UsuarioSchema().load(new_user)
+
         if str(new_user.id) != user_id:
             abort(400, "no coincide el id")
+
+        if (data["hashed_password"] != ""):
+            guard = flask_praetorian.Praetorian()
+            guard.init_app(current_app, Usuario)
+            new_user.hashed_password = guard.hash_password(new_user.hashed_password)
 
         db.session.commit()
 
@@ -50,9 +81,29 @@ class UsuarioListController(Resource):
     def get(self):
         return UsuarioSchema(many=True).dump(Usuario.query.all())
 
-    #@flask_praetorian.roles_required("admin")
+    # @flask_praetorian.roles_required("admin")
     def post(self):
-        user = UsuarioSchema().load(request.json)
+        data = request.values
+        imagen = request.files['imagen']
+
+        if (imagen == None):
+            imagen = "http://localhost:5000/static/usuarios/anon.jpg"
+
+            new_user = { "nombre" : data["nombre"], "nick" : data["nick"], "email" : data["email"],
+                         "hashed_password" : data["hashed_password"], "imagen" : imagen }
+
+        elif (imagen != None):
+
+            carpeta = current_app.root_path
+            imagen.save(carpeta + "/static/usuarios/" + imagen.filename)
+
+            imagen_new_user = "http://localhost:5000/static/usuarios/" + imagen.filename
+
+            new_user = {"nombre": data["nombre"], "nick": data["nick"], "email": data["email"],
+                        "hashed_password": data["hashed_password"], "imagen": imagen_new_user}
+
+
+        user = UsuarioSchema().load(new_user)
 
         guard = flask_praetorian.Praetorian()
         guard.init_app(current_app, Usuario)
