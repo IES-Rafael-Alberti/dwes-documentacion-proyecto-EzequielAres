@@ -6,3 +6,4 @@ marshmallow-sqlalchemy
 flask-praetorian
 Authlib
 requests
+python-magic

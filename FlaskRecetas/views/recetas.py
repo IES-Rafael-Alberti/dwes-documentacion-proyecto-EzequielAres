@@ -10,9 +10,7 @@ import sqlalchemy
 
 
 from flask_restx import abort, Resource, Namespace
-from sqlalchemy import desc, asc
 
-import app
 from model import Receta, db, RecetaSchema
 
 # namespace declaration
@@ -22,12 +20,34 @@ api_receta = Namespace("Recetas", "Manejo de receta")
 @api_receta.route("/<recipe_id>")
 class RecetaController(Resource):
 
-    @flask_praetorian.auth_required
     def get(self, recipe_id):
-        receta = Receta.query.get_or_404(recipe_id)
-        return RecetaSchema().dump(receta)
 
-    # @flask_praetorian.roles_required("admin")
+        query = sqlalchemy.text('SELECT r.id, r.nombre, r.descripcion, r.imagen, r.video, r.pasos, count(l.id) '
+                                'as likis, u.nombre as nombreUsuario FROM receta r, like l, usuario u '
+                                'WHERE r.id = :recipe_idRequest AND r.id = l.receta_id AND r.id_usuario = u.id GROUP BY r.id;')
+
+        result = db.session.execute(query, {"recipe_idRequest": recipe_id})
+        resultMapping = result.mappings().all()
+        r = resultMapping[0]
+
+        if (r["video"] != None):
+            if (r["pasos"] != None):
+                recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                        r["nombreUsuario"], "descripcion" : r["descripcion"], "video":r["video"], "pasos" : r["pasos"]}
+            else:
+                recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                        r["nombreUsuario"], "descripcion": r["descripcion"], "video": r["video"]}
+        else:
+            if (r["pasos"] != None):
+                recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                        r["nombreUsuario"], "descripcion": r["descripcion"], "pasos" : r["pasos"]}
+            else:
+                recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+                        r["nombreUsuario"], "descripcion": r["descripcion"]}
+
+        return recipe
+
+    @flask_praetorian.auth_required
     def delete(self, recipe_id):
         receta = Receta.query.get_or_404(recipe_id)
         db.session.delete(receta)
@@ -43,15 +63,6 @@ class RecetaController(Resource):
         db.session.commit()
 
         return RecetaSchema().dump(new_recipe)
-
-
-def dumpRecipe(recipes):
-    list = []
-
-    for recipe in recipes:
-        list.append(RecetaSchema().dump(recipe))
-
-    return list
 
 @api_receta.route("/")
 class RecetaListController(Resource):
@@ -73,7 +84,6 @@ class RecetaListController(Resource):
         order = request.args.get('order')
 
         if (order == "date"):
-            #recipes = Receta.query.order_by(desc(Receta.id)).paginate(page_number, per_page, error_out=False)
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
                                     'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id '
                                     'AND u.id = r.id_usuario group by r.id order by r.id desc')
@@ -87,7 +97,6 @@ class RecetaListController(Resource):
                     r["nombreUsuario"]}] for r in resultMapping}
 
         elif (order == "likes"):
-            # TODO: Preparación sql query
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
                                     'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id '
                                     'AND u.id = r.id_usuario group by r.id order by likis desc')
@@ -105,13 +114,10 @@ class RecetaListController(Resource):
 class RecetaListController(Resource):
     def get(self):
         count = Receta.query.count()
-
         return count
-
 
 @api_receta.route("/search/<string:name>")
 class RecetaController(Resource):
-
     def get(self, name):
         order = request.args.get('order')
         name = '%' + name + '%'
@@ -119,21 +125,20 @@ class RecetaController(Resource):
         if (order == "date"):
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
                                     'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id ' +
-                                    'AND u.id = r.id_usuario AND r.nombre LIKE "' + name + '" group by r.id order by r.id desc')
-            result = db.session.execute(query)
+                                    'AND u.id = r.id_usuario AND r.nombre LIKE :nameRequest group by r.id order by r.id desc')
+            result = db.session.execute(query, {"nameRequest": name})
             resultMapping = result.mappings().all()
 
             recipes = {r["id"]: [
                 {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
                     r["nombreUsuario"]}] for r in resultMapping}
         elif (order == "likes"):
-            # TODO: Preparación sql query
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as '
                                     'nombreUsuario FROM receta r, like l, usuario u WHERE r.id = l.receta_id ' +
-                                    'AND u.id = r.id_usuario AND r.nombre LIKE "' +  name + '" group by r.id order by likis desc')
+                                    'AND u.id = r.id_usuario AND r.nombre LIKE :nameRequest group by r.id order by likis desc')
 
 
-            result = db.session.execute(query)
+            result = db.session.execute(query, {"nameRequest": name})
             resultMapping = result.mappings().all()
 
             recipes = {r["nombre"]: [{"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":

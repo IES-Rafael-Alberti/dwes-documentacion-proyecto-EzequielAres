@@ -52,9 +52,11 @@ def create_app(config_file='config.py'):
         user = guard.authenticate(nombre, password)
 
         id = user.id;
+        admin = user.is_admin
         # get JWT from praetorian
         ret = {"access_token": guard.encode_jwt_token(user),
-               "id": id}
+               "id": id,
+               "admin" : admin}
         # return JWT
         return jsonify(ret), 200
 

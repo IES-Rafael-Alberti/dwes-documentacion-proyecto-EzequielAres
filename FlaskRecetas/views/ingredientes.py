@@ -58,3 +58,35 @@ class IngredienteListController(Resource):
         db.session.add(ingrediente)
         db.session.commit()
         return IngredienteSchema().dump(ingrediente), 201
+
+@api_ingrediente.route("/recipe/<recipe_id>")
+class IngredienteListController(Resource):
+
+    def get(self, recipe_id):
+        query = sqlalchemy.text('SELECT i.id, i.nombre, ir.cantidad FROM ingrediente_receta ir, ingrediente i WHERE '
+                                'ir.receta_id = :recipe_idRequest AND i.id IN (SELECT ingrediente_id FROM receta '
+                                'WHERE id = :recipe_idRequest) GROUP BY i.id;')
+
+        result = db.session.execute(query, {"recipe_idRequest": recipe_id})
+        resultMapping = result.mappings().all()
+
+        ingredients = {r["id"]: [{"id": r["id"], "nombre": r["nombre"] + ' - ' + r["cantidad"]}] for r in
+                       resultMapping}
+
+        return ingredients;
+
+@api_ingrediente.route("/busqueda/<string:name>")
+class IngredienteListController(Resource):
+
+    def get(self, name):
+        name = name + '%'
+
+        query = sqlalchemy.text('SELECT * FROM ingrediente WHERE nombre LIKE :nameRequest;')
+
+        result = db.session.execute(query, {"nameRequest": name})
+        resultMapping = result.mappings().all()
+
+        ingredients = {r["id"]: [{"id": r["id"], "nombre": r["nombre"]}] for r in
+                       resultMapping}
+
+        return ingredients;

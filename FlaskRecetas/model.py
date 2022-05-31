@@ -34,19 +34,19 @@ def seed_db(app, guard):
 
         usuarios = [
             Usuario(nombre="Ezequiel", nick="Zzequi", email="ezequiel@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="http://localhost:5000/static/usuarios/anon.jpg",
                     is_admin=True),
             Usuario(nombre="Ana", nick="Anita", email="ana@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="http://localhost:5000/static/usuarios/anon.jpg",
                     is_admin=False),
             Usuario(nombre="Paco", nick="Pakito", email="paco@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="http://localhost:5000/static/usuarios/anon.jpg",
                     is_admin=True),
             Usuario(nombre="María", nick="Marieta", email="maria@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="http://localhost:5000/static/usuarios/anon.jpg",
                     is_admin=False),
             Usuario(nombre="Alejandro", nick="Alex", email="alex@gmail.com",
-                    hashed_password=guard.hash_password("pestillo"), imagen="/static/usuarios/anon.jpg",
+                    hashed_password=guard.hash_password("pestillo"), imagen="http://localhost:5000/static/usuarios/anon.jpg",
                     is_admin=True)
         ]
 
@@ -69,21 +69,20 @@ def seed_db(app, guard):
         ]
 
         recetas = [
-            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsd", tags="Arroz, Pimiento, Sal", id_usuario=1),
-            Receta(nombre="Huevo frito", descripcion="Huevo frito", imagen="https://vinomanos.com/wp-content/uploads/2019/07/huevo-frito1.jpg", video="huevo.webm", pasos="sdfsdfsdfsdfsdfsdfsdfsdfsdf", tags= "Huevo, Sal", id_usuario=1),
-            Receta(nombre="Arroz con pollo", descripcion="Arroz blanco sazonado con pollo", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsdfsdfsdfsdfsdfsdfsdsdf", tags="Arroz, Sal, Pollo", id_usuario=2),
-            Receta(nombre="Arroz con tomate", descripcion="Arroz blanco con tomate", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Arroz, Tomate", id_usuario=3),
+            Receta(nombre="Arroz con pimiento", descripcion="Arroz blanco sazonado con guarnición de pimientos", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsd", id_usuario=1),
+            Receta(nombre="Huevo frito", descripcion="Huevo frito", imagen="https://vinomanos.com/wp-content/uploads/2019/07/huevo-frito1.jpg", video="http://localhost:5000/static/recetas/huevo.webm", pasos="sdfsdfsdfsdfsdfsdfsdfsdfsdf", id_usuario=1),
+            Receta(nombre="Arroz con pollo", descripcion="Arroz blanco sazonado con pollo", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sdfsdfsdfsdfsdfsdfsdfsdsdf", id_usuario=2),
+            Receta(nombre="Arroz con tomate", descripcion="Arroz blanco con tomate", imagen="https://www.recetasderechupete.com/wp-content/uploads/2019/08/Arroz-blanco-768x527.jpg", video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", id_usuario=3),
             Receta(nombre="Tacos", descripcion="Tacos caseros con carne y salsa",
                    imagen="https://tacos10.com/storage/2018/12/Salsas-para-tacos-mexicanos.jpg",
-                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Tacos, Carne",
-                   id_usuario=3),
+                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", id_usuario=3),
             Receta(nombre="Pizza pepperoni", descripcion="Pizza con pepperoni y queso",
                    imagen="https://www.hola.com/imagenes/cocina/recetas/20220208204252/pizza-pepperoni-mozzarella/1-48-890/pepperoni-pizza-abob-m.jpg",
-                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Pizza, Pepperoni",
+                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs",
                    id_usuario=1),
             Receta(nombre="Hamburguesa", descripcion="Hamburguesa con patatas y salsa",
                    imagen="https://www.clarin.com/img/2021/06/17/LC25eDtCT_1200x630__1.jpg",
-                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs", tags="Hamburguesa, Patatas, Salsa",
+                   video="", pasos="sfsdfdsfsfdsdfsdfsdfsfdsdfsdfsdfsdfsdfsdfsdfsdfsdfs",
                    id_usuario=2)
         ]
 
@@ -134,25 +133,25 @@ def seed_db(app, guard):
         #     )
 
         comentarios = [
-            Comentario(usuario_id=1, receta_id=1, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=1, imagen="http://localhost:5000/static/comentarios/mistborn.png",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=2, receta_id=1, padre_id=1, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=2, receta_id=1, padre_id=1, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=3, receta_id=1, padre_id=1, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=3, receta_id=1, padre_id=1, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=2, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=2, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=4, receta_id=2, padre_id=4, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=4, receta_id=2, padre_id=4, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=1, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=1, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=3, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=3, receta_id=3, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=1, receta_id=3, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=4, receta_id=4, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=4, receta_id=4, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
-            Comentario(usuario_id=2, receta_id=3, imagen="/static/imagenes/comentario/anon.jpg",
+            Comentario(usuario_id=2, receta_id=3, imagen="http://localhost:5000/static/comentarios/anon.jpg",
                        contenido="lorem ipsum"),
         ]
 
@@ -296,7 +295,6 @@ class Receta(db.Model):
     imagen = db.Column(db.String(150), unique=False, nullable=False)
     video = db.Column(db.String(200), unique=False, nullable=True)
     pasos = db.Column(db.String(300), unique=False, nullable=True)
-    tags = db.Column(db.String(150), unique=False, nullable=False)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=True)
 
     usuario = relationship("Usuario", backref="recetas")
@@ -335,7 +333,7 @@ class Comentario(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
     receta_id = db.Column(db.Integer, db.ForeignKey('receta.id'))
     padre_id = db.Column(db.Integer, db.ForeignKey('comentario.id'), nullable=True)
-    imagen = db.Column(db.String(150), unique=False, nullable=False)
+    imagen = db.Column(db.String(150), unique=False, nullable=True)
     contenido = db.Column(db.String(250), unique=False, nullable=False)
 
     receta = relationship("Receta", backref="comentarios")

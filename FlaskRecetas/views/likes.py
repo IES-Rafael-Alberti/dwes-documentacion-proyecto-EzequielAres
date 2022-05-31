@@ -21,8 +21,8 @@ api_like = Namespace("Likes", "Manejo de like")
 @api_like.route("/receta/<receta_id>")
 class LikeController(Resource):
     def get(self, receta_id):
-        query = sqlalchemy.text('SELECT count(l.id) as "likes" FROM like l JOIN receta r on l.receta_id = r.id WHERE r.id =' + receta_id)
-        result = db.session.execute(query)
+        query = sqlalchemy.text('SELECT count(l.id) as "likes" FROM like l JOIN receta r on l.receta_id = r.id WHERE r.id = :receta_idRequest')
+        result = db.session.execute(query, {"receta_idRequest":receta_id})
         resultMapping = result.mappings().all()
         return {"likes" : resultMapping[0]["likes"]}
 
@@ -31,15 +31,29 @@ class LikeController(Resource):
     def get(self, user_id):
         query = sqlalchemy.text(
             'SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, '
-            'like l, usuario u WHERE r.id IN (SELECT receta_id FROM like WHERE usuario_id = ' + user_id + ') '
+            'like l, usuario u WHERE r.id IN (SELECT receta_id FROM like WHERE usuario_id = :user_idRequest) '
             'AND r.id = l.receta_id AND r.id_usuario = u.id group by r.id;')
 
-        result = db.session.execute(query)
+        result = db.session.execute(query, {"user_idRequest" : user_id})
         resultMapping = result.mappings().all()
 
         return {r["id"]: [
             {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
                 r["nombreUsuario"]}] for r in resultMapping}
+
+@api_like.route("/tiene/<recipe_id>/<user_id>")
+class LikeController(Resource):
+    def get(self, recipe_id, user_id):
+        query = sqlalchemy.text(
+            'SELECT * FROM like WHERE receta_id = :recipe_idRequest AND usuario_id = :user_idRequest;')
+
+        result = db.session.execute(query, {"recipe_idRequest" : recipe_id, "user_idRequest" : user_id})
+        resultMapping = result.mappings().all()
+
+        if (len(resultMapping) > 0):
+            return {"result" : True, "idLike" : resultMapping[0].id};
+
+        return {"result" : False, "idLike" : ""};
 
 @api_like.route("/<like_id>")
 class LikeController(Resource):
@@ -50,6 +64,7 @@ class LikeController(Resource):
         return LikeSchema().dump(like)
 
     # @flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def delete(self, like_id):
         like = Like.query.get_or_404(like_id)
         db.session.delete(like)
@@ -74,6 +89,7 @@ class LikeListController(Resource):
         return LikeSchema(many=True).dump(Like.query.all())
 
     # @flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def post(self):
         like = LikeSchema().load(request.json)
         
