@@ -1,0 +1,22 @@
+version: "2.2"
+services:
+  web:
+    build: ./tfc-ezequiel-ares
+    container_name: front-tfc-ezequiel
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
+    volumes:
+      - ./tfc-ezequiel-ares:/app
+    stdin_open: true
+    tty: true
+
+  back:
+    build: ./FlaskRecetas
+    container_name: back-tfc-ezequiel
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./FlaskRecetas/flask.db:/flask.db
+      - ./FlaskRecetas/static:/static

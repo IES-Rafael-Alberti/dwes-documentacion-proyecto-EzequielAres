@@ -1,6 +1,5 @@
 from flask import Blueprint
 from flask_restx import Api
-import flask_praetorian
 
 from .comentarios import api_comentario
 from .likes import api_like

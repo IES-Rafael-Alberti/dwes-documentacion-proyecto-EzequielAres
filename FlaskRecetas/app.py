@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request, url_for, render_template
-from authlib.integrations.flask_client import OAuth
+from flask import Flask, jsonify, request
+
 import flask_praetorian
 
 from model import init_db, Usuario
