@@ -22,7 +22,7 @@ api_like = Namespace("Likes", "Manejo de like")
 class LikeController(Resource):
     def get(self, receta_id):
         query = sqlalchemy.text('SELECT count(l.id) as "likes" FROM like l JOIN receta r on l.receta_id = r.id WHERE r.id = :receta_idRequest')
-        result = db.session.execute(query, {"receta_idRequest":receta_id})
+        result = db.session.execute(query, {"receta_idRequest": receta_id})
         resultMapping = result.mappings().all()
         return {"likes" : resultMapping[0]["likes"]}
 
@@ -32,7 +32,7 @@ class LikeController(Resource):
         query = sqlalchemy.text(
             'SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, '
             'like l, usuario u WHERE r.id IN (SELECT receta_id FROM like WHERE usuario_id = :user_idRequest) '
-            'AND r.id = l.receta_id AND r.id_usuario = u.id group by r.id;')
+            'AND r.id = l.receta_id AND r.id_usuario = u.id AND r.id_usuario != :user_idRequest group by r.id;')
 
         result = db.session.execute(query, {"user_idRequest" : user_id})
         resultMapping = result.mappings().all()

@@ -51,7 +51,7 @@ class IngredienteListController(Resource):
     def get(self):
         return IngredienteSchema(many=True).dump(Ingrediente.query.all())
 
-    #@flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def post(self):
         ingrediente = IngredienteSchema().load(request.json)
 
@@ -79,7 +79,7 @@ class IngredienteListController(Resource):
 class IngredienteListController(Resource):
 
     def get(self, name):
-        name = name + '%'
+        name = '%' + name + '%'
 
         query = sqlalchemy.text('SELECT * FROM ingrediente WHERE nombre LIKE :nameRequest;')
 

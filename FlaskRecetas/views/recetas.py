@@ -11,7 +11,7 @@ import sqlalchemy
 
 from flask_restx import abort, Resource, Namespace
 
-from model import Receta, db, RecetaSchema
+from model import Receta, db, RecetaSchema, Ingrediente, IngredienteReceta, Like
 
 # namespace declaration
 api_receta = Namespace("Recetas", "Manejo de receta")
@@ -72,9 +72,52 @@ class RecetaListController(Resource):
 
     @flask_praetorian.auth_required
     def post(self):
-        receta = RecetaSchema().load(request.json)
+        data = request.values
+        imagen = request.files['imagen']
+
+        carpeta = current_app.root_path
+        imagen.save(carpeta + "/static/recetas/" + imagen.filename)
+        imagen_new_user = "http://localhost:5000/static/recetas/" + imagen.filename
+
+        try:
+            video = request.files['video']
+            video.save(carpeta + "/static/recetas/" + video.filename)
+            video_new_user = "http://localhost:5000/static/recetas/" + video.filename
+
+            if (data["pasos"] != ""):
+                new_recipe = {"nombre": data["nombre"], "descripcion": data["descripcion"], "imagen": imagen_new_user,
+                 "pasos": data["pasos"], "video" : video_new_user, "usuario": data["id_usuario"]}
+
+            elif (data["pasos"] == ""):
+                new_recipe = {"nombre": data["nombre"], "descripcion": data["descripcion"], "imagen": imagen_new_user,
+                 "video" : video_new_user, "usuario": data["id_usuario"]}
+
+        except KeyError:
+
+            new_recipe = {"nombre" : data["nombre"], "descripcion" : data["descripcion"], "imagen" : imagen_new_user,
+                          "pasos" : data["pasos"], "usuario" : data["id_usuario"]}
+
+        receta = RecetaSchema().load(new_recipe)
         db.session.add(receta)
+
+        ingredientes = json.loads(data["ingredientes"])
+        listaIngredientes = []
+        listaIngredientesReceta = []
+
+        for r in ingredientes:
+            listaIngredientes.append({"ingrediente" : Ingrediente.query.filter(Ingrediente.id.in_([r["ingrediente_id"]])).all()[0], "cantidad" : r["cantidad"]})
+
+        for ingrediente in listaIngredientes:
+            listaIngredientesReceta.append(IngredienteReceta(receta_id=receta.id, ingrediente_id=ingrediente["ingrediente"].id,
+                                                                 cantidad=ingrediente["cantidad"]))
+
+        like = Like(usuario_id=data["id_usuario"], receta_id=receta.id)
+
+        db.session.bulk_save_objects(listaIngredientesReceta)
+        db.session.add(like)
+
         db.session.commit()
+
         return RecetaSchema().dump(receta), 201
 
 @api_receta.route("/list")
@@ -141,7 +184,7 @@ class RecetaController(Resource):
             result = db.session.execute(query, {"nameRequest": name})
             resultMapping = result.mappings().all()
 
-            recipes = {r["nombre"]: [{"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
+            recipes = {r["id"]: [{"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
                     r["nombreUsuario"]}] for r in resultMapping}
 
         return recipes
@@ -150,11 +193,13 @@ class RecetaController(Resource):
 class RecetaController(Resource):
 
         def get(self):
+            count = Receta.query.count()
+
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, like l, ' +
-                                    'usuario u WHERE r.id = l.receta_id AND u.id = r.id_usuario AND r.id BETWEEN 0 AND 6 ' +
+                                    'usuario u WHERE r.id = l.receta_id AND u.id = r.id_usuario AND r.id BETWEEN (:count-6) AND :count ' +
                                     'group by r.id order by r.id desc')
 
-            result = db.session.execute(query)
+            result = db.session.execute(query, {"count": count})
             resultMapping = result.mappings().all()
 
 

@@ -100,7 +100,7 @@ class ComentarioController(Resource):
     def get(self, receta_id):
         query = sqlalchemy.text(
             'SELECT c.*, u.imagen as imagenUsuario, u.nombre as nombreUsuario FROM comentario c, usuario u JOIN receta '
-            'r on c.receta_id = r.id WHERE r.id = :receta_idRequest AND c.padre_id IS NOT NULL AND u.id = c.usuario_id'
+            'r on c.receta_id = r.id WHERE r.id = :receta_idRequest AND c.padre_id IS NOT NULL AND u.id = c.usuario_id '
             'ORDER BY c.id desc')
         result = db.session.execute(query, {"receta_idRequest": receta_id})
         resultMapping = result.mappings().all()
