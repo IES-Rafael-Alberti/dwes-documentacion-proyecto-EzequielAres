@@ -10,40 +10,40 @@
     --color-blanco: #FFFFFF;
     --croissant-one: Croissant One;
     --noto-sans: Noto Sans;
-  }
-  
-  
-  /*
+}
+
+
+/*
     IMPORTAR TIPOGRAFÍAS
   */
-  
-  @import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
-  
-  * {
-      margin: 0;
-      box-sizing: border-box;
-  }
-  
-  /*
+
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*
     Foto o video
   */
 
 .Recipe__main__foto-video__contenedor {
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 
-  img {
-    height: 60vh;  
-  }
+    img {
+        height: 60vh;
+    }
 
-  video {
-    height: 60vh;
-  }
+    video {
+        height: 60vh;
+    }
 }
 
 /*
@@ -61,7 +61,7 @@
 
 .Recipe__main__titulo__contenedor__titulo {
     color: var(--color-amarillo);
-    -webkit-text-stroke: 1px black;  
+    -webkit-text-stroke: 1px black;
     font-family: var(--croissant-one);
     font-size: 1.7vw;
 }
@@ -126,7 +126,7 @@
 
     span {
         font-family: var(--noto-sans);
-        -webkit-text-stroke: 0.5px black;  
+        -webkit-text-stroke: 0.5px black;
     }
 
     height: 40vh;
@@ -143,14 +143,14 @@
 
     span {
         color: var(--color-amarillo);
-        -webkit-text-stroke: 1px black;  
+        -webkit-text-stroke: 1px black;
         font-family: var(--croissant-one);
         font-size: 1.2vw;
     }
 
     li {
         font-family: var(--noto-sans);
-        -webkit-text-stroke: 0.5px black;  
+        -webkit-text-stroke: 0.5px black;
         padding: 1vh 0vw 1vh 0.5vw;
         margin-left: -1.3vw;
     }
@@ -166,17 +166,16 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
-    flex-direction: column;
 
     span:not(:first-of-type) {
         font-family: var(--noto-sans);
-        -webkit-text-stroke: 0.5px black;   
+        -webkit-text-stroke: 0.5px black;
     }
 }
 
 .Recipe__main__contenido__contenedor__pasos__titulo {
     color: var(--color-amarillo);
-    -webkit-text-stroke: 1px black;  
+    -webkit-text-stroke: 1px black;
     font-family: var(--croissant-one);
     font-size: 1.2vw;
 }
@@ -187,7 +186,7 @@
 
 .Recipe__main__formularioComentario__titulo {
     color: var(--color-amarillo);
-    -webkit-text-stroke: 1px black;  
+    -webkit-text-stroke: 1px black;
     font-family: var(--croissant-one);
     font-size: 1.7vw;
 }
@@ -216,8 +215,8 @@
 
             label {
                 font-family: var(--croissant-one);
-                font-size: 1vw; 
-                
+                font-size: 1vw;
+
                 padding-right: 10vw;
             }
 
@@ -233,9 +232,9 @@
                 border: 1px solid black;
                 border-radius: 5px;
                 font-size: 0.9vw;
-              }
+            }
         }
-    }    
+    }
 }
 
 .error {
@@ -254,12 +253,12 @@
     overflow: hidden;
     width: 3vw;
     height: 3vw;
-  
+
     img {
-      height: 100%;
-      width: 100%;
+        height: 100%;
+        width: 100%;
     }
-  }
+}
 
 .Recipe__main__comentarios {
     width: 100wv;
@@ -310,7 +309,7 @@
     img {
         display: block;
         margin: auto;
-        object-fit: contain;  
+        object-fit: contain;
         height: 45vh;
     }
 }
@@ -318,7 +317,7 @@
 .Recipe__main__comentarios__comentario__contenido {
     margin-left: 2vw;
     font-family: var(--noto-sans);
-    -webkit-text-stroke: 0.5px black; 
+    -webkit-text-stroke: 0.5px black;
     font-size: 0.9vw;
 
     svg {
@@ -368,7 +367,7 @@
     img {
         display: block;
         margin: auto;
-        object-fit: contain;  
+        object-fit: contain;
         height: 35vh;
     }
 }
@@ -376,7 +375,7 @@
 .Recipe__main__comentarios__comentario__contenido--hijo {
     margin-left: 2vw;
     font-family: var(--noto-sans);
-    -webkit-text-stroke: 0.5px black; 
+    -webkit-text-stroke: 0.5px black;
     font-size: 0.8vw;
 }
 
@@ -402,13 +401,13 @@
 
     label {
         font-family: var(--croissant-one);
-        font-size: 1vw;         
+        font-size: 1vw;
     }
 
     textarea {
         font-family: var(--noto-sans);
     }
-    
+
     input[type=file] {
         margin-left: 10vw;
     }
@@ -429,49 +428,49 @@
 /*
     CSS FOOTER
 */
-  
-  .Recipe__main__footer {
+
+.Recipe__main__footer {
     padding: 1.5em 2em;
     border-top: 2px solid var(--color-amarillo);
-  }
-  
-  .Recipe__main__footer__contenedor1 {
+}
+
+.Recipe__main__footer__contenedor1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-  
+
     a {
-      font-family: var(--croissant-one);
-      font-size: 1.1vw;
-      color: black;
-      text-decoration: none;
+        font-family: var(--croissant-one);
+        font-size: 1.1vw;
+        color: black;
+        text-decoration: none;
     }
-  }
-  
-  .Recipe__main__footer_contenedor1__rrss {
-  
+}
+
+.Recipe__main__footer_contenedor1__rrss {
+
     svg {
-      width: 1.3vw;
-      margin-right: 0.5em;
+        width: 1.3vw;
+        margin-right: 0.5em;
     }
-  }
-  
-  .Recipe__main__footer_contenedor2 {
+}
+
+.Recipe__main__footer_contenedor2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding-top: 2vh;
-  
+
     a {
-      text-decoration: none;
+        text-decoration: none;
     }
-  
+
     span {
-      font-family: var(--croissant-one);
-      font-size: 1.1vw;
-      color: black;
-      text-decoration: none;
+        font-family: var(--croissant-one);
+        font-size: 1.1vw;
+        color: black;
+        text-decoration: none;
     }
-  }
+}

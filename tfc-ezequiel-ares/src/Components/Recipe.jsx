@@ -297,6 +297,7 @@ export const Recipe = () => {
         setEsVideo(true);
       }
 
+      debugger
       result["nombre"] = resJson.nombre;
       result["descripcion"] = resJson.descripcion;
       result["pasos"] = resJson.pasos;

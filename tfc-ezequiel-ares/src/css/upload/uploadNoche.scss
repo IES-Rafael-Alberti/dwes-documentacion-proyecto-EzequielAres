@@ -3,13 +3,13 @@
 */
 
 :root {
-    --color-negro: #232323;
-    --color-amarillo: #ffa852;
-    --color-amarilloMuyOscuro: #ab5500;
-    --color-amarilloOscuro: #f4912D;
-    --color-blanco: #FFFFFF;
-    --croissant-one: Croissant One;
-    --noto-sans: Noto Sans;
+  --color-negro: #232323;
+  --color-amarillo: #ffa852;
+  --color-amarilloMuyOscuro: #ab5500;
+  --color-amarilloOscuro: #f4912D;
+  --color-blanco: #FFFFFF;
+  --croissant-one: Croissant One;
+  --noto-sans: Noto Sans;
 }
 
 
@@ -20,8 +20,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
 
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -33,17 +33,17 @@ body {
 */
 
 .header {
-    background-color: var(--color-negro);
+  background-color: var(--color-negro);
 }
 
-.header__menu__element{
-    a {
-        color: var(--color-blanco);
-    }
+.header__menu__element {
+  a {
+    color: var(--color-blanco);
+  }
 }
 
 .botones {
-    color: var(--color-blanco);
+  color: var(--color-blanco);
 }
 
 /*
@@ -81,14 +81,14 @@ body {
       font-family: var(--croissant-one);
       color: var(--color-blanco);
       font-size: 1vw;
-  
+
       padding: 1em 0em 0.1em 0em;
 
       input {
         margin-left: 2vw;
         font-family: var(--noto-sans);
         font-size: 0.8vw;
-        -webkit-text-stroke: 0.5px black;  
+        -webkit-text-stroke: 0.5px black;
       }
     }
 
@@ -99,15 +99,15 @@ body {
       li {
         font-family: var(--noto-sans);
         font-size: 0.7vw;
-        -webkit-text-stroke: 0.5px var(--color-blanco); 
+        -webkit-text-stroke: 0.5px var(--color-blanco);
         color: var(--color-blanco);
-      } 
+      }
     }
 
     textarea {
       font-family: var(--noto-sans);
       font-size: 0.8vw;
-      -webkit-text-stroke: 0.5px black;  
+      -webkit-text-stroke: 0.5px black;
     }
 
     button {
@@ -131,13 +131,13 @@ body {
   .error {
     font-family: var(--noto-sans);
     font-size: 0.8vw;
-    -webkit-text-stroke: 0.5px red; 
+    -webkit-text-stroke: 0.5px red;
     color: red;
   }
 }
 
 .Upload__main__contenedor__formulario__ingredientes {
-  
+
   align-self: flex-start;
 
   #cantidadIngredienteNuevo {
@@ -150,25 +150,13 @@ body {
   CSS FOOTER
 */
 
-.Upload__main__contenedor {
-  min-height: 74vh;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+.Upload__main__footer {
+  background-color: var(--color-negro);
+  padding: 1.5em 2em;
+  border-top: 2px solid var(--color-amarillo);
+  margin-top: 4vh;
 }
 
-.Upload__main__footer {
-    padding: 1.5em 2em;
-    border-top: 2px solid var(--color-amarillo);
-    background-color: var(--color-negro);
-
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
-  
 .Upload__main__footer__contenedor1 {
   display: flex;
   flex-wrap: wrap;
@@ -208,15 +196,5 @@ body {
     font-size: 1.1vw;
     color: var(--color-blanco);
     text-decoration: none;
-  }
-}
-
-.Upload__main__contenedor__formulario__ingredientes {
-  
-  align-self: flex-start;
-
-  #cantidadIngredienteNuevo {
-    margin: 0vh 1vw;
-    width: 5vw;
   }
 }

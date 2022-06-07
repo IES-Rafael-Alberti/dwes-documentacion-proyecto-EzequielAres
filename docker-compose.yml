@@ -8,7 +8,7 @@ services:
     depends_on:
       - back
     volumes:
-      - ./tfc-ezequiel-ares:/app
+      - ${PWD}/tfc-ezequiel-ares:/app
     stdin_open: true
     tty: true
 
@@ -18,5 +18,5 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./FlaskRecetas/flask.db:/flask.db
-      - ./FlaskRecetas/static:/static
+      - ${PWD}/FlaskRecetas/flask.db:/flask.db
+      - ${PWD}/FlaskRecetas/static:/static
