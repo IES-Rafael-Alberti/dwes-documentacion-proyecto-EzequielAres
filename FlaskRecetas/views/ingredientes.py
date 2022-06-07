@@ -25,7 +25,7 @@ class IngredienteController(Resource):
         ingrediente = Ingrediente.query.get_or_404(ingredient_id)
         return IngredienteSchema().dump(ingrediente)
 
-    #@flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def delete(self, ingredient_id):
         ingrediente = Ingrediente.query.get_or_404(ingredient_id)
         db.session.delete(ingrediente)
@@ -33,7 +33,7 @@ class IngredienteController(Resource):
 
         return f"Ingrediente {ingredient_id} eliminado", 204
 
-    #@flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def put(self, ingredient_id):
         new_ingrediente = IngredienteSchema().load(request.json)
         if str(new_ingrediente.id) != ingredient_id:

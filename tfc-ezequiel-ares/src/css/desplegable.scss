@@ -1,0 +1,128 @@
+/*
+  DECLARACIÓN DE VARIABLES
+*/
+
+:root {
+    --color-negro: #232323;
+    --color-amarillo: #ffa852;
+    --color-amarilloMuyOscuro: #ab5500;
+    --color-amarilloOscuro: #f4912D;
+    --color-blanco: #FFFFFF;
+    --croissant-one: Croissant One;
+    --noto-sans: Noto Sans;
+  }
+
+/*
+    Sidebar movil
+*/
+
+#contenedor__fondo {
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-negro);
+    opacity: 0.8;
+}
+
+.oculto {
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 2;
+    background-color: var(--color-blanco);
+}
+
+.sidebar {
+    width: 45vw;
+    height: 100vh;
+}
+
+.sidebar__botones {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+
+    button {
+        margin: 2vh 3vw;
+        border: 0;
+        background: none;
+        color: var(--color-amarillo);
+        
+        svg {
+            font-size: 2em;
+        }
+    }
+}
+
+.sidebar__enlaces {
+
+    padding: 2em 0em 0em 1em;
+
+    li {
+        list-style: none;
+        text-decoration: none;
+        padding: 0.7vh 0vw;
+
+        a {
+            font-family: var(--croissant-one);
+            color: var(--color-negro);
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        a:hover {
+            color: var(--color-amarillo);
+        }
+    }
+}
+
+.sidebar__footer {
+    bottom: 0;
+    position: absolute;
+
+    ul {
+        padding-left: 1em;
+
+    li {
+        list-style: none;
+        text-decoration: none;
+        padding: 0.5vh 0vw;
+
+        a {
+            font-family: var(--croissant-one);
+            color: var(--color-negro);
+            text-decoration: none;
+            font-size: 0.8em;
+        }
+
+        a:hover {
+            color: var(--color-amarillo);
+        }
+    }
+    }
+}
+
+
+
+
+.header__menu__element--movil {
+    display: block;
+    padding-top: 3vh;
+    padding-left: 0vh;
+
+    a {
+        font-size: 3vw;
+
+    }
+    
+    .botones {
+        font-size: 4.5vw;
+    }
+}
+

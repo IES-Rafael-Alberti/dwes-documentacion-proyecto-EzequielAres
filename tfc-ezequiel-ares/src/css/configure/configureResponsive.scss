@@ -1,0 +1,430 @@
+/*
+CSS ocultar elementos móvil
+*/
+
+.movil {
+  display: none;
+}
+
+.oculto {
+  display: none;
+}
+
+#viewMoreMovil {
+  display: none;
+}
+
+#contenedor__fondo {
+  display: none;
+}
+
+/*
+CSS RESPONSIVE
+*/
+
+@media (max-width: 1270px) {
+  /*
+        Header
+    */
+
+  .header__menu__element {
+    display: inline-block;
+    padding: 0em 1em;
+
+    a {
+      text-decoration: none;
+      font-size: 1.5vw;
+    }
+  }
+
+  .button {
+    font-size: 1.5vw;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  /*
+        Formulario
+    */
+
+  .Configure__main__contenedor__formulario {
+    width: 30vw;
+
+    label {
+      font-size: 1.5vw;
+    }
+
+    input {
+      margin: 0em 0em 0.2em 0em;
+    }
+
+    input[type=submit] {
+      padding: 0.5em 0em;
+      width: 9vw;
+      font-size: 1.3vw;
+    }
+  }
+
+  .Configure__main__contenedor__cerrarSesion {
+    padding: 0.5em 0em;
+    width: 9vw;
+    font-size: 1.3vw;
+  }
+
+  .Configure__main__contenedor__deleteUser {
+    padding: 0.5em 0em;
+    width: 11vw;
+    font-size: 1.3vw;
+  }
+
+  .error {
+    font-size: 1.3vw;
+  }
+
+  /*
+        Footer
+    */
+
+  .Configure__main__footer__contenedor1 {
+    a {
+      font-size: 1.8vw;
+    }
+  }
+
+  .Configure__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2vw;
+    }
+  }
+
+  .Configure__main__footer_contenedor2 {
+    span {
+      font-size: 1.8vw;
+    }
+  }
+}
+
+
+@media (max-width: 830px) {
+  .header__menu__element__contenedorImagen {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  /*
+        Formulario
+    */
+
+  .Configure__main__contenedor__formulario {
+    width: 40vw;
+
+    label {
+      font-size: 2.2vw;
+    }
+
+    input[type=submit] {
+      width: 11vw;
+      font-size: 1.8vw;
+    }
+  }
+
+  .Configure__main__contenedor__cerrarSesion {
+    padding: 0.5em 0em;
+    width: 11vw;
+    font-size: 1.8vw;
+  }
+
+  .Configure__main__contenedor__deleteUser {
+    padding: 0.5em 0em;
+    width: 15vw;
+    font-size: 1.8vw;
+  }
+
+  .error {
+    font-size: 1.5vw;
+  }
+
+}
+
+@media (max-width: 735px) {
+
+  /*
+        Header
+    */
+  .header {
+    padding: 1em 1em;
+  }
+
+  .header__menu__element {
+    display: inline-block;
+    padding: 0em 0em 0em 1em;
+
+    a {
+      text-decoration: none;
+      font-size: 2.2vw;
+    }
+  }
+
+  .header__logo {
+    width: 15vw;
+  }
+
+  /*
+        Footer
+    */
+
+  .Configure__main__footer__contenedor1 {
+    a {
+      font-size: 2.2vw;
+    }
+  }
+
+  .Configure__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2.4vw;
+    }
+  }
+
+  .Configure__main__footer_contenedor2 {
+    span {
+      font-size: 2.2vw;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+
+  .header__menu__element__contenedorImagen {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  /*
+        Formulario
+    */
+
+  .Configure__main__contenedor__formulario {
+    width: 50vw;
+
+    label {
+      font-size: 2.7vw;
+    }
+
+    input[type=submit] {
+      width: 15vw;
+      font-size: 2.3vw;
+    }
+  }
+
+  .Configure__main__contenedor__cerrarSesion {
+    width: 15vw;
+    font-size: 2.3vw;
+  }
+
+  .Configure__main__contenedor__deleteUser {
+    width: 18vw;
+    font-size: 2.3vw;
+  }
+
+  .error {
+    font-size: 1.9vw;
+  }
+}
+
+@media (max-width: 560px) {
+  .header__menu__element__contenedorImagen {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  /*
+        Header
+    */
+  .header__logo {
+    width: 20vw;
+  }
+
+  .header__menu__element {
+    padding: 0em 0em 0em 0.5em;
+
+    a {
+      font-size: 2.4vw;
+    }
+  }
+
+  /*
+        Formulario
+    */
+
+  .Configure__main__contenedor__formulario {
+    width: 55vw;
+
+    label {
+      font-size: 3vw;
+    }
+
+    input[type=submit] {
+      width: 17vw;
+      font-size: 2.6vw;
+    }
+  }
+
+  .Configure__main__contenedor__cerrarSesion {
+    width: 17vw;
+    font-size: 2.6vw;
+  }
+
+  .Configure__main__contenedor__deleteUser {
+    width: 20vw;
+    font-size: 2.6vw;
+  }
+
+  .error {
+    font-size: 2.1vw;
+  }
+
+  /*
+        Footer
+    */
+
+  .Configure__main__footer__contenedor1 {
+    a {
+      font-size: 2.5vw;
+    }
+  }
+
+  .Configure__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2.7vw;
+    }
+  }
+
+  .Configure__main__footer_contenedor2 {
+    span {
+      font-size: 2.5vw;
+    }
+  }
+}
+
+
+
+/*
+CSS CAMBIO A MÓVIL
+*/
+
+@media (max-width: 476px) {
+  .desktop {
+    display: none;
+  }
+
+  .movil {
+    display: initial;
+  }
+
+  /*
+    CSS HEADER MOVIL
+    */
+
+  .header--movil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 1em 2em;
+
+    border-bottom: 2px solid var(--color-amarillo);
+
+    button {
+      border: 0;
+      background: none;
+      color: var(--color-amarillo);
+
+      svg {
+        font-size: 2em;
+      }
+    }
+
+    img {
+      width: 10em;
+    }
+  }
+
+  .movil--header__menu {
+
+    padding: 0;
+    margin-bottom: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .header__menu__element__contenedorImagen--movil {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 2.5em;
+    height: 2.5em;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+
+  /*
+    CSS FORMULARIO MOVIL
+  */
+
+  .Configure__main__contenedor__formulario {
+
+    width: 70vw;
+
+    label {
+      font-size: 3.4vw;
+    }
+
+    input[type=submit] {
+      width: 20vw;
+      font-size: 2.8vw;
+    }
+  }
+
+  .Configure__main__contenedor__cerrarSesion {
+    width: 20vw;
+    font-size: 2.8vw;
+  }
+
+  .Configure__main__contenedor__deleteUser {
+    width: 22vw;
+    font-size: 2.8vw;
+  }
+
+  .error {
+    font-size: 1em;
+  }
+
+
+  /*
+        CSS FOOTER MOVIL
+    */
+
+  .Configure__main__footer__contenedor1 {
+
+    a {
+      font-size: 1em;
+    }
+  }
+
+  .Configure__main__footer__contenedor1__rrss {
+    svg {
+      width: 1em;
+    }
+  }
+}

@@ -1,0 +1,247 @@
+/*
+    DECLARACIÓN DE VARIABLES
+*/
+
+:root {
+    --color-negro: #232323;
+    --color-amarillo: #ffa852;
+    --color-amarilloMuyOscuro: #ab5500;
+    --color-amarilloOscuro: #f4912D;
+    --color-blanco: #FFFFFF;
+    --croissant-one: Croissant One;
+    --noto-sans: Noto Sans;
+}
+
+
+/*
+    IMPORTAR TIPOGRAFÍAS
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-negro);
+}
+
+/*
+    CSS HEADER
+  */
+  
+  .header {
+    background-color: var(--color-negro);
+  }
+  
+  .header__menu__element{
+    a {
+      color: var(--color-blanco);
+    }
+  }
+  
+  .botones {
+    color: var(--color-blanco);
+  }
+
+  /*
+    CSS MAIN
+  */
+  
+  .Login__main {
+    background-color: var(--color-negro);
+  }
+
+/*
+    CSS FORMULARIO LOGIN
+*/
+
+.Login__main__contenedor {
+  height: 76vh;
+  
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login__main__contenedor__formularioLogin {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  border: 1px solid var(--color-blanco);
+  border-radius: 5px;
+
+  height: 50vh;
+  width: 20vw;
+
+  padding: 2em 2em;
+
+  label {
+    font-family: var(--croissant-one);
+    font-size: 1.1vw;
+    color: var(--color-blanco);
+
+    padding: 0.7em 0em 0.1em 0em;
+  }
+
+  input {
+    width: 100%;
+    font-family: var(--noto-sans);
+    margin: 0em 0em 0.5em 0em;
+    border: 1px solid black;
+  }
+
+  input[type=submit] {
+    font-family: var(--croissant-one);
+    padding: 0.3em 0em;
+    margin: 0em auto 0em;
+    width: 7vw;
+    background-color: var(--color-amarillo);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 0.9vw;
+  }
+
+  span {
+    color: var(--color-blanco);
+    margin: 1em auto 1em;
+    font-family: var(--croissant-one);
+    font-size: 1.1vw;
+  }
+
+  button {
+    font-family: var(--croissant-one);
+    padding: 0.3em 0em;
+    margin: 0em auto 0em;
+    width: 7vw;
+    background-color: var(--color-amarillo);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 0.9vw;
+  }
+}
+
+.Login__main__contenedor__formularioRegister {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  border: 1px solid var(--color-blanco);
+  border-radius: 5px;
+
+  height: 73vh;
+  width: 25vw;
+
+  padding: 1em 1em;
+
+  label {
+    font-family: var(--croissant-one);
+    font-size: 1vw;
+    color: var(--color-blanco);
+
+    padding: 0.5em 0em 0.1em 0em;
+  }
+
+  input {
+    width: 100%;
+    font-family: var(--noto-sans);
+    margin: 0em 0em 0.2em 0em;
+  }
+
+  input[type=submit] {
+    font-family: var(--croissant-one);
+    padding: 0.3em 0em;
+    margin: 0em auto 0em;
+    width: 6.5vw;
+    background-color: var(--color-amarillo);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 0.8vw;
+  }
+
+  span {
+    color: var(--color-blanco);
+    margin: 1em auto;
+    font-family: var(--croissant-one);
+    font-size: 1vw;
+  }
+
+  button {
+    font-family: var(--croissant-one);
+    padding: 0.3em 0em;
+    margin: 0em auto 0em;
+    width: 6.5vw;
+    background-color: var(--color-amarillo);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 0.8vw;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.8vw;
+  font-family: var(--croissant-one);
+  padding: 0.3em 0em 0em 0em;
+}
+
+/*
+  CSS FOOTER
+*/
+
+.Login__main__footer {
+    padding: 1.5em 2em;
+    border-top: 2px solid var(--color-amarillo);
+    background-color: var(--color-negro);
+
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  
+.Login__main__footer__contenedor1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    font-family: var(--croissant-one);
+    font-size: 1.1vw;
+    color: var(--color-blanco);
+    text-decoration: none;
+  }
+}
+
+.Login__main__footer_contenedor1__rrss {
+
+  svg {
+    width: 1.3vw;
+    margin-right: 0.5em;
+    fill: var(--color-blanco);
+  }
+}
+
+.Login__main__footer_contenedor2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2vh;
+
+  a {
+    text-decoration: none;
+  }
+
+  span {
+    font-family: var(--croissant-one);
+    font-size: 1.1vw;
+    color: var(--color-blanco);
+    text-decoration: none;
+  }
+}

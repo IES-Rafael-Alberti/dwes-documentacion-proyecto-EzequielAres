@@ -1,0 +1,201 @@
+/*
+  DECLARACIÓN DE VARIABLES
+*/
+
+:root {
+    --color-negro: #232323;
+    --color-amarillo: #ffa852;
+    --color-amarilloMuyOscuro: #ab5500;
+    --color-amarilloOscuro: #f4912D;
+    --color-blanco: #FFFFFF;
+    --croissant-one: Croissant One;
+    --noto-sans: Noto Sans;
+  }
+  
+  
+/*
+IMPORTAR TIPOGRAFÍAS
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*
+    CSS RECETAS
+*/
+
+.Liked__main__recetas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 69vh;
+
+    width: 100%;
+  
+    margin: 2em 0em;
+}
+
+.Liked__main__recetas__receta {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 28.3vw;
+
+    margin: 0em 2em 2em 2em;
+
+    overflow: hidden;
+
+    display: block;
+    text-align: center;
+}
+
+.Liked__main__recetas__receta__imagen {
+    border-radius: 5px;
+    width: 100%;
+    object-fit: contain;  
+    height: 35vh;
+
+    border-bottom: 2px solid var(--color-amarillo);
+}
+
+.Liked__main__recetas__receta__titulo {
+    color: var(--color-amarillo);
+    -webkit-text-stroke: 0.7px black;  
+    font-family: var(--croissant-one);
+    font-size: 1.4vw;
+
+}
+
+.Liked__main__recetas__receta__nombreLikes {
+    padding: 0em 1em 1em 1em;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+        font-family: var(--croissant-one);
+        font-size: 0.9vw;
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.Liked__main__recetas__receta__nombreLikes__contenedor {
+    display: inline-block;
+
+    span {
+        font-family: var(--croissant-one);
+        font-size: 0.9vw;
+    }
+}
+
+.Liked__main__recetas__receta__nombreLikes__contenedor__icono {
+    color: var(--color-amarillo);
+}
+
+/*
+CSS FOOTER
+*/
+
+.Liked__main__footer {
+    padding: 1.5em 2em;
+    border-top: 2px solid var(--color-amarillo);
+}
+
+.Liked__main__footer__contenedor1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        font-family: var(--croissant-one);
+        font-size: 1.1vw;
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.Liked__main__footer_contenedor1__rrss {
+
+    svg {
+        width: 1.3vw;
+        margin-right: 0.5em;
+    }
+}
+
+.Liked__main__footer_contenedor2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2vh;
+
+    a {
+        text-decoration: none;
+    }
+
+    span {
+        font-family: var(--croissant-one);
+        font-size: 1.1vw;
+        color: black;
+        text-decoration: none;
+    }
+}
+
+
+/*
+  CSS FOOTER
+*/
+
+.Recipes__main__footer {
+    padding: 1.5em 2em;
+    border-top: 2px solid var(--color-amarillo);
+  }
+  
+.Recipes__main__footer__contenedor1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        font-family: var(--croissant-one);
+        font-size: 1.1vw;
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.Recipes__main__footer_contenedor1__rrss {
+
+    svg {
+        width: 1.3vw;
+        margin-right: 0.5em;
+    }
+}
+  
+.Recipes__main__footer_contenedor2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2vh;
+
+    a {
+        text-decoration: none;
+    }
+
+    span {
+        font-family: var(--croissant-one);
+        font-size: 1.1vw;
+        color: black;
+        text-decoration: none;
+    }
+}

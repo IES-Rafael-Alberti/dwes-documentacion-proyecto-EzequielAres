@@ -1,18 +1,14 @@
 import json
 
 import flask_praetorian
-from flask import Flask, render_template, jsonify, request, \
-                  redirect, url_for, send_from_directory, session, \
-                  abort, current_app
+from flask import request, abort, current_app
 
 import sqlalchemy
 
 
 
 from flask_restx import abort, Resource, Namespace
-from sqlalchemy import desc, asc
 
-import app
 from model import db, Comentario, ComentarioSchema
 
 # namespace declaration
@@ -27,7 +23,7 @@ class ComentarioController(Resource):
         comentario = Comentario.query.get_or_404(comentario_id)
         return ComentarioSchema().dump(comentario)
 
-    # @flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def delete(self, comentario_id):
         comentario = Comentario.query.get_or_404(comentario_id)
         db.session.delete(comentario)
@@ -51,7 +47,7 @@ class ComentarioListController(Resource):
     def get(self):
         return ComentarioSchema(many=True).dump(Comentario.query.all())
 
-    # @flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def post(self):
         data = request.values
 

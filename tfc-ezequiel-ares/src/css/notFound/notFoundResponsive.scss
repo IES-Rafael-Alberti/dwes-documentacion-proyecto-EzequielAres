@@ -1,0 +1,314 @@
+/*
+CSS ocultar elementos móvil
+*/
+
+.movil {
+    display: none;
+}
+
+.oculto {
+    display: none;
+}
+
+#viewMoreMovil {
+    display: none;
+}
+
+#contenedor__fondo {
+    display: none;
+}
+
+/*
+CSS RESPONSIVE
+*/
+
+
+@media (max-width: 1270px) {
+    /*
+        Header
+    */
+
+    .header__menu__element {
+        display: inline-block;
+        padding: 0em 1em;
+
+        a {
+            text-decoration: none;
+            font-size: 1.5vw;
+        }
+    }
+
+    .button {
+        font-size: 1.5vw;
+    }
+
+}
+
+@media (max-width: 1100px) {
+
+    /*
+        CSS CONTENIDO
+    */
+    .notFound__main__contenedor {
+
+        h1 {
+            font-size: 16vw;
+        }
+
+        h2 {
+            font-size: 3vw;
+        }
+    }
+
+    /*
+        Footer
+    */
+
+    .notFound__main__footer__contenedor1 {
+        a {
+            font-size: 1.8vw;
+        }
+    }
+
+    .notFound__main__footer_contenedor1__rrss {
+
+        svg {
+            width: 2vw;
+        }
+    }
+
+    .notFound__main__footer_contenedor2 {
+        span {
+            font-size: 1.8vw;
+        }
+    }
+}
+
+
+@media (max-width: 830px) {
+    .header__menu__element__contenedorImagen {
+        width: 4vw;
+        height: 4vw;
+    }
+
+}
+
+@media (max-width: 734px) {
+
+    /*
+        Header
+    */
+    .header {
+        padding: 1em 1em;
+    }
+
+    .header__menu__element {
+        display: inline-block;
+        padding: 0em 0em 0em 1em;
+
+        a {
+            text-decoration: none;
+            font-size: 2.2vw;
+        }
+    }
+
+    .header__logo {
+        width: 15vw;
+    }
+
+    /*
+        CSS CONTENIDO
+      */
+    .notFound__main__contenedor {
+
+        h1 {
+            font-size: 22vw;
+        }
+
+        h2 {
+            font-size: 5vw;
+        }
+    }
+
+    /*
+        Footer
+    */
+
+    .notFound__main__footer__contenedor1 {
+        a {
+            font-size: 2.2vw;
+        }
+    }
+
+    .notFound__main__footer_contenedor1__rrss {
+
+        svg {
+            width: 2.4vw;
+        }
+    }
+
+    .notFound__main__footer_contenedor2 {
+        span {
+            font-size: 2.2vw;
+        }
+    }
+}
+
+@media (max-width: 630px) {
+    .header__menu__element__contenedorImagen {
+        width: 5vw;
+        height: 5vw;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .header__menu__element__contenedorImagen {
+        width: 6vw;
+        height: 6vw;
+    }
+
+
+    /*
+        Header
+    */
+    .header__logo {
+        width: 20vw;
+    }
+
+    .header__menu__element {
+        padding: 0em 0em 0em 0.5em;
+
+        a {
+            font-size: 2.4vw;
+        }
+
+    }
+
+
+
+    /*
+        Footer
+    */
+
+    .notFound__main__footer__contenedor1 {
+        a {
+            font-size: 2.5vw;
+        }
+    }
+
+    .notFound__main__footer_contenedor1__rrss {
+
+        svg {
+            width: 2.7vw;
+        }
+    }
+
+    .notFound__main__footer_contenedor2 {
+        span {
+            font-size: 2.5vw;
+        }
+    }
+}
+
+/*
+CSS CAMBIO A MÓVIL
+*/
+
+@media (max-width: 476px) {
+    .desktop {
+        display: none;
+    }
+
+    .movil {
+        display: initial;
+    }
+
+    /*
+    CSS HEADER MOVIL
+    */
+
+    .header--movil {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        padding: 1em 2em;
+
+        border-bottom: 2px solid var(--color-amarillo);
+
+        button {
+            border: 0;
+            background: none;
+            color: var(--color-amarillo);
+
+            svg {
+                font-size: 2em;
+            }
+        }
+
+        img {
+            width: 10em;
+        }
+    }
+
+    .movil--header__menu {
+
+        padding: 0;
+        margin-bottom: 0;
+
+        li {
+            list-style: none;
+        }
+    }
+
+    .header__menu__element__contenedorImagen--movil {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 2.5em;
+        height: 2.5em;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+
+    /*
+        CSS CONTENIDO
+    */
+    .notFound__main__contenedor {
+        min-height: 79vh;
+
+        h1 {
+            font-size: 26vw;
+        }
+
+        h2 {
+            font-size: 6vw;
+        }
+    }
+
+
+
+    /*
+        CSS FOOTER MOVIL
+    */
+
+    .notFound__main__footer__contenedor1 {
+
+        a {
+            font-size: 1em;
+        }
+    }
+
+    .notFound__main__footer_contenedor1__rrss {
+        svg {
+            width: 1em;
+        }
+    }
+}

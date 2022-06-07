@@ -1,9 +1,7 @@
 import json
 
 import flask_praetorian
-from flask import Flask, render_template, jsonify, request, \
-                  redirect, url_for, send_from_directory, session, \
-                  abort, current_app
+from flask import request, abort, current_app
 
 import sqlalchemy
 
@@ -55,6 +53,7 @@ class RecetaController(Resource):
 
         return f"Receta {recipe_id} eliminada", 204
 
+    @flask_praetorian.auth_required
     def put(self, recipe_id):
         new_recipe = RecetaSchema().load(request.json)
         if str(new_recipe.id) != recipe_id:
@@ -100,22 +99,24 @@ class RecetaListController(Resource):
         receta = RecetaSchema().load(new_recipe)
         db.session.add(receta)
 
-        ingredientes = json.loads(data["ingredientes"])
-        listaIngredientes = []
-        listaIngredientesReceta = []
+        try:
+            ingredientes = json.loads(data["ingredientes"])
+            listaIngredientes = []
+            listaIngredientesReceta = []
 
-        for r in ingredientes:
-            listaIngredientes.append({"ingrediente" : Ingrediente.query.filter(Ingrediente.id.in_([r["ingrediente_id"]])).all()[0], "cantidad" : r["cantidad"]})
+            for r in ingredientes:
+                listaIngredientes.append({"ingrediente" : Ingrediente.query.filter(Ingrediente.id.in_([r["ingrediente_id"]])).all()[0], "cantidad" : r["cantidad"]})
 
-        for ingrediente in listaIngredientes:
-            listaIngredientesReceta.append(IngredienteReceta(receta_id=receta.id, ingrediente_id=ingrediente["ingrediente"].id,
-                                                                 cantidad=ingrediente["cantidad"]))
+            for ingrediente in listaIngredientes:
+                listaIngredientesReceta.append(IngredienteReceta(receta_id=receta.id, ingrediente_id=ingrediente["ingrediente"].id,
+                                                                     cantidad=ingrediente["cantidad"]))
 
-        like = Like(usuario_id=data["id_usuario"], receta_id=receta.id)
+            like = Like(usuario_id=data["id_usuario"], receta_id=receta.id)
 
-        db.session.bulk_save_objects(listaIngredientesReceta)
-        db.session.add(like)
-
+            db.session.bulk_save_objects(listaIngredientesReceta)
+            db.session.add(like)
+        except KeyError:
+            print("SinIngredientes")
         db.session.commit()
 
         return RecetaSchema().dump(receta), 201

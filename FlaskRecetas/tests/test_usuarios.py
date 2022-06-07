@@ -1,3 +1,5 @@
+import io
+
 import pytest
 from app import create_app
 from werkzeug.datastructures import Headers
@@ -37,13 +39,12 @@ def test_getUser(client):
     assert "Zzequi" == rsp.get("nick")
 
 def test_postUser(client):
-    rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
-    rsp = rv.get_json()
-    assert 'access_token' in rsp.keys()
 
-    headers = Headers()
-    headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.post("/api/usuario/", headers=headers, follow_redirects=True, json={'nombre': 'Antonio', 'email': 'antoñete@ejemplo.com', 'hashed_password': 'pestillo', 'nick' : 'Antoñete', 'imagen' : '/static/imagenes/usuario/anon.jpg'})
+    data = {'nombre': 'Antonio', 'email': 'antoñete@ejemplo.com', 'hashed_password': 'pestillo', 'nick': 'Antoñete'}
+    data['imagen'] = (io.BytesIO(b"abcdef"), 'test.jpg')
+
+    rv = client.post("/api/usuario/", follow_redirects=True,
+                     data=data, content_type='multipart/form-data')
     rsp = rv.get_json()
 
     assert "Antoñete" == rsp.get("nick")
@@ -58,9 +59,12 @@ def test_putUser(client):
     rsp = rv.get_json()
     assert 'access_token' in rsp.keys()
 
+    data = {'id': 1, 'email': 'ezequielCambio@ejemplo.com', 'nombre': 'EzequielCambio',
+           'nick' : 'ZzequiCambio', 'imagen' : 'http://localhost:5000/static/usuarios/mistborn.png', 'hashed_password' : ""}
+
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.put("/api/usuario/1", headers=headers, follow_redirects=True, json={'id': 1, 'email': 'ezequielCambio@ejemplo.com', 'nombre': 'EzequielCambio', 'nick' : 'ZzequiCambio', 'imagen' : 'cambio'})
+    rv = client.put("/api/usuario/1", headers=headers, follow_redirects=True, data=data, content_type='multipart/form-data')
     rsp = rv.get_json()
 
     assert "EzequielCambio" == rsp.get("nombre")

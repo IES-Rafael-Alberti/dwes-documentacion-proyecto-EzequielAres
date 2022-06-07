@@ -1,0 +1,962 @@
+/*
+CSS ocultar elementos móvil
+*/
+
+#movil {
+  display: none;
+}
+
+.movil {
+  display: none;
+}
+
+.oculto {
+  display: none;
+}
+
+#viewMoreMovil {
+  display: none;
+}
+
+#contenedor__fondo {
+  display: none;
+}
+
+/*
+CSS RESPONSIVE
+*/
+
+@media (max-width: 1270px) {
+  /*
+        Header
+    */
+
+  .header__menu__element {
+    display: inline-block;
+    padding: 0em 1em;
+
+    a {
+      text-decoration: none;
+      font-size: 1.5vw;
+    }
+  }
+
+  .button {
+    font-size: 1.5vw;
+  }
+
+  /*
+      Titulo receta
+  */
+
+  .Recipe__main__titulo__contenedor {
+    margin: 2vh 3vw 0vh 3vw;
+  }
+
+  .Recipe__main__titulo__contenedor__titulo {
+    font-size: 2vw;
+  }
+
+  .Recipe__main__titulo__contenedor__usuarioLikes {
+    span {
+      font-size: 1.5vw;
+    }
+  }
+
+  .Recipes__main__titulo__contenedor__usaurioLikes__icono {
+    height: 1.5vw;
+  }
+
+  /*
+      Descripcion, ingredientes, pasos
+  */
+  .Recipe__main__contenido__contenedor__descripcion {
+    span {
+      font-size: 1.3vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__ingredientes {
+    span {
+      font-size: 1.7vw;
+    }
+
+    li {
+      font-size: 1.3vw;
+    }
+
+  }
+
+  .Recipe__main__contenido__contenedor__pasos {
+    span:not(:first-of-type) {
+      font-size: 1.3vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__pasos__titulo {
+    font-size: 1.7vw;
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO
+  */
+
+  .Recipe__main__formularioComentario__titulo {
+    color: var(--color-amarillo);
+    -webkit-text-stroke: 1px black;
+    font-family: var(--croissant-one);
+    font-size: 1.7vw;
+  }
+
+  .Recipe__main__formularioComentario {
+    form {
+
+      fieldset {
+
+
+        label {
+          font-size: 1.3vw;
+        }
+
+        input[type=submit] {
+          font-size: 1.2vw;
+        }
+      }
+    }
+  }
+
+  .error {
+    font-size: 1.2vw;
+  }
+
+  /*
+      CSS COMENTARIO
+  */
+
+  .Recipe__main__comentarios__contenedorImagen {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser {
+
+    span {
+      font-size: 1.4vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido {
+    font-size: 1.3vw;
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser--hijo {
+    span {
+      font-size: 1.4vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido--hijo {
+    font-size: 1.4vw;
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO HIJO
+  */
+
+  .Recipe__main__comentarios__comentario__formulario {
+    label {
+      font-size: 1.4vw;
+    }
+
+    input[type=submit] {
+      font-size: 1.3vw;
+    }
+  }
+
+}
+
+@media (max-width: 1100px) {
+
+  /*
+        Footer
+    */
+
+  .Recipe__main__footer__contenedor1 {
+    a {
+      font-size: 1.8vw;
+    }
+  }
+
+  .Recipe__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2vw;
+    }
+  }
+
+  .Recipe__main__footer_contenedor2 {
+    span {
+      font-size: 1.8vw;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+
+  /*
+    Foto o video
+  */
+  .Recipe__main__foto-video__contenedor {
+
+    img {
+      height: 50vh;
+    }
+
+    video {
+      height: 50vh;
+    }
+  }
+
+  /*
+      Titulo receta
+    */
+
+  .Recipe__main__titulo__contenedor__titulo {
+    font-size: 2.6vw;
+  }
+
+  .Recipe__main__titulo__contenedor__usuarioLikes {
+    width: 20vw;
+
+    span {
+      font-size: 2.2vw;
+    }
+  }
+
+  .Recipes__main__titulo__contenedor__usaurioLikes__icono {
+    height: 2.2vw;
+  }
+
+  /*
+      Descripcion, ingredientes, pasos
+  */
+  .Recipe__main__contenido__contenedor__descripcion {
+    height: 35vh;
+
+    span {
+      font-size: 1.9vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__ingredientes {
+    height: 35vh;
+
+
+    span {
+      font-size: 2.3vw;
+    }
+
+    li {
+      font-size: 1.9vw;
+      margin-left: -3vw;
+    }
+
+  }
+
+  .Recipe__main__contenido__contenedor__pasos {
+    height: 35vh;
+
+    span:not(:first-of-type) {
+      font-size: 1.9vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__pasos__titulo {
+    font-size: 2.3vw;
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO
+  */
+
+  .Recipe__main__formularioComentario__titulo {
+    font-size: 2.6vw;
+  }
+
+  .Recipe__main__formularioComentario {
+    padding: 4vh 1vw 4vh 2vw;
+
+    form {
+
+      fieldset {
+
+        label {
+          font-size: 1.9vw;
+        }
+
+        input[type=submit] {
+          font-size: 1.8vw;
+        }
+      }
+
+      textarea {
+        width: 60vw;
+      }
+    }
+  }
+
+  .error {
+    font-size: 1.8vw;
+  }
+
+  /*
+      CSS COMENTARIO
+  */
+
+  .Recipe__main__comentarios__contenedorImagen {
+    width: 6vw;
+    height: 6vw;
+
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser {
+
+    span {
+      font-size: 2vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido {
+    font-size: 1.9vw;
+  }
+
+  .Recipe__main__comentarios__comentario__imagen {
+
+    img {
+      height: 40vh;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser--hijo {
+    span {
+      font-size: 2vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido--hijo {
+    font-size: 2vw;
+  }
+
+  .Recipe__main__comentarios__comentario__imagen--hijo {
+    img {
+      height: 30vh;
+    }
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO HIJO
+  */
+
+  .Recipe__main__comentarios__comentario__formulario {
+    textarea {
+      width: 70vw;
+    }
+
+    label {
+      font-size: 2vw;
+    }
+
+    input[type=submit] {
+      font-size: 1.9vw;
+    }
+  }
+}
+
+@media (max-width: 830px) {
+  .header__menu__element__contenedorImagen {
+    width: 4vw;
+    height: 4vw;
+  }
+}
+
+@media (max-width: 734px) {
+
+  /*
+        Header
+    */
+  .header {
+    padding: 1em 1em;
+  }
+
+  .header__menu__element {
+    display: inline-block;
+    padding: 0em 0em 0em 1em;
+
+    a {
+      text-decoration: none;
+      font-size: 2.2vw;
+    }
+  }
+
+  .header__logo {
+    width: 15vw;
+  }
+
+  /*
+        Footer
+    */
+
+  .Recipe__main__footer__contenedor1 {
+    a {
+      font-size: 2.2vw;
+    }
+  }
+
+  .Recipe__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2.4vw;
+    }
+  }
+
+  .Recipe__main__footer_contenedor2 {
+    span {
+      font-size: 2.2vw;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .header__menu__element__contenedorImagen {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  /*
+    Foto o video
+  */
+  .Recipe__main__foto-video__contenedor {
+
+    img {
+      height: 45vh;
+    }
+
+    video {
+      height: 40vh;
+    }
+  }
+
+  /*
+      Titulo receta
+    */
+
+  .Recipe__main__titulo__contenedor__titulo {
+    font-size: 3.4vw;
+  }
+
+  .Recipe__main__titulo__contenedor__usuarioLikes {
+    width: 25vw;
+
+    span {
+      font-size: 3vw;
+    }
+  }
+
+  .Recipes__main__titulo__contenedor__usaurioLikes__icono {
+    height: 3vw;
+  }
+
+  /*
+      Descripcion, ingredientes, pasos
+  */
+  .Recipe__main__contenido__contenedor__descripcion {
+
+    span {
+      font-size: 2.8vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__ingredientes {
+
+    span {
+      font-size: 3.1vw;
+    }
+
+    li {
+      font-size: 2.7vw;
+      margin-left: -3vw;
+    }
+
+  }
+
+  .Recipe__main__contenido__contenedor__pasos {
+
+    span:not(:first-of-type) {
+      font-size: 2.7vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__pasos__titulo {
+    font-size: 3.1vw;
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO
+  */
+
+  .Recipe__main__formularioComentario__titulo {
+    font-size: 3.4vw;
+    padding-left: 2vw;
+  }
+
+  .Recipe__main__formularioComentario {
+    padding: 4vh 1vw 4vh 1vw;
+
+    form {
+
+      fieldset {
+        width: 40vw;
+
+        label {
+          font-size: 2.8vw;
+
+        }
+
+        input[type=submit] {
+          width: 13vw;
+          font-size: 2.6vw;
+        }
+      }
+
+      textarea {
+        width: 50vw;
+      }
+    }
+  }
+
+  .error {
+    font-size: 2.6vw;
+  }
+
+  /*
+      CSS COMENTARIO
+  */
+
+  .Recipe__main__comentarios__contenedorImagen {
+    width: 8vw;
+    height: 8vw;
+
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser {
+
+    span {
+      font-size: 2.8vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido {
+    font-size: 2.7vw;
+  }
+
+  .Recipe__main__comentarios__comentario__imagen {
+
+    img {
+      height: 30vh;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser--hijo {
+    width: 50vw;
+
+    span {
+      font-size: 2.8vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido--hijo {
+    font-size: 2.8vw;
+  }
+
+  .Recipe__main__comentarios__comentario__imagen--hijo {
+    img {
+      height: 25vh;
+    }
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO HIJO
+  */
+
+  .Recipe__main__comentarios__comentario__formulario {
+    textarea {
+      width: 70vw;
+    }
+
+    label {
+      font-size: 2.8vw;
+    }
+
+    input[type=submit] {
+      width: 13vw;
+      font-size: 2.7vw;
+    }
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  /*
+        Header
+    */
+  .header__logo {
+    width: 20vw;
+  }
+
+  .header__menu__element {
+    padding: 0em 0em 0em 0.5em;
+
+    a {
+      font-size: 2.4vw;
+    }
+  }
+
+  .header__menu__element__contenedorImagen {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  /*
+        Footer
+    */
+
+  .Recipe__main__footer__contenedor1 {
+    a {
+      font-size: 2.5vw;
+    }
+  }
+
+  .Recipe__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2.7vw;
+    }
+  }
+
+  .Recipe__main__footer_contenedor2 {
+    span {
+      font-size: 2.5vw;
+    }
+  }
+}
+
+
+
+/*
+CSS CAMBIO A MÓVIL
+*/
+
+@media (max-width: 476px) {
+  .desktop {
+    display: none;
+  }
+
+  .movil {
+    display: initial;
+  }
+
+  #movil {
+    display: initial;
+  }
+
+  #desktop {
+    display: none;
+  }
+
+
+  /*
+    CSS HEADER MOVIL
+    */
+
+  .header--movil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 1em 2em;
+
+    border-bottom: 2px solid var(--color-amarillo);
+
+    button {
+      border: 0;
+      background: none;
+      color: var(--color-amarillo);
+
+      svg {
+        font-size: 2em;
+      }
+    }
+
+    img {
+      width: 10em;
+    }
+  }
+
+  .movil--header__menu {
+
+    padding: 0;
+    margin-bottom: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .header__menu__element__contenedorImagen--movil {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 2.5em;
+    height: 2.5em;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  /*
+    Foto o video
+  */
+  .Recipe__main__foto-video__contenedor {
+
+    img {
+      height: 37vh;
+    }
+
+    video {
+      height: 31vh;
+    }
+  }
+
+  /*
+      Titulo receta
+    */
+
+  .Recipe__main__titulo__contenedor {
+    margin: 2vh 5vw 0vh 5vw;
+  }
+
+  .Recipe__main__titulo__contenedor__titulo {
+    font-size: 4vw;
+  }
+
+  .Recipe__main__titulo__contenedor__usuarioLikes {
+    width: 30vw;
+
+    span {
+      font-size: 3.6vw;
+    }
+  }
+
+  .Recipes__main__titulo__contenedor__usaurioLikes__icono {
+    height: 3.6vw;
+  }
+
+  /*
+      Descripcion, ingredientes, pasos
+  */
+  .Recipe__main__contenido__contenedor {
+    flex-direction: column;
+    margin: 2vh 0vw 0vh 0vw;
+  }
+
+
+  .Recipe__main__contenido__contenedor__descripcion {
+    width: 90vw;
+    height: 100%;
+
+    padding: 2vh 0vw 4vh 0vw;
+    margin: 2vh 0vw 2vh 0vw;
+
+    border-bottom: 1px solid var(--color-amarillo);
+
+    span {
+      font-size: 3.6vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__ingredientes {
+
+    width: 90vw;
+    height: 100%;
+
+    padding: 2vh 0vw 4vh 0vw;
+    margin: 0vh 0vw 2vh 0vw;
+
+    border-left: none;
+    border-right: none;
+
+    border-bottom: 1px solid var(--color-amarillo);
+
+    span {
+      font-size: 3.7vw;
+    }
+
+    li {
+      font-size: 3.3vw;
+      margin-left: -5vw;
+    }
+
+  }
+
+  .Recipe__main__contenido__contenedor__pasos {
+    width: 90vw;
+    height: 100%;
+
+    padding: 2vh 0vw 4vh 0vw;
+    margin: 0vh 0vw 2vh 0vw;
+
+    border-bottom: 1px solid var(--color-amarillo);
+
+    span:not(:first-of-type) {
+      font-size: 3.3vw;
+    }
+  }
+
+  .Recipe__main__contenido__contenedor__pasos__titulo {
+    font-size: 3.7vw;
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO
+  */
+
+  .Recipe__main__formularioComentario__titulo {
+    font-size: 4vw;
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 0vh 0vw 3vh 0vw;
+  }
+
+  .Recipe__main__formularioComentario {
+
+    form {
+      height: 100%;
+      flex-direction: column;
+
+      fieldset {
+        width: 90vw;
+
+        label {
+          font-size: 3.6vw;
+
+        }
+
+        input[type=submit] {
+          width: 16vw;
+          font-size: 3.2vw;
+        }
+      }
+
+      textarea {
+        width: 90vw;
+      }
+    }
+  }
+
+  .error {
+    font-size: 3.2vw;
+  }
+
+  /*
+      CSS COMENTARIO
+  */
+
+  .Recipe__main__comentarios__contenedorImagen {
+    width: 10vw;
+    height: 10vw;
+
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser {
+
+    span {
+      font-size: 3.6vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido {
+    font-size: 3.3vw;
+  }
+
+  .lineaPadre {
+    width: 50vw;
+  }
+
+  .Recipe__main__comentarios__comentario__contenedorUser--hijo {
+    width: 60vw;
+
+    span {
+      font-size: 3.6vw;
+    }
+  }
+
+  .Recipe__main__comentarios__comentario__contenido--hijo {
+    font-size: 3.6vw;
+  }
+
+  .Recipe__main__comentarios__comentario__imagen--hijo {
+    img {
+      height: 25vh;
+    }
+  }
+
+  .lineaHijo {
+    width: 35vw;
+  }
+
+  /*
+      CSS FORMULARIO COMENTARIO HIJO
+  */
+
+  .Recipe__main__comentarios__comentario__formulario {
+    #contenido {
+      display: block;
+      text-align: center;
+    }
+
+    textarea {
+      width: 80vw;
+    }
+
+    label {
+      font-size: 3.6vw;
+    }
+
+    input[type=submit] {
+      width: 15vw;
+      font-size: 3.3vw;
+    }
+  }
+
+  /*
+        CSS FOOTER MOVIL
+    */
+
+  .Recipe__main__footer__contenedor1 {
+
+    a {
+      font-size: 1em;
+    }
+  }
+
+  .Recipe__main__footer_contenedor1__rrss {
+    svg {
+      width: 1em;
+    }
+  }
+}

@@ -63,7 +63,6 @@ class LikeController(Resource):
         like = Like.query.get_or_404(like_id)
         return LikeSchema().dump(like)
 
-    # @flask_praetorian.roles_required("admin")
     @flask_praetorian.auth_required
     def delete(self, like_id):
         like = Like.query.get_or_404(like_id)
@@ -88,7 +87,6 @@ class LikeListController(Resource):
     def get(self):
         return LikeSchema(many=True).dump(Like.query.all())
 
-    # @flask_praetorian.roles_required("admin")
     @flask_praetorian.auth_required
     def post(self):
         like = LikeSchema().load(request.json)

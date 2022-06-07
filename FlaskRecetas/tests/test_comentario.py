@@ -33,10 +33,10 @@ def test_getComentario(client):
     rsp = rv.get_json()
 
     assert rsp.get("padre_id") == None
-    assert rsp.get("imagen") == "/static/imagenes/comentario/anon.jpg"
+    assert rsp.get("imagen") == "http://localhost:5000/static/comentarios/mistborn.png"
     assert rsp.get("contenido") == "lorem ipsum"
-    assert 0 == rsp.get("usuario_id")
-    assert 0 == rsp.get("receta_id")
+    assert 1 == rsp.get("usuario")
+    assert 1 == rsp.get("receta")
     assert 1 == rsp.get("id")
 
 def test_postComentario(client):
@@ -44,19 +44,18 @@ def test_postComentario(client):
     rsp = rv.get_json()
     assert 'access_token' in rsp.keys()
 
+    data = {'id' : 11, 'usuario_id': 1, 'receta_id' : 3, 'padre_id' : "", 'imagen' : '', 'contenido' : "prueba"}
+
+
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.post("/api/comentario", headers=headers, follow_redirects=True, json={'id' : 11, 'usuario_id': 1,
-                                                                                      'receta_id' : 3, 'padre_id' : None,
-                                                                                      'imagen' : '/static/imagenes/comentario/anon.jpg',
-                                                                                      'contenido' : "prueba"})
+    rv = client.post("/api/comentario", headers=headers, follow_redirects=True, data=data, content_type='multipart/form-data')
     rsp = rv.get_json()
 
-    assert rsp.get("padre_id") == None
-    assert rsp.get("imagen") == "/static/imagenes/comentario/anon.jpg"
+    assert rsp.get("padre") == None
     assert rsp.get("contenido") == "prueba"
-    assert 1 == rsp.get("usuario_id")
-    assert 3 == rsp.get("receta_id")
+    assert 1 == rsp.get("usuario")
+    assert 3 == rsp.get("receta")
     assert 11 == rsp.get("id")
 
 def test_putComentario(client):
@@ -66,16 +65,16 @@ def test_putComentario(client):
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.put("/api/comentario/1", headers=headers, follow_redirects=True, json={'id': 1, 'usuario_id': 1, 'receta_id' : 1, 'padre_id' : None,
+    rv = client.put("/api/comentario/1", headers=headers, follow_redirects=True, json={'id': 1, 'usuario': 1, 'receta' : 1, 'padre' : None,
                                                                                       'imagen' : '/static/imagenes/comentario/anon.jpg',
                                                                                       'contenido' : "prueba"})
     rsp = rv.get_json()
 
-    assert rsp.get("padre_id") == None
+    assert rsp.get("padre") == None
     assert rsp.get("imagen") == "/static/imagenes/comentario/anon.jpg"
     assert rsp.get("contenido") == "prueba"
-    assert 1 == rsp.get("usuario_id")
-    assert 1 == rsp.get("receta_id")
+    assert 1 == rsp.get("usuario")
+    assert 1 == rsp.get("receta")
     assert 1 == rsp.get("id")
 
 def test_delComentario(client):

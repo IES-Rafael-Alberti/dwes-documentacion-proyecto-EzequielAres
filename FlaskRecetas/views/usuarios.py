@@ -1,11 +1,7 @@
 import json
 
 import flask_praetorian
-from flask import Flask, render_template, jsonify, request, \
-    redirect, url_for, send_from_directory, session, \
-    abort, current_app
-
-import sqlalchemy
+from flask import request, abort, current_app
 
 from flask_restx import abort, Resource, Namespace
 
@@ -18,12 +14,11 @@ api_usuario = Namespace("Usuarios", "Manejo de usuario")
 @api_usuario.route("/<user_id>")
 class UsuarioController(Resource):
 
-    @flask_praetorian.auth_required
     def get(self, user_id):
         user = Usuario.query.get_or_404(user_id)
         return UsuarioSchema().dump(user)
 
-    # @flask_praetorian.roles_required("admin")
+    @flask_praetorian.auth_required
     def delete(self, user_id):
         user = Usuario.query.get_or_404(user_id)
         db.session.delete(user)
@@ -31,7 +26,6 @@ class UsuarioController(Resource):
 
         return f"Usuario {user_id} eliminado", 204
 
-    # @flask_praetorian.roles_required("admin")
     @flask_praetorian.auth_required
     def put(self, user_id):
         data = request.values
@@ -81,18 +75,11 @@ class UsuarioListController(Resource):
     def get(self):
         return UsuarioSchema(many=True).dump(Usuario.query.all())
 
-    # @flask_praetorian.roles_required("admin")
     def post(self):
         data = request.values
-        imagen = request.files['imagen']
 
-        if (imagen == None):
-            imagen = "http://localhost:5000/static/usuarios/anon.jpg"
-
-            new_user = { "nombre" : data["nombre"], "nick" : data["nick"], "email" : data["email"],
-                         "hashed_password" : data["hashed_password"], "imagen" : imagen }
-
-        elif (imagen != None):
+        try:
+            imagen = request.files['imagen']
 
             carpeta = current_app.root_path
             imagen.save(carpeta + "/static/usuarios/" + imagen.filename)
@@ -101,7 +88,11 @@ class UsuarioListController(Resource):
 
             new_user = {"nombre": data["nombre"], "nick": data["nick"], "email": data["email"],
                         "hashed_password": data["hashed_password"], "imagen": imagen_new_user}
+        except KeyError:
+            imagen = "http://localhost:5000/static/usuarios/anon.jpg"
 
+            new_user = {"nombre": data["nombre"], "nick": data["nick"], "email": data["email"],
+                        "hashed_password": data["hashed_password"], "imagen": imagen}
 
         user = UsuarioSchema().load(new_user)
 
