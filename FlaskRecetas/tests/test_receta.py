@@ -21,8 +21,8 @@ def test_getRecetas(client):
     rv = client.get('/api/receta', headers=headers, follow_redirects=True)
     rsp = rv.get_json()
 
-    assert len(rsp) == 7
-    assert "Arroz con pimiento" in [d.get("nombre") for d in rsp]
+    assert len(rsp) == 15
+    assert "Gazpacho" in [d.get("nombre") for d in rsp]
 
 def test_getReceta(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
@@ -34,9 +34,9 @@ def test_getReceta(client):
     rv = client.get("/api/receta/1", headers=headers, follow_redirects=True)
     rsp = rv.get_json()
 
-    assert "Arroz con pimiento" == rsp.get("nombre")
+    assert "Tarta de limón sin queso" == rsp.get("nombre")
     assert 1 == rsp.get("id")
-    assert "Arroz blanco sazonado con guarnición de pimientos" == rsp.get("descripcion")
+    assert 'La tarta de limón sin queso es una elaboración deliciosa, fresquita y sencilla de preparar. Un pastel de limón ideal para después de una comida, ya que es ligero y con un sabor agradable. Además, esta receta que os presentamos no contiene queso, se elabora con yogur y con nata. Por otro lado, no necesita horno y es ideal para el verano. Sin embargo, aunque no necesite horno, si es necesario 3-4 horas para que esté la tarta fría, incluso, el día siguiente está más buena.' == rsp.get("descripcion")
 
 def test_postReceta(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
@@ -52,7 +52,7 @@ def test_postReceta(client):
     rsp = rv.get_json()
 
     assert "Pollo prueba" == rsp.get("nombre")
-    assert 8 == rsp.get("id")
+    assert 16 == rsp.get("id")
     assert "sdfds" == rsp.get("descripcion")
     assert 'http://localhost:5000/static/recetas/test.jpg' == rsp.get("imagen")
     assert "sdfsdfsdf" == rsp.get("pasos")

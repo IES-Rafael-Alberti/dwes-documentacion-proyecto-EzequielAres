@@ -194,13 +194,12 @@ class RecetaController(Resource):
 class RecetaController(Resource):
 
         def get(self):
-            count = Receta.query.count()
 
             query = sqlalchemy.text('SELECT r.id, r.nombre as nombre, r.imagen, count(l.id) as likis, u.nombre as nombreUsuario FROM receta r, like l, ' +
-                                    'usuario u WHERE r.id = l.receta_id AND u.id = r.id_usuario AND r.id BETWEEN (:count-6) AND :count ' +
+                                    'usuario u WHERE r.id = l.receta_id AND u.id = r.id_usuario AND r.id BETWEEN 1 AND 6 ' +
                                     'group by r.id order by r.id desc')
 
-            result = db.session.execute(query, {"count": count})
+            result = db.session.execute(query)
             resultMapping = result.mappings().all()
 
 

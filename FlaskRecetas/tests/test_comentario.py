@@ -20,7 +20,7 @@ def test_getComentarios(client):
     rv = client.get('/api/comentario', headers=headers, follow_redirects=True)
     rsp = rv.get_json()
 
-    assert 10 == len(rsp)
+    assert len(rsp) == 16
 
 def test_getComentario(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
@@ -33,8 +33,8 @@ def test_getComentario(client):
     rsp = rv.get_json()
 
     assert rsp.get("padre_id") == None
-    assert rsp.get("imagen") == "http://localhost:5000/static/comentarios/mistborn.png"
-    assert rsp.get("contenido") == "lorem ipsum"
+    assert rsp.get("imagen") == ""
+    assert rsp.get("contenido") == "Se me olvidó mencionar que si quereis más recetas dadle a me gusta!"
     assert 1 == rsp.get("usuario")
     assert 1 == rsp.get("receta")
     assert 1 == rsp.get("id")
@@ -44,7 +44,7 @@ def test_postComentario(client):
     rsp = rv.get_json()
     assert 'access_token' in rsp.keys()
 
-    data = {'id' : 11, 'usuario_id': 1, 'receta_id' : 3, 'padre_id' : "", 'imagen' : '', 'contenido' : "prueba"}
+    data = {'usuario_id': 1, 'receta_id' : 3, 'padre_id' : "", 'imagen' : '', 'contenido' : "prueba"}
 
 
     headers = Headers()
@@ -56,7 +56,7 @@ def test_postComentario(client):
     assert rsp.get("contenido") == "prueba"
     assert 1 == rsp.get("usuario")
     assert 3 == rsp.get("receta")
-    assert 11 == rsp.get("id")
+    assert 17 == rsp.get("id")
 
 def test_putComentario(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})

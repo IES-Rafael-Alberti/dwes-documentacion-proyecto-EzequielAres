@@ -32,7 +32,7 @@ def test_getIngredient(client):
     rv = client.get("/api/ingrediente/1", headers=headers, follow_redirects=True)
     rsp = rv.get_json()
 
-    assert "Arroz" == rsp.get("nombre")
+    assert "Galletas" == rsp.get("nombre")
     assert 1 == rsp.get("id")
 
 def test_postIngrediente(client):
@@ -42,7 +42,7 @@ def test_postIngrediente(client):
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.post("/api/ingrediente/", headers=headers, follow_redirects=True, json={'id' : 10, 'nombre': 'Test'})
+    rv = client.post("/api/ingrediente/", headers=headers, follow_redirects=True, json={'nombre': 'Test'})
     rsp = rv.get_json()
 
     assert "Test" == rsp.get("nombre")

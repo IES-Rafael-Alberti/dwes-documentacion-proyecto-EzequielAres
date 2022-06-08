@@ -20,7 +20,7 @@ def test_getLikes(client):
     rv = client.get('/api/like', headers=headers, follow_redirects=True)
     rsp = rv.get_json()
 
-    assert 13 == len(rsp)
+    assert 36 == len(rsp)
 
 def test_getLike(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
@@ -43,12 +43,12 @@ def test_postLike(client):
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.post("/api/like", headers=headers, follow_redirects=True, json={'id' : 11, 'usuario': 1, 'receta' : 3})
+    rv = client.post("/api/like", headers=headers, follow_redirects=True, json={'usuario': 1, 'receta' : 3})
     rsp = rv.get_json()
 
     assert 1 == rsp.get("usuario")
     assert 3 == rsp.get("receta")
-    assert 11 == rsp.get("id")
+    assert 37 == rsp.get("id")
 
 def test_putLike(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})

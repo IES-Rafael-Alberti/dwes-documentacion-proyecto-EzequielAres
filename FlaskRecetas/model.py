@@ -357,42 +357,103 @@ def seed_db(app, guard):
         ]
 
         comentarios = [
-            Comentario(usuario_id=1, receta_id=1, imagen="http://localhost:5000/static/comentarios/mistborn.png",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=2, receta_id=1, padre_id=1, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=3, receta_id=1, padre_id=1, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=2, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=4, receta_id=2, padre_id=4, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=1, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=3, receta_id=3, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=1, receta_id=3, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=4, receta_id=4, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
-            Comentario(usuario_id=2, receta_id=3, imagen="http://localhost:5000/static/comentarios/anon.jpg",
-                       contenido="lorem ipsum"),
+            Comentario(usuario_id=1, receta_id=1, imagen="",
+                       contenido="Se me olvidó mencionar que si quereis más recetas dadle a me gusta!"),
+
+            Comentario(usuario_id=3, receta_id=1, padre_id=1, imagen="",
+                       contenido="Hecho!!"),
+
+            Comentario(usuario_id=2, receta_id=1,
+                       imagen="https://images.pexels.com/photos/8942530/pexels-photo-8942530.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                       contenido="Buenísima receta!"),
+
+            Comentario(usuario_id=3, receta_id=1, padre_id=2, imagen="",
+                       contenido="Te ha quedado genial"),
+
+            Comentario(usuario_id=5, receta_id=2,
+                   imagen="https://st.depositphotos.com/2461721/2717/i/450/depositphotos_27175187-stock-photo-rice-pudding-top-view.jpg",
+                   contenido="Aqui mi resultado!"),
+
+            Comentario(usuario_id=4, receta_id=2,
+                       imagen="https://st.depositphotos.com/2461721/2717/i/450/depositphotos_27175187-stock-photo-rice-pudding-top-view.jpg",
+                       contenido=""),
+
+            Comentario(usuario_id=2, receta_id=5,
+                       imagen="",
+                       contenido="Tremenda pizza! Quiero ver los resultados de los demás"),
+
+            Comentario(usuario_id=1, receta_id=5, padre_id=8, imagen="https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                   contenido=""),
+
+            Comentario(usuario_id=1, receta_id=8,
+                       imagen="https://st2.depositphotos.com/1364913/7108/i/450/depositphotos_71089381-stock-photo-garlic-dip-top-view.jpg",
+                       contenido="Me encanta la Alioli! Buena receta"),
+
+            Comentario(usuario_id=3, receta_id=10,
+                       imagen="",
+                       contenido="Receta muy sencilla, la recomiendo"),
+
+            Comentario(usuario_id=5, receta_id=10,
+                       imagen="https://imag.bonviveur.com/torrijas-al-horno-foto-principal.webp",
+                       contenido="Me encantó la receta!"),
+
+            Comentario(usuario_id=1, receta_id=12,
+                       imagen="https://imag.bonviveur.com/salsa-romesco.webp",
+                       contenido="Nunca la probé antes, pero está buenísima! La recomienndo"),
+
+            Comentario(usuario_id=2, receta_id=14,
+                       imagen="",
+                       contenido="No soy de comer pescado, pero este está buenísimo!"),
+
+            Comentario(usuario_id=3, receta_id=14, padre_id=14, imagen="https://imag.bonviveur.com/presentacion-principal-de-la-lubina-a-la-donostiarra.webp",
+                       contenido="Yo igual! Aqui mi resultado"),
+
+            Comentario(usuario_id=4, receta_id=15,
+                       imagen="https://images.pexels.com/photos/2703468/pexels-photo-2703468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                       contenido="Me flipa la salsa carbonara!"),
+
+            Comentario(usuario_id=2, receta_id=15, padre_id=17, imagen="",
+                       contenido="Te quedó increible!")
         ]
 
         likes = [
             Like(usuario_id=1, receta_id=1),
-            Like(usuario_id=2, receta_id=1),
-            Like(usuario_id=3, receta_id=1),
             Like(usuario_id=1, receta_id=2),
-            Like(usuario_id=2, receta_id=2),
-            Like(usuario_id=3, receta_id=3),
-            Like(usuario_id=4, receta_id=3),
-            Like(usuario_id=1, receta_id=4),
-            Like(usuario_id=2, receta_id=4),
-            Like(usuario_id=3, receta_id=4),
-            Like(usuario_id=2, receta_id=5),
+            Like(usuario_id=1, receta_id=3),
             Like(usuario_id=1, receta_id=6),
-            Like(usuario_id=3, receta_id=7)
+            Like(usuario_id=1, receta_id=8),
+            Like(usuario_id=1, receta_id=10),
+            Like(usuario_id=1, receta_id=12),
+            Like(usuario_id=2, receta_id=4),
+            Like(usuario_id=2, receta_id=5),
+            Like(usuario_id=2, receta_id=6),
+            Like(usuario_id=2, receta_id=2),
+            Like(usuario_id=2, receta_id=1),
+            Like(usuario_id=2, receta_id=5),
+            Like(usuario_id=2, receta_id=8),
+            Like(usuario_id=3, receta_id=7),
+            Like(usuario_id=3, receta_id=8),
+            Like(usuario_id=3, receta_id=9),
+            Like(usuario_id=3, receta_id=4),
+            Like(usuario_id=3, receta_id=14),
+            Like(usuario_id=3, receta_id=3),
+            Like(usuario_id=3, receta_id=1),
+            Like(usuario_id=4, receta_id=10),
+            Like(usuario_id=4, receta_id=11),
+            Like(usuario_id=4, receta_id=12),
+            Like(usuario_id=4, receta_id=3),
+            Like(usuario_id=4, receta_id=8),
+            Like(usuario_id=4, receta_id=9),
+            Like(usuario_id=4, receta_id=1),
+            Like(usuario_id=5, receta_id=13),
+            Like(usuario_id=5, receta_id=14),
+            Like(usuario_id=5, receta_id=15),
+            Like(usuario_id=5, receta_id=5),
+            Like(usuario_id=5, receta_id=7),
+            Like(usuario_id=5, receta_id=12),
+            Like(usuario_id=5, receta_id=10),
+            Like(usuario_id=5, receta_id=1),
+
         ]
 
         # add data from lists
