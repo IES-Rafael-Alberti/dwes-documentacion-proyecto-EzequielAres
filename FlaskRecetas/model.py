@@ -130,12 +130,13 @@ def seed_db(app, guard):
                     "\n Por otro lado, vierte la crema de leche y bate hasta que quede la nata montada. Incorpora la crema anterior en el bol de la nata y mezcla bien todo. ¡Te encantará esta tarta de limón y nata!"
                     "\n Cuando vayas a servir la deliciosa tarta de limón sin horno, retira de la nevera, desmolda y colócala en un plato. Si lo prefieres, puedes acompañar esta tarta con frutas de temporada. ¡A comer! Cuéntanos en los comentarios tu opinión y comparte con nosotros una fotografía del resultado final.", id_usuario=1),
 
-            Receta(nombre="Arroz con leche", descripcion="Hay postres que son todo un clásico de nuestra repostería y uno de ellos sin duda es el arroz con leche. Diría que lo tiene todo porque se utilizan ingredientes que solemos tener en casa, se prepara de una forma muy sencilla, se puede utilizar la cantidad de dulzor que se desee sin que la textura se vea afectada y, por supuesto, está buenísimo.", imagen="https://st.depositphotos.com/2461721/2717/i/450/depositphotos_27175187-stock-photo-rice-pudding-top-view.jpg", video="Pon la mariposa en las cuchillas y vierte en el vaso de la Thermomix la leche, la piel de limón y las ramas de canela. Calienta durante 10 minutos a 90ºC y velocidad 1."
-                    "\n Incorpora el arroz y cocina durante 30 minutos a 90ºC y velocidad 1."
-                    "\n Añade el azúcar y sigue cocinando durante 10 minutos a 90ºC y velocidad 1. "
-                    "\n Prueba el arroz y, si los granos están hechos (ya no se notan crudos) y la textura es la que más te gusta, quita las ramas de canela y la cáscara de limón y échalo en los recipientes en los que vayas a servirlo (pueden ser 4 raciones abundantes o 6 un poco más pequeñas) para que termine de asentarse."
-                    "\n Puede consumirse al momento, templadito, aunque normalmente es un postre que suele gustar frío así que deja que se enfríe en los recipientes y cuando esté totalmente frío déjalo en la nevera hasta el momento de consumir, diría que mínimo un par de horas de nevera para que esté fresquito."
-                    "\n Espolvorea con canela por encima o bien carameliza su superficie. Para ello puedes echar una cucharadita de azúcar encima del arroz bien repartida y con la ayuda de un soplete ir derritiendo el azúcar para que se forme una costra encima del arroz que cuando se enfríe estará crujiente. ¡Delicioso! ", pasos="sdfsdfsdfsdfsdfsdfsdfsdfsdf", id_usuario=1),
+            Receta(nombre="Arroz con leche", descripcion="Hay postres que son todo un clásico de nuestra repostería y uno de ellos sin duda es el arroz con leche. Diría que lo tiene todo porque se utilizan ingredientes que solemos tener en casa, se prepara de una forma muy sencilla, se puede utilizar la cantidad de dulzor que se desee sin que la textura se vea afectada y, por supuesto, está buenísimo.", imagen="https://st.depositphotos.com/2461721/2717/i/450/depositphotos_27175187-stock-photo-rice-pudding-top-view.jpg", video="",
+                    pasos="Pon la mariposa en las cuchillas y vierte en el vaso de la Thermomix la leche, la piel de limón y las ramas de canela. Calienta durante 10 minutos a 90ºC y velocidad 1."
+                          "\n Incorpora el arroz y cocina durante 30 minutos a 90ºC y velocidad 1."
+                            "\n Añade el azúcar y sigue cocinando durante 10 minutos a 90ºC y velocidad 1. "
+                            "\n Prueba el arroz y, si los granos están hechos (ya no se notan crudos) y la textura es la que más te gusta, quita las ramas de canela y la cáscara de limón y échalo en los recipientes en los que vayas a servirlo (pueden ser 4 raciones abundantes o 6 un poco más pequeñas) para que termine de asentarse."
+                            "\n Puede consumirse al momento, templadito, aunque normalmente es un postre que suele gustar frío así que deja que se enfríe en los recipientes y cuando esté totalmente frío déjalo en la nevera hasta el momento de consumir, diría que mínimo un par de horas de nevera para que esté fresquito."
+                            "\n Espolvorea con canela por encima o bien carameliza su superficie. Para ello puedes echar una cucharadita de azúcar encima del arroz bien repartida y con la ayuda de un soplete ir derritiendo el azúcar para que se forme una costra encima del arroz que cuando se enfríe estará crujiente. ¡Delicioso! ", id_usuario=1),
 
             Receta(nombre="Hamburguesa", descripcion="Qué ricas son las hamburguesas, ¿verdad? A mí me encantan y me resultan una comida muy equilibrada, muy fácil y muy rápida de preparar. Hace años que las preparo de la misma manera y no me planteo cambiarla. Porque después de probar muchas variantes, esta es mi mejor receta de hamburguesa. Y es que, si algo funciona, mejor dejarlo tal cual. ", imagen="https://images.pexels.com/photos/3219483/pexels-photo-3219483.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", video="http://localhost:5000/static/recetas/Hamburguesa.webm", pasos="\n En un recipiente hondo mezclamos la leche con el huevo, el ketchup, la mostaza, la sal de ajo, las hierbas provenzales y salpimentamos al gusto. Batimos e incorporamos las dos rebanadas de pan de molde troceadas. Aplastamos con un tenedor para que el pan se empape bien al tiempo que hacemos una masa lo más parecida posible a una papilla en la que no se noten trozos de pan."
                                                                                                                    "\n Agregamos la carne picada y, con las manos bien limpias, mezclamos hasta incorporar bien. Dividimos la mezcla de nuestras hamburguesas en seis partes iguales. Tomamos cada una de ellas, la boleamos y la aplastamos entre las palmas de las manos. Podemos usar un aro de emplatar o algún artilugio para formar hamburguesas, pero no es necesario."
@@ -143,7 +144,7 @@ def seed_db(app, guard):
 
 
             Receta(nombre="Huevo frito", descripcion="En casa nos gustan los huevos preparados de cualquier forma y raro es el día que no los tomamos, sobre todo en el desayuno cocidos o poché aunque también nos encantan los huevos revueltos, las tortillas y por supuesto fritos que es como los voy a preparar en esta receta. Ya sean los protagonistas del plato o un componente más, siempre dan un toque increíble a todo lo que tocan. "
-                                                     "\n Aprende cómo hacer un huevo frito perfecto, con trucos y consejos muy sencillos para conseguir el mejor resultado, que no es ni más ni menos que un huevo frito a tu gusto, te guste como te guste. Con la yema líquida o cuajada, con o sin puntilla, cocinados con más o menos aceite… hay muchos detalles que elegir. ", imagen="https://images.pexels.com/photos/5092568/pexels-photo-5092568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", video="http://localhost:5000/static/recetas/huevo.webm", pasos="\n Para freír huevos lo ideal es contar con una sartén antiadherente que no se pegue nada y una espumadera. Si tu sartén lleva una capa de antiadherente, para no rallarlo deberás utilizar una espumadera no sea metálica. En mi caso estoy utilizando una sartén de hierro en la que, cuando cocino con la base de aceite, no se pega nada (esto es porque es bastante nueva, conforme la vaya usando y se ponga más negra, más antiadherente será). Su base mide 14 cm y las paredes se extienden hasta los 20 cm."
+                                                     "\n Aprende cómo hacer un huevo frito perfecto, con trucos y consejos muy sencillos para conseguir el mejor resultado, que no es ni más ni menos que un huevo frito a tu gusto, te guste como te guste. Con la yema líquida o cuajada, con o sin puntilla, cocinados con más o menos aceite… hay muchos detalles que elegir. ", imagen="https://images.pexels.com/photos/5092568/pexels-photo-5092568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", video="http://localhost:5000/static/recetas/huevo.webm", pasos="Para freír huevos lo ideal es contar con una sartén antiadherente que no se pegue nada y una espumadera. Si tu sartén lleva una capa de antiadherente, para no rallarlo deberás utilizar una espumadera no sea metálica. En mi caso estoy utilizando una sartén de hierro en la que, cuando cocino con la base de aceite, no se pega nada (esto es porque es bastante nueva, conforme la vaya usando y se ponga más negra, más antiadherente será). Su base mide 14 cm y las paredes se extienden hasta los 20 cm."
                                                     "\n Puedes utilizar una sola sartén justa para un huevo o bien varias sartenes individuales o bien una sartén grande para freír varios huevos a la vez.", id_usuario=2),
 
             Receta(nombre="Pizza casera", descripcion="Elaborar nuestra propia receta de pizza casera fácil es un proceso mucho más sencillo de lo que creemos, solo necesitamos conocer los ingredientes para pizza necesarios y el proceso a seguir para integrarlos. En RecetasGratis queremos que aprendas recetas fáciles que te permitan preparar platos exquisitos y únicos, como diferentes variedades de pizzas caseras. Por ello, aquí te mostramos cómo hacer pizza casera, ¿vas a perdértela?",
@@ -357,17 +358,17 @@ def seed_db(app, guard):
         ]
 
         comentarios = [
-            Comentario(usuario_id=1, receta_id=1, imagen="",
+            Comentario(usuario_id=1, receta_id=1,
                        contenido="Se me olvidó mencionar que si quereis más recetas dadle a me gusta!"),
 
-            Comentario(usuario_id=3, receta_id=1, padre_id=1, imagen="",
+            Comentario(usuario_id=3, receta_id=1, padre_id=1,
                        contenido="Hecho!!"),
 
             Comentario(usuario_id=2, receta_id=1,
                        imagen="https://images.pexels.com/photos/8942530/pexels-photo-8942530.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                        contenido="Buenísima receta!"),
 
-            Comentario(usuario_id=3, receta_id=1, padre_id=2, imagen="",
+            Comentario(usuario_id=3, receta_id=1, padre_id=3,
                        contenido="Te ha quedado genial"),
 
             Comentario(usuario_id=5, receta_id=2,
@@ -379,10 +380,9 @@ def seed_db(app, guard):
                        contenido=""),
 
             Comentario(usuario_id=2, receta_id=5,
-                       imagen="",
                        contenido="Tremenda pizza! Quiero ver los resultados de los demás"),
 
-            Comentario(usuario_id=1, receta_id=5, padre_id=8, imagen="https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            Comentario(usuario_id=1, receta_id=5, padre_id=7, imagen="https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                    contenido=""),
 
             Comentario(usuario_id=1, receta_id=8,
@@ -390,7 +390,6 @@ def seed_db(app, guard):
                        contenido="Me encanta la Alioli! Buena receta"),
 
             Comentario(usuario_id=3, receta_id=10,
-                       imagen="",
                        contenido="Receta muy sencilla, la recomiendo"),
 
             Comentario(usuario_id=5, receta_id=10,
@@ -402,17 +401,16 @@ def seed_db(app, guard):
                        contenido="Nunca la probé antes, pero está buenísima! La recomienndo"),
 
             Comentario(usuario_id=2, receta_id=14,
-                       imagen="",
                        contenido="No soy de comer pescado, pero este está buenísimo!"),
 
-            Comentario(usuario_id=3, receta_id=14, padre_id=14, imagen="https://imag.bonviveur.com/presentacion-principal-de-la-lubina-a-la-donostiarra.webp",
+            Comentario(usuario_id=3, receta_id=14, padre_id=13, imagen="https://imag.bonviveur.com/presentacion-principal-de-la-lubina-a-la-donostiarra.webp",
                        contenido="Yo igual! Aqui mi resultado"),
 
             Comentario(usuario_id=4, receta_id=15,
                        imagen="https://images.pexels.com/photos/2703468/pexels-photo-2703468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                        contenido="Me flipa la salsa carbonara!"),
 
-            Comentario(usuario_id=2, receta_id=15, padre_id=17, imagen="",
+            Comentario(usuario_id=2, receta_id=15, padre_id=15,
                        contenido="Te quedó increible!")
         ]
 
