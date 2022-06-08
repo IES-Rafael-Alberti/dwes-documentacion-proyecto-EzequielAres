@@ -297,13 +297,13 @@ export const Recipe = () => {
         setEsVideo(true);
       }
 
-      debugger
       result["nombre"] = resJson.nombre;
       result["descripcion"] = resJson.descripcion;
       result["pasos"] = resJson.pasos;
       result["imagen"] = resJson.imagen;
       result["video"] = resJson.video;
       result["nombreUsuario"] = resJson.nombreUsuario;
+      result["id_usuario"] = resJson.id_usuario;
 
       setLikes(resJson.likes);
       setReceta(result);
@@ -334,6 +334,7 @@ export const Recipe = () => {
   window.addEventListener('load', obtenerComentarios);
   window.addEventListener('load', obtenerIngredientes);
 
+
   return (
     <main>
       <section className='Recipe__main__foto-video__contenedor'>
@@ -362,7 +363,7 @@ export const Recipe = () => {
                 )
             }
             {
-              receta.user_id == localStorage.getItem("id") || localStorage.getItem("admin") ? (
+              receta.id_usuario == localStorage.getItem("id") || localStorage.getItem("admin") == "true" ? (
                 <button onClick={deleteRecipe} className='Recipe__main__titulo__contenedor__usuarioLikes__contenedor__delete'><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
               ) : (
                 <span></span>
@@ -441,7 +442,7 @@ export const Recipe = () => {
                 <span>{item.nombreUsuario}</span>
 
                 {
-                  item.usuario_id == localStorage.getItem("id") || localStorage.getItem("admin") ? (
+                  item.usuario_id == localStorage.getItem("id") || localStorage.getItem("admin") == "true" ? (
                     <button onClick={(e) => deleteComment(item.id)} className='Recipe__main__comentarios__comentario__contenedorUser__delete'><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
                   ) : (
                     <span></span>
@@ -469,7 +470,7 @@ export const Recipe = () => {
                         </div>
                         <span>{hijo.nombreUsuario}</span>
                         {
-                          hijo.usuario_id == localStorage.getItem("id") || localStorage.getItem("admin") ? (
+                          hijo.usuario_id == localStorage.getItem("id") || localStorage.getItem("admin") == "true" ? (
                             <button onClick={(e) => deleteComment(hijo.id)} className='Recipe__main__comentarios__comentario__contenedorUser__delete'><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
                           ) : (
                             <span></span>

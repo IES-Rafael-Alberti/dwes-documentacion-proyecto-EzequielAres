@@ -20,7 +20,7 @@ class RecetaController(Resource):
 
     def get(self, recipe_id):
 
-        query = sqlalchemy.text('SELECT r.id, r.nombre, r.descripcion, r.imagen, r.video, r.pasos, count(l.id) '
+        query = sqlalchemy.text('SELECT r.id, r.nombre, r.descripcion, r.imagen, r.video, r.pasos, r.id_usuario as id_usuario, count(l.id) '
                                 'as likis, u.nombre as nombreUsuario FROM receta r, like l, usuario u '
                                 'WHERE r.id = :recipe_idRequest AND r.id = l.receta_id AND r.id_usuario = u.id GROUP BY r.id;')
 
@@ -31,17 +31,20 @@ class RecetaController(Resource):
         if (r["video"] != None):
             if (r["pasos"] != None):
                 recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
-                        r["nombreUsuario"], "descripcion" : r["descripcion"], "video":r["video"], "pasos" : r["pasos"]}
+                        r["nombreUsuario"], "id_usuario" : r["id_usuario"], "descripcion" : r["descripcion"],
+                          "video":r["video"], "pasos" : r["pasos"]}
             else:
                 recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
-                        r["nombreUsuario"], "descripcion": r["descripcion"], "video": r["video"]}
+                        r["nombreUsuario"], "id_usuario" : r["id_usuario"], "descripcion": r["descripcion"],
+                          "video": r["video"]}
         else:
             if (r["pasos"] != None):
                 recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
-                        r["nombreUsuario"], "descripcion": r["descripcion"], "pasos" : r["pasos"]}
+                        r["nombreUsuario"], "id_usuario" : r["id_usuario"], "descripcion": r["descripcion"],
+                          "pasos" : r["pasos"]}
             else:
                 recipe = {"id": r["id"], "nombre": r["nombre"], "imagen": r["imagen"], "likes": r["likis"], "nombreUsuario":
-                        r["nombreUsuario"], "descripcion": r["descripcion"]}
+                        r["nombreUsuario"], "id_usuario" : r["id_usuario"], "descripcion": r["descripcion"]}
 
         return recipe
 
