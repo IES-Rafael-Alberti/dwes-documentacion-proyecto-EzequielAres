@@ -130,6 +130,10 @@ export const Recipe = () => {
   async function quitarLike() {
     try {
 
+      if (receta.id_usuario == localStorage.getItem("id")) {
+        return;
+      }
+
       let settings = {
         method: 'DELETE',
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem("jwt") }
