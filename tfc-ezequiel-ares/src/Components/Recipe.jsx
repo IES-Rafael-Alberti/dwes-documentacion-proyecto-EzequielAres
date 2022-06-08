@@ -80,6 +80,10 @@ export const Recipe = () => {
   function procesarDatos(e, esHijo, padreId) {
     e.preventDefault();
 
+    if (localStorage.getItem("id") == undefined) {
+      setError("Must be logged in!!");
+      return;
+    }
     if (contenidoComentario == "") {
       setError("Empty content");
       return
