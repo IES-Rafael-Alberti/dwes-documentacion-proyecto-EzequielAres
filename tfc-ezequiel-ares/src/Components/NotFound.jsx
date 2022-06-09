@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 
 export const NotFound = () => {
+
+  // Función para comprobar el estilo que vamos a aplicar a la página
   useEffect(() => {
     if (localStorage.getItem("modoOscuro") == "true") {
       require('../css/notFound/notFoundNoche.scss');
