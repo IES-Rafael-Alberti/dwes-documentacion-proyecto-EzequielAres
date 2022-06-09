@@ -1,28 +1,10 @@
 /*
-  DECLARACIÓN DE VARIABLES
+  IMPORTAR SCSS
 */
-
-:root {
-    --color-negro: #232323;
-    --color-amarillo: #ffa852;
-    --color-amarilloMuyOscuro: #ab5500;
-    --color-amarilloOscuro: #f4912D;
-    --color-blanco: #FFFFFF;
-    --croissant-one: Croissant One;
-    --noto-sans: Noto Sans;
-}
-
-
-/*
-    IMPORTAR TIPOGRAFÍAS
-  */
-
+@import '../mixin';
+@import '../variables';
 @import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
 
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
 
 body {
     background-color: var(--color-negro);
@@ -61,11 +43,7 @@ CSS HEADER
 .notFound__main__contenedor {
     min-height: 75.5vh;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    @include flex(wrap, center, center, column);
     animation-duration: 1.5s;
     animation-name: slidein;
 
@@ -107,10 +85,7 @@ CSS FOOTER
 }
 
 .notFound__main__footer__contenedor1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
 
     a {
         font-family: var(--croissant-one);
@@ -130,10 +105,7 @@ CSS FOOTER
 }
 
 .notFound__main__footer_contenedor2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
     padding-top: 2vh;
 
     a {

@@ -1,5 +1,12 @@
 /*
-CSS ocultar elementos móvil
+  IMPORTAR SCSS
+*/
+@import '../mixin';
+@import '../variables';
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+/*
+  CSS ocultar elementos móvil
 */
 
 .movil {
@@ -33,7 +40,7 @@ CSS RESPONSIVE
 
       label {
         font-size: 1.5vw;
-    
+
         padding: 0.5em 0em 0em 0em;
 
         input {
@@ -46,7 +53,7 @@ CSS RESPONSIVE
 
         li {
           font-size: 0.9vw;
-        } 
+        }
       }
 
       textarea {
@@ -65,37 +72,37 @@ CSS RESPONSIVE
     }
   }
 
-.Upload__main__contenedor__formulario__ingredientes {
-  
-  align-self: flex-start;
+  .Upload__main__contenedor__formulario__ingredientes {
 
-  #cantidadIngredienteNuevo {
-    margin: 0vh 1vw;
-    width: 5vw;
+    align-self: flex-start;
+
+    #cantidadIngredienteNuevo {
+      margin: 0vh 1vw;
+      width: 5vw;
+    }
   }
-}
 }
 
 @media (max-width: 1270px) {
-    /*
+  /*
         Header
     */
 
-    .header__menu__element {
-        display: inline-block;
-        padding: 0em 1em;
+  .header__menu__element {
+    display: inline-block;
+    padding: 0em 1em;
 
-        a {
-            text-decoration: none;
-            font-size: 1.5vw;
-        }
+    a {
+      text-decoration: none;
+      font-size: 1.5vw;
     }
+  }
 
-    .button {
-        font-size: 1.5vw;
-    }
-    
-      /*
+  .button {
+    font-size: 1.5vw;
+  }
+
+  /*
     CSS FORMULARIO
   */
 
@@ -104,7 +111,7 @@ CSS RESPONSIVE
 
       label {
         font-size: 1.8vw;
-    
+
         input {
           font-size: 1.3vw;
         }
@@ -114,7 +121,7 @@ CSS RESPONSIVE
 
         li {
           font-size: 1.2vw;
-        } 
+        }
       }
 
       textarea {
@@ -135,28 +142,28 @@ CSS RESPONSIVE
 
 @media (max-width: 1100px) {
 
-    /*
+  /*
         Footer
     */
 
-    .Upload__main__footer__contenedor1 {
-        a {
-          font-size: 1.8vw;
-        }
-      }
-      
-      .Upload__main__footer_contenedor1__rrss {
-      
-        svg {
-          width: 2vw;
-        }
-      }
-      
-      .Upload__main__footer_contenedor2 {
-        span {
-          font-size: 1.8vw;
-        }
-      }
+  .Upload__main__footer__contenedor1 {
+    a {
+      font-size: 1.8vw;
+    }
+  }
+
+  .Upload__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2vw;
+    }
+  }
+
+  .Upload__main__footer_contenedor2 {
+    span {
+      font-size: 1.8vw;
+    }
+  }
 }
 
 
@@ -179,7 +186,7 @@ CSS RESPONSIVE
 
       label {
         font-size: 2.1vw;
-    
+
         input {
           font-size: 1.6vw;
         }
@@ -189,7 +196,7 @@ CSS RESPONSIVE
 
         li {
           font-size: 1.5vw;
-        } 
+        }
       }
 
       textarea {
@@ -209,28 +216,29 @@ CSS RESPONSIVE
 }
 
 @media (max-width: 735px) {
-    /*
+
+  /*
         Header
     */
-    .header {
-        padding: 1em 1em;
-      }
+  .header {
+    padding: 1em 1em;
+  }
 
-    .header__menu__element {
-        display: inline-block;
-        padding: 0em 0em 0em 1em;
+  .header__menu__element {
+    display: inline-block;
+    padding: 0em 0em 0em 1em;
 
-        a {
-            text-decoration: none;
-            font-size: 2.2vw;
-        }
+    a {
+      text-decoration: none;
+      font-size: 2.2vw;
     }
+  }
 
-    .header__logo {
-        width: 15vw;
-      }
+  .header__logo {
+    width: 15vw;
+  }
 
-      /*
+  /*
     CSS FORMULARIO
   */
 
@@ -239,7 +247,7 @@ CSS RESPONSIVE
 
       label {
         font-size: 2.8vw;
-    
+
         input {
           font-size: 2.3vw;
         }
@@ -249,7 +257,7 @@ CSS RESPONSIVE
 
         li {
           font-size: 2.2vw;
-        } 
+        }
       }
 
       textarea {
@@ -268,88 +276,89 @@ CSS RESPONSIVE
   }
 
   .Upload__main__contenedor__formulario__ingredientes {
-    
+
     #cantidadIngredienteNuevo {
       margin: 0vh 1vw;
       width: 11vw;
     }
   }
 
-    /*
+  /*
         Footer
     */
 
-    .Upload__main__footer__contenedor1 {
-        a {
-          font-size: 2.2vw;
-        }
-      }
-      
-      .Upload__main__footer_contenedor1__rrss {
-      
-        svg {
-          width: 2.4vw;
-        }
-      }
-      
-      .Upload__main__footer_contenedor2 {
-        span {
-          font-size: 2.2vw;
-        }
-      }
+  .Upload__main__footer__contenedor1 {
+    a {
+      font-size: 2.2vw;
+    }
+  }
+
+  .Upload__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2.4vw;
+    }
+  }
+
+  .Upload__main__footer_contenedor2 {
+    span {
+      font-size: 2.2vw;
+    }
+  }
 }
 
 @media (max-width: 640px) {
   .header__menu__element__contenedorImagen {
     width: 5vw;
     height: 5vw;
-}
+  }
 }
 
 @media (max-width: 560px) {
-    /*
+
+  /*
         Header
     */
-    .header__logo {
-        width: 20vw;
-      }
+  .header__logo {
+    width: 20vw;
+  }
 
-    .header__menu__element {
-        padding: 0em 0em 0em 0.5em;
-        
-        a {
-            font-size: 2.4vw;
-        }  
+  .header__menu__element {
+    padding: 0em 0em 0em 0.5em;
+
+    a {
+      font-size: 2.4vw;
     }
+  }
 
-    .header__menu__element__contenedorImagen {
-      width: 6vw;
-      height: 6vw;
+  .header__menu__element__contenedorImagen {
+    width: 6vw;
+    height: 6vw;
   }
 
 
-    /*
+  /*
         Footer
     */
 
-    .Upload__main__footer__contenedor1 {
-        a {
-          font-size: 2.5vw;
-        }
-      }
-      
-      .Upload__main__footer_contenedor1__rrss {
-      
-        svg {
-          width: 2.7vw;
-        }
-      }
-      
-      .Upload__main__footer_contenedor2 {
-        span {
-          font-size: 2.5vw;
-        }
-      }
+  .Upload__main__footer__contenedor1 {
+    a {
+      font-size: 2.5vw;
+    }
+  }
+
+  .Upload__main__footer_contenedor1__rrss {
+
+    svg {
+      width: 2.7vw;
+    }
+  }
+
+  .Upload__main__footer_contenedor2 {
+    span {
+      font-size: 2.5vw;
+    }
+  }
 }
 
 
@@ -360,11 +369,11 @@ CSS CAMBIO A MÓVIL
 
 @media (max-width: 476px) {
   .desktop {
-      display: none;
+    display: none;
   }
-  
+
   .movil {
-      display:initial;
+    display: initial;
   }
 
   /*
@@ -372,10 +381,7 @@ CSS CAMBIO A MÓVIL
   */
 
   .header--movil {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
 
     width: 100%;
     padding: 1em 2em;
@@ -383,40 +389,40 @@ CSS CAMBIO A MÓVIL
     border-bottom: 2px solid var(--color-amarillo);
 
     button {
-        border: 0;
-        background: none;
-        color: var(--color-amarillo);
-        
-        svg {
-            font-size: 2em;
-        }
+      border: 0;
+      background: none;
+      color: var(--color-amarillo);
+
+      svg {
+        font-size: 2em;
+      }
     }
 
     img {
-        width: 10em;
+      width: 10em;
     }
   }
-  
+
   .movil--header__menu {
-  
-      padding: 0;
-      margin-bottom: 0;
-  
-      li {
-          list-style: none;
-      }
+
+    padding: 0;
+    margin-bottom: 0;
+
+    li {
+      list-style: none;
+    }
   }
-  
+
   .header__menu__element__contenedorImagen--movil {
-      border-radius: 50%;
-      overflow: hidden;
-      width: 2.5em;
-      height: 2.5em;
-  
-      img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 2.5em;
+    height: 2.5em;
+
+    img {
       height: 100%;
       width: 100%;
-      }
+    }
   }
 
   /*
@@ -432,7 +438,7 @@ CSS CAMBIO A MÓVIL
 
       label {
         font-size: 3.2vw;
-    
+
         input {
           font-size: 2.7vw;
         }
@@ -442,7 +448,7 @@ CSS CAMBIO A MÓVIL
 
         li {
           font-size: 2.6vw;
-        } 
+        }
       }
 
       textarea {
@@ -461,7 +467,7 @@ CSS CAMBIO A MÓVIL
   }
 
   .Upload__main__contenedor__formulario__ingredientes {
-    
+
     #cantidadIngredienteNuevo {
       margin: 0vh 1vw;
       width: 13vw;
@@ -472,16 +478,16 @@ CSS CAMBIO A MÓVIL
       CSS FOOTER MOVIL
   */
 
-    .main__footer__contenedor1 {
+  .main__footer__contenedor1 {
 
-      a {
-          font-size: 1em;
-      }
+    a {
+      font-size: 1em;
+    }
   }
 
   .main__footer_contenedor1__rrss {
-      svg {
-          width: 1em;
-      }
+    svg {
+      width: 1em;
+    }
   }
 }

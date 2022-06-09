@@ -1,5 +1,13 @@
 /*
-CSS ocultar elementos móvil
+  IMPORTAR SCSS
+*/
+@import '../mixin';
+@import '../variables';
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+
+/*
+    CSS ocultar elementos móvil
 */
 
 .movil {
@@ -55,13 +63,13 @@ CSS RESPONSIVE
     /*
         Formulario Login
     */
-    
+
     .Login__main__contenedor__formularioLogin {
         width: 25vw;
         padding: 1.5em 1.5em;
 
         label {
-            font-size: 1.3vw;        
+            font-size: 1.3vw;
         }
 
         input[type=submit] {
@@ -72,8 +80,8 @@ CSS RESPONSIVE
         span {
             font-size: 1.3vw;
         }
-        
-          button {
+
+        button {
             width: 8vw;
             font-size: 1.1vw;
         }
@@ -90,20 +98,20 @@ CSS RESPONSIVE
 
     .error {
         font-size: 1.1vw;
-      }
+    }
 }
 
 @media (max-width: 1100px) {
     /*
         Formulario Login
     */
-    
+
     .Login__main__contenedor__formularioLogin {
         width: 28vw;
         padding: 1.2em 1.2em;
 
         label {
-            font-size: 1.6vw;        
+            font-size: 1.6vw;
         }
 
         input[type=submit] {
@@ -114,8 +122,8 @@ CSS RESPONSIVE
         span {
             font-size: 1.6vw;
         }
-        
-          button {
+
+        button {
             width: 10vw;
             font-size: 1.4vw;
         }
@@ -134,7 +142,7 @@ CSS RESPONSIVE
         height: 71vh;
 
         label {
-            font-size: 1.1vw;        
+            font-size: 1.1vw;
         }
 
         input[type=submit] {
@@ -145,8 +153,8 @@ CSS RESPONSIVE
         span {
             font-size: 1.2vw;
         }
-        
-          button {
+
+        button {
             width: 10vw;
             font-size: 1.1vw;
         }
@@ -154,7 +162,7 @@ CSS RESPONSIVE
 
     .error {
         font-size: 1.2vw;
-      }
+    }
 
     /*
         Footer
@@ -162,22 +170,22 @@ CSS RESPONSIVE
 
     .Login__main__footer__contenedor1 {
         a {
-          font-size: 1.8vw;
+            font-size: 1.8vw;
         }
-      }
-      
-      .Login__main__footer_contenedor1__rrss {
-      
+    }
+
+    .Login__main__footer_contenedor1__rrss {
+
         svg {
-          width: 2vw;
+            width: 2vw;
         }
-      }
-      
-      .Login__main__footer_contenedor2 {
+    }
+
+    .Login__main__footer_contenedor2 {
         span {
-          font-size: 1.8vw;
+            font-size: 1.8vw;
         }
-      }
+    }
 }
 
 
@@ -190,13 +198,13 @@ CSS RESPONSIVE
     /*
         Formulario Login
     */
-    
+
     .Login__main__contenedor__formularioLogin {
         width: 35vw;
         padding: 1.2em 1.2em;
 
         label {
-            font-size: 1.9vw;        
+            font-size: 1.9vw;
         }
 
         input[type=submit] {
@@ -207,8 +215,8 @@ CSS RESPONSIVE
         span {
             font-size: 1.9vw;
         }
-        
-          button {
+
+        button {
             width: 12vw;
             font-size: 1.6vw;
         }
@@ -228,7 +236,7 @@ CSS RESPONSIVE
         height: 73vh;
 
         label {
-            font-size: 1.6vw;        
+            font-size: 1.6vw;
         }
 
         input[type=submit] {
@@ -239,8 +247,8 @@ CSS RESPONSIVE
         span {
             font-size: 1.6vw;
         }
-        
-          button {
+
+        button {
             width: 12vw;
             font-size: 1.3vw;
         }
@@ -248,17 +256,18 @@ CSS RESPONSIVE
 
     .error {
         font-size: 1.3vw;
-      }
+    }
 
 }
 
 @media (max-width: 735px) {
+
     /*
         Header
     */
     .header {
         padding: 1em 1em;
-      }
+    }
 
     .header__menu__element {
         display: inline-block;
@@ -272,18 +281,18 @@ CSS RESPONSIVE
 
     .header__logo {
         width: 15vw;
-      }
+    }
 
-     /*
+    /*
         Formulario Login
     */
-    
+
     .Login__main__contenedor__formularioLogin {
         width: 40vw;
         padding: 1.2em 1.2em;
 
         label {
-            font-size: 2.2vw;        
+            font-size: 2.2vw;
         }
 
         input[type=submit] {
@@ -294,8 +303,8 @@ CSS RESPONSIVE
         span {
             font-size: 2.2vw;
         }
-        
-          button {
+
+        button {
             width: 14vw;
             font-size: 1.9vw;
         }
@@ -305,7 +314,7 @@ CSS RESPONSIVE
 
     .error {
         font-size: 1.9vw;
-      }
+    }
 
     /*
         Footer
@@ -313,22 +322,22 @@ CSS RESPONSIVE
 
     .Login__main__footer__contenedor1 {
         a {
-          font-size: 2.2vw;
+            font-size: 2.2vw;
         }
-      }
-      
-      .Login__main__footer_contenedor1__rrss {
-      
+    }
+
+    .Login__main__footer_contenedor1__rrss {
+
         svg {
-          width: 2.4vw;
+            width: 2.4vw;
         }
-      }
-      
-      .Login__main__footer_contenedor2 {
+    }
+
+    .Login__main__footer_contenedor2 {
         span {
-          font-size: 2.2vw;
+            font-size: 2.2vw;
         }
-      }
+    }
 }
 
 @media (max-width: 640px) {
@@ -337,16 +346,16 @@ CSS RESPONSIVE
         height: 5vw;
     }
 
-         /*
+    /*
         Formulario Login
     */
-    
+
     .Login__main__contenedor__formularioLogin {
         width: 50vw;
         padding: 1.2em 1.2em;
 
         label {
-            font-size: 2.5vw;        
+            font-size: 2.5vw;
         }
 
         input[type=submit] {
@@ -357,8 +366,8 @@ CSS RESPONSIVE
         span {
             font-size: 2.5vw;
         }
-        
-          button {
+
+        button {
             width: 16vw;
             font-size: 2.2vw;
         }
@@ -372,7 +381,7 @@ CSS RESPONSIVE
         width: 60vw;
 
         label {
-            font-size: 2vw;        
+            font-size: 2vw;
         }
 
         input[type=submit] {
@@ -383,8 +392,8 @@ CSS RESPONSIVE
         span {
             font-size: 2vw;
         }
-        
-          button {
+
+        button {
             width: 14vw;
             font-size: 1.9vw;
         }
@@ -392,7 +401,7 @@ CSS RESPONSIVE
 
     .error {
         font-size: 1.8vw;
-      }
+    }
 }
 
 @media (max-width: 560px) {
@@ -406,27 +415,27 @@ CSS RESPONSIVE
     */
     .header__logo {
         width: 20vw;
-      }
+    }
 
     .header__menu__element {
         padding: 0em 0em 0em 0.5em;
-        
+
         a {
             font-size: 2.4vw;
-        }  
+        }
     }
 
     /*
         Formulario Login
     */
-    
+
     .Login__main__contenedor__formularioLogin {
         width: 60vw;
         height: 50vh;
         padding: 1.2em 1.2em;
 
         label {
-            font-size: 3.3vw;        
+            font-size: 3.3vw;
         }
 
         input[type=submit] {
@@ -437,8 +446,8 @@ CSS RESPONSIVE
         span {
             font-size: 3.3vw;
         }
-        
-          button {
+
+        button {
             width: 18vw;
             font-size: 2.9vw;
         }
@@ -459,7 +468,7 @@ CSS RESPONSIVE
         padding: 0.5em 1em;
 
         label {
-            font-size: 2.7vw;        
+            font-size: 2.7vw;
         }
 
         input[type=submit] {
@@ -470,8 +479,8 @@ CSS RESPONSIVE
         span {
             font-size: 2.7vw;
         }
-        
-          button {
+
+        button {
             width: 17vw;
             font-size: 2.3vw;
         }
@@ -484,22 +493,22 @@ CSS RESPONSIVE
 
     .Login__main__footer__contenedor1 {
         a {
-          font-size: 2.5vw;
+            font-size: 2.5vw;
         }
-      }
-      
-      .Login__main__footer_contenedor1__rrss {
-      
+    }
+
+    .Login__main__footer_contenedor1__rrss {
+
         svg {
-          width: 2.7vw;
+            width: 2.7vw;
         }
-      }
-      
-      .Login__main__footer_contenedor2 {
+    }
+
+    .Login__main__footer_contenedor2 {
         span {
-          font-size: 2.5vw;
+            font-size: 2.5vw;
         }
-      }
+    }
 }
 
 
@@ -512,9 +521,9 @@ CSS CAMBIO A MÓVIL
     .desktop {
         display: none;
     }
-    
+
     .movil {
-        display:initial;
+        display: initial;
     }
 
 
@@ -523,50 +532,47 @@ CSS CAMBIO A MÓVIL
     */
 
     .header--movil {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-    
+        @include flex(wrap, center, space-between, row);
+
         width: 100%;
         padding: 1em 2em;
-    
+
         border-bottom: 2px solid var(--color-amarillo);
-    
+
         button {
             border: 0;
             background: none;
             color: var(--color-amarillo);
-            
+
             svg {
                 font-size: 2em;
             }
         }
-    
+
         img {
             width: 10em;
         }
     }
-    
+
     .movil--header__menu {
-    
+
         padding: 0;
         margin-bottom: 0;
-    
+
         li {
             list-style: none;
         }
     }
-    
+
     .header__menu__element__contenedorImagen--movil {
         border-radius: 50%;
         overflow: hidden;
         width: 2.5em;
         height: 2.5em;
-    
+
         img {
-        height: 100%;
-        width: 100%;
+            height: 100%;
+            width: 100%;
         }
     }
 
@@ -579,7 +585,7 @@ CSS CAMBIO A MÓVIL
         height: 47vh;
     }
 
-    
+
 
     .error {
         font-size: 0.7em;

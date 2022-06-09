@@ -1,5 +1,13 @@
 /*
-CSS ocultar elementos móvil
+  IMPORTAR SCSS
+*/
+@import '../mixin';
+@import '../variables';
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+
+/*
+  CSS ocultar elementos móvil
 */
 
 .movil {
@@ -330,10 +338,8 @@ CSS CAMBIO A MÓVIL
     */
 
   .header--movil {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+
+    @include flex(wrap, center, space-between, row);
 
     width: 100%;
     padding: 1em 2em;

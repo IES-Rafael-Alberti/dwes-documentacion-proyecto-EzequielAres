@@ -1,0 +1,8 @@
+// Con este mixin podremos crear de forma más rápida un flex con alineación horizontal y vertical
+@mixin flex($wrap, $align, $justify, $direction) {
+    display: flex;
+    flex-wrap: $wrap;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+}

@@ -1,42 +1,20 @@
 /*
-  DECLARACIÓN DE VARIABLES
+  IMPORTAR SCSS
 */
-
-:root {
-    --color-negro: #232323;
-    --color-amarillo: #ffa852;
-    --color-amarilloMuyOscuro: #ab5500;
-    --color-amarilloOscuro: #f4912D;
-    --color-blanco: #FFFFFF;
-    --croissant-one: Croissant One;
-    --noto-sans: Noto Sans;
-  }
-  
-  
-/*
-IMPORTAR TIPOGRAFÍAS
-*/
-
+@import '../mixin';
+@import '../variables';
 @import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
 
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
 
 /*
     CSS RECETAS
 */
 
 .Liked__main__recetas {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    min-height: 69vh;
 
+    @include flex(wrap, center, center, row);
+    min-height: 69vh;
     width: 100%;
-  
     margin: 2em 0em;
 }
 
@@ -56,7 +34,7 @@ IMPORTAR TIPOGRAFÍAS
 .Liked__main__recetas__receta__imagen {
     border-radius: 5px;
     width: 100%;
-    object-fit: contain;  
+    object-fit: contain;
     height: 35vh;
 
     border-bottom: 2px solid var(--color-amarillo);
@@ -64,7 +42,7 @@ IMPORTAR TIPOGRAFÍAS
 
 .Liked__main__recetas__receta__titulo {
     color: var(--color-amarillo);
-    -webkit-text-stroke: 0.7px black;  
+    -webkit-text-stroke: 0.7px black;
     font-family: var(--croissant-one);
     font-size: 1.4vw;
 
@@ -73,10 +51,7 @@ IMPORTAR TIPOGRAFÍAS
 .Liked__main__recetas__receta__nombreLikes {
     padding: 0em 1em 1em 1em;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
 
     span {
         font-family: var(--croissant-one);
@@ -109,10 +84,7 @@ CSS FOOTER
 }
 
 .Liked__main__footer__contenedor1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
 
     a {
         font-family: var(--croissant-one);
@@ -131,10 +103,7 @@ CSS FOOTER
 }
 
 .Liked__main__footer_contenedor2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
     padding-top: 2vh;
 
     a {
@@ -157,13 +126,10 @@ CSS FOOTER
 .Recipes__main__footer {
     padding: 1.5em 2em;
     border-top: 2px solid var(--color-amarillo);
-  }
-  
+}
+
 .Recipes__main__footer__contenedor1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
 
     a {
         font-family: var(--croissant-one);
@@ -180,12 +146,9 @@ CSS FOOTER
         margin-right: 0.5em;
     }
 }
-  
+
 .Recipes__main__footer_contenedor2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(wrap, center, space-between, row);
     padding-top: 2vh;
 
     a {

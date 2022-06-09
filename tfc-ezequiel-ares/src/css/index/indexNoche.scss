@@ -1,27 +1,9 @@
 /*
-  DECLARACIÓN DE VARIABLES
+  IMPORTAR SCSS
 */
-
-:root {
-  --color-negro: #232323;
-  --color-amarillo: #ffa852;
-  --color-amarilloMuyOscuro: #ab5500;
-  --color-amarilloOscuro: #f4912D;
-  --color-blanco: #FFFFFF;
-  --croissant-one: Croissant One;
-  --noto-sans: Noto Sans;
-}
-
-/*
-  IMPORTAR TIPOGRAFÍAS
-*/
-
+@import '../mixin';
+@import '../variables';
 @import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
-
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
 
 /*
   CSS HEADER
@@ -29,10 +11,7 @@
 
 .header {
   background-color: var(--color-negro);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(wrap, center, space-between, row);
   width: 100%;
   padding: 1em 5em;
   border-bottom: 2px solid var(--color-amarillo);
@@ -43,10 +22,7 @@
 }
 
 .header__menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  @include flex(wrap, center, center, row);
   margin-bottom: 0;
 }
 
@@ -148,10 +124,8 @@
 */
 
 .main__buscador {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  @include flex(wrap, center, center, row);
+
 
   padding: 2em 0em;
 
@@ -201,10 +175,7 @@
 }
 
 .main__lastrecipes__titulo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(wrap, center, space-between, row);
 
   span,
   a {
@@ -217,13 +188,8 @@
 }
 
 .main__lastrecipes__recetas {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-
+  @include flex(wrap, center, center, row);
   width: 100%;
-
   margin: 2em 0em;
 }
 
@@ -261,10 +227,7 @@
 .main__lastrecipes__recetas__receta__nombreLikes {
   padding: 0em 1em 1em 1em;
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(wrap, center, space-between, row);
 
   span {
     font-family: var(--croissant-one);
@@ -312,11 +275,7 @@
 }
 
 .main__randomrecipe__texto {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  @include flex(wrap, center, space-between, column);
 
   width: 47vw;
 
@@ -350,10 +309,7 @@
 }
 
 .main__footer__contenedor1 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(wrap, center, space-between, row);
 
   a {
     font-family: var(--croissant-one);
@@ -373,10 +329,7 @@
 }
 
 .main__footer_contenedor2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(wrap, center, space-between, row);
   padding-top: 2vh;
 
   a {

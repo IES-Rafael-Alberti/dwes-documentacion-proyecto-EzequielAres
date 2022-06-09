@@ -1,4 +1,12 @@
 /*
+  IMPORTAR SCSS
+*/
+@import 'mixin';
+@import 'variables';
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+
+/*
     Sidebar movil
 */
 
@@ -28,18 +36,14 @@
 
 .sidebar__botones {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-
+    @include flex(wrap, center, space-between, row);
 
     button {
         margin: 2vh 3vw;
         border: 0;
         background: none;
         color: var(--color-amarillo);
-        
+
         svg {
             font-size: 2em;
         }
@@ -75,22 +79,22 @@
     ul {
         padding-left: 1em;
 
-    li {
-        list-style: none;
-        text-decoration: none;
-        padding: 0.5vh 0vw;
-
-        a {
-            font-family: var(--croissant-one);
-            color: var(--color-blanco);
+        li {
+            list-style: none;
             text-decoration: none;
-            font-size: 0.8em;
-        }
+            padding: 0.5vh 0vw;
 
-        a:hover {
-            color: var(--color-amarillo);
+            a {
+                font-family: var(--croissant-one);
+                color: var(--color-blanco);
+                text-decoration: none;
+                font-size: 0.8em;
+            }
+
+            a:hover {
+                color: var(--color-amarillo);
+            }
         }
-    }
     }
 }
 
@@ -104,9 +108,8 @@
         font-size: 3vw;
 
     }
-    
+
     .botones {
         font-size: 4.5vw;
     }
 }
-

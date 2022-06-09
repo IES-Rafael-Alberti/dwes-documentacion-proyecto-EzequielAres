@@ -1,4 +1,12 @@
 /*
+  IMPORTAR SCSS
+*/
+@import '../mixin';
+@import '../variables';
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Noto+Sans&display=swap');
+
+
+/*
 CSS ocultar elementos móvil
 */
 
@@ -33,7 +41,7 @@ CSS RESPONSIVE
         margin: 0em 0em 2em 1em;
     }
 
-    .main__buscador__contenedor__input{
+    .main__buscador__contenedor__input {
         width: 46vw;
     }
 
@@ -77,7 +85,7 @@ CSS RESPONSIVE
     .main__intro__titulo {
         top: 46vh;
     }
-    
+
     /*
         Buscador
     */
@@ -85,7 +93,7 @@ CSS RESPONSIVE
         padding: 1em 0em;
     }
 
-    .main__buscador__contenedor__input{
+    .main__buscador__contenedor__input {
         width: 55vw;
     }
 
@@ -96,7 +104,7 @@ CSS RESPONSIVE
     .main__lastrecipes__recetas__receta {
         margin: 0em 0em 1em 0.5em;
     }
-    
+
 }
 
 @media (max-width: 1100px) {
@@ -113,14 +121,14 @@ CSS RESPONSIVE
     */
 
     .main__buscador {
-      
+
         padding: 1em 0em;
-      
-      }
-      
+
+    }
+
     .main__buscador__texto {
         font-size: 2.2vw;
-      }
+    }
 
     /*
       Recetas
@@ -128,25 +136,26 @@ CSS RESPONSIVE
 
     .main__lastrecipes {
         padding: 1em 2em;
-      }
+    }
 
     .main__lastrecipes__recetas__receta__imagen {
         height: 30vh;
     }
-    
+
     .main__lastrecipes__titulo {
-      
-        span, a {
+
+        span,
+        a {
             font-size: 2.2vw;
         }
-    
+
     }
 
     .main__lastrecipes__recetas__receta__titulo {
         font-size: 1.9vw;
-    
+
     }
-    
+
     .main__lastrecipes__recetas__receta__nombreLikes {
         padding: 0em 1em 0.5em 1em;
 
@@ -163,7 +172,7 @@ CSS RESPONSIVE
         height: 47vh;
     }
 
-    .main__randomrecipe__texto  {
+    .main__randomrecipe__texto {
 
         a {
             font-size: 2.7vw;
@@ -176,22 +185,22 @@ CSS RESPONSIVE
 
     .main__footer__contenedor1 {
         a {
-          font-size: 1.8vw;
+            font-size: 1.8vw;
         }
-      }
-      
-      .main__footer_contenedor1__rrss {
-      
+    }
+
+    .main__footer_contenedor1__rrss {
+
         svg {
-          width: 2vw;
+            width: 2vw;
         }
-      }
-      
-      .main__footer_contenedor2 {
+    }
+
+    .main__footer_contenedor2 {
         span {
-          font-size: 1.8vw;
+            font-size: 1.8vw;
         }
-      }
+    }
 }
 
 
@@ -224,12 +233,13 @@ CSS RESPONSIVE
 }
 
 @media (max-width: 734px) {
+
     /*
         Header
     */
     .header {
         padding: 1em 1em;
-      }
+    }
 
     .header__menu__element {
         display: inline-block;
@@ -243,7 +253,7 @@ CSS RESPONSIVE
 
     .header__logo {
         width: 15vw;
-      }
+    }
 
     /*
       Contenedor video y texto
@@ -257,7 +267,7 @@ CSS RESPONSIVE
 
     .main__intro__titulo_texto {
         font-size: 7vw;
-      }
+    }
 
     /*
       Buscador
@@ -273,25 +283,26 @@ CSS RESPONSIVE
 
     .main__lastrecipes__recetas {
         margin: 1em 0em;
-      }
-    
+    }
+
     .main__lastrecipes__recetas__receta__imagen {
         height: 24vh;
-      }
+    }
 
     .main__lastrecipes__titulo {
-      
-        span, a {
+
+        span,
+        a {
             font-size: 2.4vw;
         }
-    
+
     }
 
     .main__lastrecipes__recetas__receta__titulo {
         font-size: 2.2vw;
-    
+
     }
-    
+
     .main__lastrecipes__recetas__receta__nombreLikes {
 
         span {
@@ -307,7 +318,7 @@ CSS RESPONSIVE
         height: 37vh;
     }
 
-    .main__randomrecipe__texto  {
+    .main__randomrecipe__texto {
 
         span {
             font-size: 4.5vw;
@@ -324,22 +335,22 @@ CSS RESPONSIVE
 
     .main__footer__contenedor1 {
         a {
-          font-size: 2.2vw;
+            font-size: 2.2vw;
         }
-      }
-      
-      .main__footer_contenedor1__rrss {
-      
+    }
+
+    .main__footer_contenedor1__rrss {
+
         svg {
-          width: 2.4vw;
+            width: 2.4vw;
         }
-      }
-      
-      .main__footer_contenedor2 {
+    }
+
+    .main__footer_contenedor2 {
         span {
-          font-size: 2.2vw;
+            font-size: 2.2vw;
         }
-      }
+    }
 }
 
 @media (max-width: 630px) {
@@ -351,12 +362,12 @@ CSS RESPONSIVE
     /*
         Buscador
     */
-      
+
     .main__buscador__texto {
         font-size: 2.7vw;
-      }
+    }
 
-    .main__buscador__contenedor__input{
+    .main__buscador__contenedor__input {
         width: 50vw;
         padding: 0.2em 0.4em;
     }
@@ -367,40 +378,42 @@ CSS RESPONSIVE
             width: 3vw;
         }
     }
+
     /*
         Recetas
     */
 
     .main__lastrecipes {
         padding: 1em 1em;
-      }
+    }
 
     .main__lastrecipes__recetas {
         margin: 0.5em 0em;
-      }
-    
+    }
+
     .main__lastrecipes__recetas__receta__imagen {
         height: 23vh;
-      }
+    }
 
-      .main__lastrecipes__recetas__receta {
+    .main__lastrecipes__recetas__receta {
 
         width: 30vw;
-      }
-      
+    }
+
     .main__lastrecipes__titulo {
-      
-        span, a {
+
+        span,
+        a {
             font-size: 2.7vw;
         }
-    
+
     }
 
     .main__lastrecipes__recetas__receta__titulo {
         font-size: 2.5vw;
-    
+
     }
-    
+
     .main__lastrecipes__recetas__receta__nombreLikes {
 
         span {
@@ -416,7 +429,7 @@ CSS RESPONSIVE
         height: 34vh;
     }
 
-    .main__randomrecipe__texto  {
+    .main__randomrecipe__texto {
 
         span {
             font-size: 4.8vw;
@@ -442,14 +455,14 @@ CSS RESPONSIVE
     */
     .header__logo {
         width: 20vw;
-      }
+    }
 
     .header__menu__element {
         padding: 0em 0em 0em 0.5em;
-        
+
         a {
             font-size: 2.4vw;
-        }  
+        }
 
     }
 
@@ -466,7 +479,7 @@ CSS RESPONSIVE
 
     .main__buscador__texto {
         font-size: 3vw;
-      }
+    }
 
 
     /*
@@ -475,26 +488,27 @@ CSS RESPONSIVE
 
     .main__lastrecipes__recetas {
         margin: 1em 0em;
-      }
+    }
 
     .main__lastrecipes__recetas__receta {
         width: 40vw;
-      }
+    }
 
 
-      .main__lastrecipes__titulo {
-      
-        span, a {
+    .main__lastrecipes__titulo {
+
+        span,
+        a {
             font-size: 3vw;
         }
-    
+
     }
 
     .main__lastrecipes__recetas__receta__titulo {
         font-size: 3vw;
-    
+
     }
-    
+
     .main__lastrecipes__recetas__receta__nombreLikes {
 
         span {
@@ -508,9 +522,9 @@ CSS RESPONSIVE
 
     .main__randomrecipe {
         height: 30vh;
-      }
+    }
 
-    .main__randomrecipe__texto  {
+    .main__randomrecipe__texto {
 
         span {
             font-size: 4.9vw;
@@ -527,22 +541,22 @@ CSS RESPONSIVE
 
     .main__footer__contenedor1 {
         a {
-          font-size: 2.5vw;
+            font-size: 2.5vw;
         }
-      }
-      
-      .main__footer_contenedor1__rrss {
-      
+    }
+
+    .main__footer_contenedor1__rrss {
+
         svg {
-          width: 2.7vw;
+            width: 2.7vw;
         }
-      }
-      
-      .main__footer_contenedor2 {
+    }
+
+    .main__footer_contenedor2 {
         span {
-          font-size: 2.5vw;
+            font-size: 2.5vw;
         }
-      }
+    }
 }
 
 /*
@@ -553,9 +567,9 @@ CSS CAMBIO A MÓVIL
     .desktop {
         display: none;
     }
-    
+
     .movil {
-        display:initial;
+        display: initial;
     }
 
     /*
@@ -563,50 +577,48 @@ CSS CAMBIO A MÓVIL
     */
 
     .header--movil {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-    
+        @include flex(wrap, center, space-between, row);
+
+
         width: 100%;
         padding: 1em 2em;
-    
+
         border-bottom: 2px solid var(--color-amarillo);
-    
+
         button {
             border: 0;
             background: none;
             color: var(--color-amarillo);
-            
+
             svg {
                 font-size: 2em;
             }
         }
-    
+
         img {
             width: 10em;
         }
     }
-    
+
     .movil--header__menu {
-    
+
         padding: 0;
         margin-bottom: 0;
-    
+
         li {
             list-style: none;
         }
     }
-    
+
     .header__menu__element__contenedorImagen--movil {
         border-radius: 50%;
         overflow: hidden;
         width: 2.5em;
         height: 2.5em;
-    
+
         img {
-        height: 100%;
-        width: 100%;
+            height: 100%;
+            width: 100%;
         }
     }
 
@@ -618,7 +630,7 @@ CSS CAMBIO A MÓVIL
         top: 60vh;
         width: 100%;
         left: 50vw;
-      }
+    }
 
     .main__intro__titulo_texto {
         text-align: center;
@@ -632,17 +644,17 @@ CSS CAMBIO A MÓVIL
 
     .main__buscador {
         padding: 1em 0em 0.5em 0em;
-      }
+    }
 
     .main__buscador__texto {
-        -webkit-text-stroke: 0.6px black; 
+        -webkit-text-stroke: 0.6px black;
         font-size: 4vw;
         padding: 0em 0.5em 0em 1.5em;
     }
 
     .main__buscador__contenedor__input {
         padding: 0.15em 0.3em;
-      }
+    }
 
     /*
         CSS LAST RECIPES
@@ -653,9 +665,9 @@ CSS CAMBIO A MÓVIL
     }
 
     .main__lastrecipes__titulo {
-        
+
         span {
-            -webkit-text-stroke: 0.6px black;  
+            -webkit-text-stroke: 0.6px black;
             font-size: 5vw;
             padding-left: 6vw;
         }
@@ -664,10 +676,10 @@ CSS CAMBIO A MÓVIL
     .main__lastrecipes__recetas__receta__titulo {
         font-size: 3.5vw;
         -webkit-text-stroke: 0.5px black;
-      } 
+    }
 
     .main__lastrecipes__recetas__receta__nombreLikes {
-        
+
         span {
             font-size: 2.8vw;
         }
@@ -678,7 +690,7 @@ CSS CAMBIO A MÓVIL
 
     .main__lastrecipes__viewMore--movil {
         color: var(--color-amarillo);
-        -webkit-text-stroke: 0.6px black;  
+        -webkit-text-stroke: 0.6px black;
         font-family: var(--croissant-one);
         font-size: 5vw;
 
@@ -697,9 +709,9 @@ CSS CAMBIO A MÓVIL
 
     .main__randomrecipe {
         height: 28vh;
-      }
+    }
 
-    .main__randomrecipe__texto { 
+    .main__randomrecipe__texto {
 
 
         a {
