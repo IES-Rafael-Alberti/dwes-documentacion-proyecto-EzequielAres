@@ -2,6 +2,7 @@ import pytest
 from app import create_app
 from werkzeug.datastructures import Headers
 
+
 @pytest.fixture
 def client():
     app = create_app('config_tests.py')
@@ -22,6 +23,7 @@ def test_getIngredients(client):
 
     assert "Sal" in [d.get("nombre") for d in rsp]
 
+
 def test_getIngredient(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
     rsp = rv.get_json()
@@ -35,6 +37,7 @@ def test_getIngredient(client):
     assert "Galletas" == rsp.get("nombre")
     assert 1 == rsp.get("id")
 
+
 def test_postIngrediente(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
     rsp = rv.get_json()
@@ -47,6 +50,7 @@ def test_postIngrediente(client):
 
     assert "Test" == rsp.get("nombre")
 
+
 def test_putIngrediente(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})
     rsp = rv.get_json()
@@ -54,11 +58,13 @@ def test_putIngrediente(client):
 
     headers = Headers()
     headers.add('Authorization', f"Bearer {rsp['access_token']}")
-    rv = client.put("/api/ingrediente/1", headers=headers, follow_redirects=True, json={'id': 1, 'nombre': 'testCambio'})
+    rv = client.put("/api/ingrediente/1", headers=headers, follow_redirects=True,
+                    json={'id': 1, 'nombre': 'testCambio'})
     rsp = rv.get_json()
 
     assert "testCambio" == rsp.get("nombre")
     assert 1 == rsp.get("id")
+
 
 def test_delIngrediente(client):
     rv = client.post('/login', json={'nombre': 'Ezequiel', 'password': 'pestillo'})

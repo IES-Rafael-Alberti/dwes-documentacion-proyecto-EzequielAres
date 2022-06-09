@@ -1,10 +1,6 @@
 from flask import Flask, jsonify, request
-
 import flask_praetorian
-
 from model import init_db, Usuario
-
-# import blueprint
 from views import blueprint as api
 
 
@@ -45,18 +41,22 @@ def create_app(config_file='config.py'):
         Get login credentials from body using json
         Parameters: username and password
         """
+
         # get username and password from body (json)
         nombre = request.json.get('nombre')
         password = request.json.get('password')
+
         # praetorian authentication
         user = guard.authenticate(nombre, password)
 
         id = user.id;
         admin = user.is_admin
+
         # get JWT from praetorian
         ret = {"access_token": guard.encode_jwt_token(user),
                "id": id,
                "admin" : admin}
+
         # return JWT
         return jsonify(ret), 200
 
