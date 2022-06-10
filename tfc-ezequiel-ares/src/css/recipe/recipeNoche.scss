@@ -323,7 +323,7 @@ main {
 
 .Recipe__main__comentarios__comentario__contenedorUser--hijo {
   width: 35vw;
-  @include flex(wrap, flex-start, center, row);
+  @include flex(wrap, center, flex-start, row);
 
   span {
     font-family: var(--croissant-one);
