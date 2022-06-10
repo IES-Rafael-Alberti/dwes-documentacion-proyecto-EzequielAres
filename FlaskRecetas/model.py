@@ -462,7 +462,8 @@ def seed_db(app, guard):
                        contenido="Buenísima receta!"),
 
             Comentario(usuario_id=3, receta_id=1, padre_id=3,
-                       contenido="Te ha quedado genial"),
+                       imagen="http://localhost:5000/static/comentarios/tartaQueso.jpg",
+                       contenido="Te ha quedado genial! Aquí mi resultado"),
 
             Comentario(usuario_id=5, receta_id=2,
                        imagen="https://st.depositphotos.com/2461721/2717/i/450/depositphotos_27175187-stock-photo"
